@@ -1,0 +1,45 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: 'Comfortaa' !important;
+
+}
+body{
+  background-color: #080808 !important;
+}
+
+@font-face {
+  font-family: 'Comfortaa';
+  src: url('../font/Comfortaa-Regular.woff2') format('woff2'),
+      url('../font/Comfortaa-Regular.woff2') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+ 
+@font-face {
+  font-family: 'Coolvetica Rg';
+  src: url('../font/CoolveticaRg-Regular.woff2') format('woff2'),
+      url('../font/CoolveticaRg-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.slick-slide img {
+  max-width: none !important;
+}
+
+.slick-dots {
+  display: none !important;
+}
+
+.slick-arrow {
+  display: none !important;
+}
+.iframe_box{
+  width: 100% !important;
+  height:100% !important;
+}
