@@ -1,4 +1,4 @@
-# Encryptfund-Dashboard
+# Encrypt-Fund-App
 
 ## Getting Started
 
