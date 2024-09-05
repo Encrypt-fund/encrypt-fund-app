@@ -286,7 +286,7 @@ marginTop:'10px'
         },
 
     },
-    sliderBox2: {
+    sliderBoxTwo: {
         padding: '10px !important',
         '& .MuiSlider-root': {
             padding: '10px !important'
@@ -660,7 +660,7 @@ const Dsboard = (props: CircularProgressProps) => {
                                     aria-labelledby="range-slider"
                                     min={0}
                                     max={100}
-                                    className={classes.sliderBox2}
+                                    className={classes.sliderBoxTwo}
                                     sx={{
                                         background: 'linear-gradient(90deg, #080808, #00FFFF)',
                                         border: '1px solid #1D1D20',
