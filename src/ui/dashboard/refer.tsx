@@ -23,7 +23,7 @@ const useStyles = makeStyles({
     },
 
     step__one: {
-        border: '1px solid #1D1D20',
+        border: '1px solid #2b3139',
         borderRadius: '12px'
     },
     step__one_box: {
@@ -65,14 +65,14 @@ const useStyles = makeStyles({
     },
     list___bx: {
         backgroundColor: '#101012',
-        border: '1px solid #1D1D20',
+        border: '1px solid #2b3139',
         padding: '1rem',
         borderRadius: '12px',
         textAlign: 'center',
         height:'100%'
     },
     step__three: {
-        border: '1px solid #1D1D20',
+        border: '1px solid #2b3139',
         borderRadius: '12px',
         padding: 4,
         marginTop: '1rem',
@@ -105,7 +105,7 @@ const useStyles = makeStyles({
     },
     rama__log: {
         backgroundColor: '#101012',
-        border: '1px solid #1D1D20',
+        border: '1px solid #2b3139',
         borderRadius: '12px',
         display: 'flex',
         justifyContent: 'center',
@@ -124,7 +124,7 @@ const useStyles = makeStyles({
     },
     max_btn__wrap: {
         backgroundColor: '#101012',
-        border: '1px solid #1D1D20',
+        border: '1px solid #2b3139',
         borderRadius: '12px',
         display: 'flex',
         padding: '2px',
@@ -156,13 +156,13 @@ const useStyles = makeStyles({
         }
     },
     step__four: {
-        border: '1px solid #1D1D20',
+        border: '1px solid #2b3139',
         borderRadius: '12px',
         padding: '1rem',
         height: '100%'
     },
     step__four2: {
-        border: '1px solid #1D1D20',
+        border: '1px solid #2b3139',
         borderRadius: '12px',
 
 

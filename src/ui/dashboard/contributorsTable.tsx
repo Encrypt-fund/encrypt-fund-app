@@ -21,13 +21,13 @@ const useStyles = makeStyles({
             width: '12px',
         },
         '&::-webkit-scrollbar-track': {
-            background: '#101012',
+            background: '#27313d',
             borderRadius: '0px',
         },
         '&::-webkit-scrollbar-thumb': {
-            backgroundColor: '#1D1D20',
+            backgroundColor: '#2b3139',
             borderRadius: '10px',
-            border: '3px solid #101012',
+            border: '3px solid #27313d',
         },
         '&::-webkit-scrollbar-thumb:hover': {
             backgroundColor: '#555',
@@ -39,7 +39,7 @@ const useStyles = makeStyles({
         width: '100%',
         justifyContent: 'center',
         justifyItems: "center",
-        backgroundColor: '#080808',
+        backgroundColor: '#1e2329',
          
     }
 
@@ -154,12 +154,12 @@ useEffect(() => {
             <Box mt={2}>
 
                 <TableContainer component={Paper} className={classes.tableContainer}>
-                    <Table sx={{   backgroundColor: '#080808', borderRadius: '0px' }} aria-label="simple table">
-                        <TableHead sx={{ backgroundColor: '#101012' }}>
+                    <Table sx={{   backgroundColor: '#1D1D20', borderRadius: '0px', border:'1px solid #2b3139' }} aria-label="simple table">
+                        <TableHead sx={{ backgroundColor: '#27313d' }}>
                             <TableRow>
-                                <TableCell sx={{ borderBottom: '1px solid #1D1D20', fontSize: 18, color: '#fff', padding: 1 }} >User</TableCell>
-                                <TableCell sx={{ borderBottom: '1px solid #1D1D20', fontSize: 18, color: '#fff', padding: 1 }} align="left">Amount</TableCell>
-                                <TableCell sx={{ borderBottom: '1px solid #1D1D20', fontSize: 18, color: '#fff', padding: 1 }} align="right">Quantity</TableCell>
+                                <TableCell sx={{ borderBottom: '1px solid #2b3139', fontSize: 18, color: '#fff', padding: 1 }} >User</TableCell>
+                                <TableCell sx={{ borderBottom: '1px solid #2b3139', fontSize: 18, color: '#fff', padding: 1 }} align="left">Amount</TableCell>
+                                <TableCell sx={{ borderBottom: '1px solid #2b3139', fontSize: 18, color: '#fff', padding: 1 }} align="right">Quantity</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -170,7 +170,7 @@ useEffect(() => {
                                         key={index}
                                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                     >
-                                        <TableCell sx={{ borderBottom: '1px solid #1D1D20', padding: 1 }} component="th" scope="row">
+                                        <TableCell sx={{ borderBottom: '1px solid #2b3139', padding: 1 }} component="th" scope="row">
                                             <Box sx={{
                                                 display: 'flex',
                                                 gap: '10px',
@@ -179,7 +179,7 @@ useEffect(() => {
                                                 <Box sx={{ display: 'flex', alignItems: 'center', gap: '0.23rem' }}>
                                                     <Image src={t1} alt={""} width={36} />
                                                     <AddressCopy
-                                                        textColor="#00ffff !important"
+                                                        textColor="#00d632!important"
                                                         hrefLink={
                                                             chainId === 1370 ? `https://ramascan.com/address/${item.user}` :
                                                                 `https://pingaksha.ramascan.com/address/${item.user}`
@@ -189,16 +189,16 @@ useEffect(() => {
                                                 </Box>
                                             </Box>
                                         </TableCell>
-                                        <TableCell sx={{ borderBottom: '1px solid #1D1D20', padding: 1 }} align="left">
+                                        <TableCell sx={{ borderBottom: '1px solid #2b3139', padding: 1 }} align="left">
 
-                                            <Typography color={'#fff'}>{convertToAbbreviated(formatEther?.(BigInt?.(item.amount)))} RAMA</Typography>
+                                            <Typography color={'#fff'}>{convertToAbbreviated(formatEther?.(BigInt?.(item.amount)))} RUSD</Typography>
                                             <Typography color={'#999'}>{formatNumberToCurrencyString(Number(formatEther?.(BigInt?.(item?.amount ? item.amount.toString() : 0))) * Number(
                                                 formatEther?.(BigInt?.(resultOfRamaPriceInUSD ? resultOfRamaPriceInUSD.toString() : 0))))}</Typography>
                                         </TableCell>
 
-                                        <TableCell sx={{ borderBottom: '1px solid #1D1D20', padding: 1 }} align="right">
+                                        <TableCell sx={{ borderBottom: '1px solid #2b3139', padding: 1 }} align="right">
 
-                                            <Typography color={'#fff'}>{convertToAbbreviated(formatEther?.(BigInt?.(item.volume)))} MMCT</Typography>
+                                            <Typography color={'#fff'}>{convertToAbbreviated(formatEther?.(BigInt?.(item.volume)))} EF</Typography>
                                             <Typography color={'#999'}>{formatNumberToCurrencyString(Number(formatEther?.(BigInt?.(item.volume))) * 0.05)}</Typography>
                                         </TableCell>
 

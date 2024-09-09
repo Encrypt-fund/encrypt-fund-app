@@ -105,12 +105,12 @@ const navLinks = [
         iconl: sideiconl_04,
         icond: sideicond_04,
     },
-    {
-        name: 'Transaction',
-        href: '/transaction',
-        iconl: sideiconl_05,
-        icond: sideicond_05,
-    },
+    // {
+    //     name: 'Transaction',
+    //     href: '/transaction',
+    //     iconl: sideiconl_05,
+    //     icond: sideicond_05,
+    // },
     
     {
         name: 'Profile',

@@ -38,8 +38,8 @@ const Profilecmp = () => {
                     </Grid>
                     <Grid item lg={9.5} md={9.5} sm={12} xs={12}>
                         <DashboardHeader />
-                     {/* <Profile/> */}
-                     <ComingSoon/>
+                     <Profile/>
+                     {/* <ComingSoon/> */}
                     </Grid>
                 </Grid>
             </Box>

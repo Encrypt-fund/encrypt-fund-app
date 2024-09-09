@@ -57,8 +57,8 @@ const useStyles = makeStyles({
     },
     box_hding: {
 
-        backgroundColor: '#101012',
-        border: '1px solid #1D1D20',
+        backgroundColor: '#27313d',
+        border: '1px solid #2b3139',
         display: 'flex',
         justifyContent: 'center',
         height: '480px',
@@ -70,12 +70,12 @@ const useStyles = makeStyles({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        border:'1px solid #00FFFF',
-        borderRadius:'12px',
-        marginTop:'1rem'
+        border: '1px solid #00d632',
+        borderRadius: '12px',
+        marginTop: '1rem'
     },
-    MainHis:{
-        margin:'1.5rem 1.5rem 1.5rem 1.5rem'
+    MainHis: {
+        margin: '1.5rem 1.5rem 1.5rem 1.5rem'
     }
 });
 
@@ -94,19 +94,19 @@ export default function EarningTab() {
 
 
 
-            <Box sx={{ width: '100%', border: '1px solid #1D1D20', borderRadius: '8px', marginTop: '1.5rem' }}>
+            <Box sx={{ width: '100%', border: '1px solid #2b3139', borderRadius: '8px', marginTop: '1.5rem' }}>
 
                 <Box sx={{ textTransform: 'capitalize', }}>
                     <Tabs
                         variant="fullWidth" // Ensure the tabs take up the full width
                         sx={{
-                            backgroundColor: '#101012',
+                            backgroundColor: '#27313d',
                             borderRadius: '8px',
                             padding: '4px 6px 6px 6px',
                             '.MuiTabs-indicator': {
                                 height: 47,
                                 color: '#000 !important',
-                                background: 'linear-gradient(0deg, #00FFFF, #00FFFF)',
+                                background: 'linear-gradient(0deg, #00d632, #00d632)',
                                 borderRadius: '8px',
                                 backgroundColor: 'transparent',
                             },
@@ -116,9 +116,9 @@ export default function EarningTab() {
                                 zIndex: '1',
                             }
                         }} value={value} onChange={handleChange} aria-label="basic tabs example">
-                        <Tab sx={{ textTransform: 'capitalize', color: "#999", border:'1px solid #02b5b56b',borderRadius:'8px',margin:'0px 10px', flex: 1, '@media(max-width : 600px)':{padding:'12px 10px'} }} label="Self Mining" {...a11yProps(0)} />
-                        <Tab sx={{ textTransform: 'capitalize', color: "#999", border:'1px solid #02b5b56b',borderRadius:'8px',margin:'0px 10px', flex: 1,'@media(max-width : 600px)':{padding:'12px 10px'} }} label="Community" {...a11yProps(1)} />
-                        <Tab sx={{ textTransform: 'capitalize', color: "#999", border:'1px solid #02b5b56b',borderRadius:'8px',margin:'0px 10px', flex: 1,'@media(max-width : 600px)':{padding:'12px 10px'} }} label="History" {...a11yProps(2)} />
+                        <Tab sx={{ textTransform: 'capitalize', color: "#999", border: '1px solid #00d63247', borderRadius: '8px', flex: 1, '@media(max-width : 600px)': { padding: '12px 10px' } }} label="Self Mining" {...a11yProps(0)} />
+                        <Tab sx={{ textTransform: 'capitalize', color: "#999", border: '1px solid #00d63247', borderRadius: '8px', margin: '0px 10px', flex: 1, '@media(max-width : 600px)': { padding: '12px 10px' } }} label="Community" {...a11yProps(1)} />
+                        <Tab sx={{ textTransform: 'capitalize', color: "#999", border: '1px solid #00d63247', borderRadius: '8px', flex: 1, '@media(max-width : 600px)': { padding: '12px 10px' } }} label="History" {...a11yProps(2)} />
                     </Tabs>
                 </Box>
                 <CustomTabPanel value={value} index={0}>
@@ -134,21 +134,21 @@ export default function EarningTab() {
                 </CustomTabPanel>
                 <CustomTabPanel value={value} index={2}>
                     <Box className={classes.MainHis}>
-                    <Typography
-                    sx={{
-                        fontFamily: 'Bruce Forever !important',
-                        color: '#00FFFF',
-                        '@media(max-width : 1200px)': {
-                            fontSize: '22px',
-                            '@media(max-width : 900px)': {
-                                fontSize: '20px'
-                            }
-                        }
+                        <Typography
+                            sx={{
+                                fontFamily: 'Coolvetica Rg!important',
+                                color: '#00d632',
+                                '@media(max-width : 1200px)': {
+                                    fontSize: '22px',
+                                    '@media(max-width : 900px)': {
+                                        fontSize: '20px'
+                                    }
+                                }
 
-                    }}
-                    variant="h4">History Reward</Typography>
+                            }}
+                            variant="h4">History Reward</Typography>
                         <Box className={classes.comingsoon}>
-                            <Typography variant='h6' color={'#00FFFF'}>Coming Soon</Typography>
+                            <Typography variant='h6' color={'#00d632'}>Coming Soon</Typography>
                         </Box>
                     </Box>
                 </CustomTabPanel>

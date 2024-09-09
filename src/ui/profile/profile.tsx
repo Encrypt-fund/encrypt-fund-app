@@ -25,7 +25,7 @@ const useStyles = makeStyles({
     box_hding: {
 
         backgroundColor: '#101012',
-        border: '1px solid #1D1D20',
+        border: '1px solid #2b3139',
         display: 'flex',
         justifyContent: 'center',
         height: '480px',
@@ -66,7 +66,7 @@ const Profile = () => {
 
             <Box className={classes.mainDiv}>
                 <Heading heading={"Profile"} />
-                <Box border={'1px solid #1D1D20'} borderRadius={'8px'} mt={3}>
+                <Box border={'1px solid #2b3139'} borderRadius={'8px'} mt={3}>
                     <Box className={classes.js_Reigns}>
                         <Box className={classes.profile}>
                             <Image src={r2} alt={""} />
@@ -79,7 +79,7 @@ const Profile = () => {
                         }} mt={1.5} color={'#fff'}>{address ? vx4w3s b4v3xv5? ''}</Typography> */}
                         {
                             address && <AddressCopy
-                            textColor="#00ffff !important"
+                            textColor="#00d632 !important"
                             hrefLink={
                                 chainId === 1370 ? `https://ramascan.com/address/${address}` :
                                     `https://pingaksha.ramascan.com/address/${address}`
@@ -100,7 +100,7 @@ const Profile = () => {
                             {
                                 resultOfReferrer?.data!==zeroAddress ?(
                             <AddressCopy
-                                textColor="#00ffff !important"
+                                textColor="#00d632 !important"
                                 hrefLink={
                                     chainId === 1370 ? `https://ramascan.com/address/${resultOfReferrer?.data}` :
                                         `https://pingaksha.ramascan.com/address/${resultOfReferrer?.data}`

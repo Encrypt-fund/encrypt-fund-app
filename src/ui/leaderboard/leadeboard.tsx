@@ -3,7 +3,7 @@ import { makeStyles } from '@mui/styles';
 import Image from "next/image";
 import Heading from "@/theme/components/heading";
 import Tableleader from "./tableleader";
-import rmesta from '../../icons/rmesta.svg'
+import rmesta from '../../icons/Sheild.svg'
  
 
 const useStyles = makeStyles({
@@ -17,8 +17,8 @@ const useStyles = makeStyles({
     },
     box_hding: {
 
-        backgroundColor: '#101012',
-        border: '1px solid #1D1D20',
+        backgroundColor: '#1e2329',
+        border: '1px solid #2b3139',
         display: 'flex',
         justifyContent: 'center',
         height: '480px',
@@ -26,8 +26,8 @@ const useStyles = makeStyles({
         borderRadius: '12px'
     },
     Card: {
-        backgroundColor: '#101012',
-        border: '1px solid #1D1D20',
+        backgroundColor: '#1e2329',
+        border: '1px solid #2b3139',
         padding: '1rem',
         borderRadius: '8px',
         textAlign: 'center'
@@ -36,7 +36,7 @@ const useStyles = makeStyles({
         padding: '10px',
     },
     boxCr:{
-        border: '1px solid #1D1D20',
+        border: '1px solid #2b3139',
         borderRadius:'8px',
         marginTop:'1.5rem'
     },
@@ -67,13 +67,13 @@ const Leadeboard = () => {
         <>
 
             <Box className={classes.mainDiv}>
-                <Heading heading={"Mumblechat leaderboard"} />
+                <Heading heading={"Encryptfund leaderboard"} />
 
                 <Box className={classes.boxCr}>
                 <Box className={classes.cardlist}>
                      <Box sx={{
-                        backgroundColor:'#101012',
-                        border:'1px solid #02b5b56b',
+                        backgroundColor:'#1e2329',
+                        border:'1px solid #00d63247',
                         borderRadius:'8px',
                         padding:'1rem'
                      }}>
@@ -91,7 +91,7 @@ const Leadeboard = () => {
                             </Grid>
                             <Grid item lg={6} md={6} sm={12} xs={12}>
                                 <Box sx={{
-                                    backgroundColor:'#000',
+                                    backgroundColor:'#27313d',
                                     padding:'1rem',
                                     borderRadius:'8px',
                                     '@media(max-width : 600px)':{marginTop:'1rem'}

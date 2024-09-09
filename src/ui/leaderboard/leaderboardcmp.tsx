@@ -39,8 +39,8 @@ const Leaderboardcmp = () => {
                     </Grid>
                     <Grid item lg={9.5} md={9.5} sm={12} xs={12}>
                         <DashboardHeader />
-                      {/* <Leadeboard/> */}
-                      <ComingSoon/>
+                      <Leadeboard/>
+                      {/* <ComingSoon/> */}
                     </Grid>
                 </Grid>
             </Box>

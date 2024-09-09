@@ -29,7 +29,7 @@ const useStyles = makeStyles({
             borderRadius: '0px',
         },
         '&::-webkit-scrollbar-thumb': {
-            backgroundColor: '#1D1D20',
+            backgroundColor: '#2b3139',
             borderRadius: '10px',
             border: '3px solid #101012',
         },
@@ -61,7 +61,7 @@ const useStyles = makeStyles({
         width: '100%',
         justifyContent: 'center',
         justifyItems: "center",
-        backgroundColor: '#080808'
+        backgroundColor: '#1e2329'
     }
 });
 
@@ -195,8 +195,8 @@ const TableEarn = ({ resultOfUserStakedList, mintRatePerYear }: { resultOfUserSt
         // }, [blockNumber, queryClient])
         return (
 
-            <TableCell sx={{ borderBottom: '1px solid #1D1D20', padding: 1, color: '#fff' }} align="left">
-                <Typography color={'#fff'}>{Number(mintReward?.data) > 0 ? Number(formatEther?.(BigInt?.(mintReward?.data ? mintReward.data.toString() : 0))).toFixed(5) : '0.00000'} MMCT
+            <TableCell sx={{ borderBottom: '1px solid #2b3139', padding: 1, color: '#fff' }} align="left">
+                <Typography color={'#fff'}>{Number(mintReward?.data) > 0 ? Number(formatEther?.(BigInt?.(mintReward?.data ? mintReward.data.toString() : 0))).toFixed(5) : '0.00000'} EF
                     <Button
                         disabled={
                             (isPendingClaimForWrite || isLoading)
@@ -282,19 +282,19 @@ const TableEarn = ({ resultOfUserStakedList, mintRatePerYear }: { resultOfUserSt
     return (
         <Box>
             <TableContainer className={classes.tableContainer}>
-                <Table sx={{ minWidth: 1500, backgroundColor: '#080808', border: '1px solid #1D1D20', borderRadius: '8px' }} aria-label="simple table">
-                    <TableHead sx={{ backgroundColor: '#101012' }}>
+                <Table sx={{ minWidth: 1500, backgroundColor: '#1e2329', border: '1px solid #2b3139', borderRadius: '8px' }} aria-label="simple table">
+                    <TableHead sx={{ backgroundColor: '#27313d' }}>
                         <TableRow>
-                            <TableCell sx={{ borderBottom: '1px solid #1D1D20', fontSize: 16, color: '#fff' }}>User</TableCell>
-                            <TableCell sx={{ borderBottom: '1px solid #1D1D20', fontSize: 16, color: '#fff' }} align="left">SA <HoverTool Title={"Staked Amount"} /></TableCell>
-                            {/* <TableCell sx={{ borderBottom: '1px solid #1D1D20', fontSize: 16, color: '#fff' }} align="left">Tier</TableCell> */}
-                            <TableCell sx={{ borderBottom: '1px solid #1D1D20', fontSize: 16, color: '#fff' }} align="left">Reward</TableCell>
-                            <TableCell sx={{ borderBottom: '1px solid #1D1D20', fontSize: 16, color: '#fff' }} align="left">TRI365D <HoverTool Title={"Total Reward in 365 Days"} /></TableCell>
-                            <TableCell sx={{ borderBottom: '1px solid #1D1D20', fontSize: 16, color: '#fff' }} align="left">TCR <HoverTool Title={"Till Claimed Rewards"} /></TableCell>
-                            <TableCell sx={{ borderBottom: '1px solid #1D1D20', fontSize: 16, color: '#fff' }} align="left">RR <HoverTool Title={"Remaining Rewards"} /></TableCell>
-                            <TableCell sx={{ borderBottom: '1px solid #1D1D20', fontSize: 16, color: '#fff' }} align="left">ST <HoverTool Title={"Start Time"} /></TableCell>
-                            <TableCell sx={{ borderBottom: '1px solid #1D1D20', fontSize: 16, color: '#fff' }} align="left">LC <HoverTool Title={"Last Claimed"} /></TableCell>
-                            <TableCell sx={{ borderBottom: '1px solid #1D1D20', fontSize: 16, color: '#fff' }} align="right">Action</TableCell>
+                            <TableCell sx={{ borderBottom: '1px solid #2b3139', fontSize: 16, color: '#fff' }}>User</TableCell>
+                            <TableCell sx={{ borderBottom: '1px solid #2b3139', fontSize: 16, color: '#fff' }} align="left">SA <HoverTool Title={"Staked Amount"} /></TableCell>
+                            {/* <TableCell sx={{ borderBottom: '1px solid #2b3139', fontSize: 16, color: '#fff' }} align="left">Tier</TableCell> */}
+                            <TableCell sx={{ borderBottom: '1px solid #2b3139', fontSize: 16, color: '#fff' }} align="left">Reward</TableCell>
+                            <TableCell sx={{ borderBottom: '1px solid #2b3139', fontSize: 16, color: '#fff' }} align="left">TRI365D <HoverTool Title={"Total Reward in 365 Days"} /></TableCell>
+                            <TableCell sx={{ borderBottom: '1px solid #2b3139', fontSize: 16, color: '#fff' }} align="left">TCR <HoverTool Title={"Till Claimed Rewards"} /></TableCell>
+                            <TableCell sx={{ borderBottom: '1px solid #2b3139', fontSize: 16, color: '#fff' }} align="left">RR <HoverTool Title={"Remaining Rewards"} /></TableCell>
+                            <TableCell sx={{ borderBottom: '1px solid #2b3139', fontSize: 16, color: '#fff' }} align="left">ST <HoverTool Title={"Start Time"} /></TableCell>
+                            <TableCell sx={{ borderBottom: '1px solid #2b3139', fontSize: 16, color: '#fff' }} align="left">LC <HoverTool Title={"Last Claimed"} /></TableCell>
+                            <TableCell sx={{ borderBottom: '1px solid #2b3139', fontSize: 16, color: '#fff' }} align="right">Action</TableCell>
 
                         </TableRow>
                     </TableHead>
@@ -303,7 +303,7 @@ const TableEarn = ({ resultOfUserStakedList, mintRatePerYear }: { resultOfUserSt
                         {
                             resultOfUserStakedList?.length > 0 ? resultOfUserStakedList.map((item: any, index: number) => (
                                 <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                                    <TableCell sx={{ borderBottom: '1px solid #1D1D20', padding: 1, color: '#fff' }} component="th" scope="row">
+                                    <TableCell sx={{ borderBottom: '1px solid #2b3139', padding: 1, color: '#fff' }} component="th" scope="row">
                                         <Box sx={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
                                             <Image src={r2} alt={"lol"} width={50} />
                                             <AddressCopy
@@ -317,37 +317,37 @@ const TableEarn = ({ resultOfUserStakedList, mintRatePerYear }: { resultOfUserSt
 
                                         </Box>
                                     </TableCell>
-                                    <TableCell sx={{ borderBottom: '1px solid #1D1D20', padding: 1, color: '#fff' }} align="left">
-                                        <Typography color={'#fff'}>{convertToAbbreviated(formatEther?.(BigInt?.(item?.amount ? item.amount.toString() : 0)), 3)} MMCT</Typography>
+                                    <TableCell sx={{ borderBottom: '1px solid #2b3139', padding: 1, color: '#fff' }} align="left">
+                                        <Typography color={'#fff'}>{convertToAbbreviated(formatEther?.(BigInt?.(item?.amount ? item.amount.toString() : 0)), 3)} EF</Typography>
                                         <Typography color={'#999'}>{formatNumberToCurrencyString(Number(formatEther?.(BigInt?.(item?.amount ? item.amount.toString() : 0))) * 0.05, 3)}</Typography>
                                     </TableCell>
-                                    {/* <TableCell sx={{ borderBottom: '1px solid #1D1D20', padding: 1, color: '#fff' }} align="left">
+                                    {/* <TableCell sx={{ borderBottom: '1px solid #2b3139', padding: 1, color: '#fff' }} align="left">
                                     <Typography color={'#fff'}>{formatTier(Number(item.tier))}</Typography>
 
                                 </TableCell> */}
 
                                     <Reward index={index} />
 
-                                    <TableCell sx={{ borderBottom: '1px solid #1D1D20', padding: 1, color: '#fff' }} align="left">
-                                        <Typography color={'#fff'}>{convertToAbbreviated((Number(mintRatePerYear) * Number(formatEther?.(BigInt?.(item?.amount ? item.amount.toString() : 0))) / 100), 5)} MMCT</Typography>
+                                    <TableCell sx={{ borderBottom: '1px solid #2b3139', padding: 1, color: '#fff' }} align="left">
+                                        <Typography color={'#fff'}>{convertToAbbreviated((Number(mintRatePerYear) * Number(formatEther?.(BigInt?.(item?.amount ? item.amount.toString() : 0))) / 100), 5)} EF</Typography>
                                         <Typography color={'#999'}>{formatNumberToCurrencyString((Number(mintRatePerYear) * Number(formatEther?.(BigInt?.(item?.amount ? item.amount.toString() : 0))) / 100) * 0.05, 5)}</Typography>
                                     </TableCell>
-                                    <TableCell sx={{ borderBottom: '1px solid #1D1D20', padding: 1, color: '#fff' }} align="left">
-                                        <Typography color={'#fff'}>{convertToAbbreviated(formatEther?.(BigInt?.(item?.claimedMintRewards ? item.claimedMintRewards.toString() : 0)), 5)} MMCT</Typography>
+                                    <TableCell sx={{ borderBottom: '1px solid #2b3139', padding: 1, color: '#fff' }} align="left">
+                                        <Typography color={'#fff'}>{convertToAbbreviated(formatEther?.(BigInt?.(item?.claimedMintRewards ? item.claimedMintRewards.toString() : 0)), 5)} EF</Typography>
                                         <Typography color={'#999'}>{formatNumberToCurrencyString(Number(formatEther?.(BigInt?.(item?.claimedMintRewards ? item.claimedMintRewards.toString() : 0))) * 0.05, 5)}</Typography>
                                     </TableCell>
-                                    <TableCell sx={{ borderBottom: '1px solid #1D1D20', padding: 1, color: '#fff' }} align="left">
-                                        <Typography color={'#fff'}>{convertToAbbreviated(((Number(mintRatePerYear) * Number(formatEther?.(BigInt?.(item?.amount ? item.amount.toString() : 0))) / 100) - Number(formatEther?.(BigInt?.(item?.claimedMintRewards ? item.claimedMintRewards.toString() : 0)))), 5)} MMCT</Typography>
+                                    <TableCell sx={{ borderBottom: '1px solid #2b3139', padding: 1, color: '#fff' }} align="left">
+                                        <Typography color={'#fff'}>{convertToAbbreviated(((Number(mintRatePerYear) * Number(formatEther?.(BigInt?.(item?.amount ? item.amount.toString() : 0))) / 100) - Number(formatEther?.(BigInt?.(item?.claimedMintRewards ? item.claimedMintRewards.toString() : 0)))), 5)} EF</Typography>
                                         <Typography color={'#999'}>{formatNumberToCurrencyString(((Number(mintRatePerYear) * Number(formatEther?.(BigInt?.(item?.amount ? item.amount.toString() : 0))) / 100) - Number(formatEther?.(BigInt?.(item?.claimedMintRewards ? item.claimedMintRewards.toString() : 0)))) * 0.05, 5)}</Typography>
                                     </TableCell>
-                                    <TableCell sx={{ borderBottom: '1px solid #1D1D20', padding: 1, color: '#fff' }} align="left">
+                                    <TableCell sx={{ borderBottom: '1px solid #2b3139', padding: 1, color: '#fff' }} align="left">
                                         <Typography color={'#fff'}>{new Date(Number(item?.startTime) * 1000).toLocaleString()}</Typography>
                                     </TableCell>
-                                    <TableCell sx={{ borderBottom: '1px solid #1D1D20', padding: 1, color: '#fff' }} align="left">
+                                    <TableCell sx={{ borderBottom: '1px solid #2b3139', padding: 1, color: '#fff' }} align="left">
                                         <Typography color={'#fff'}>{new Date(Number(item?.lastClaimTime) * 1000).toLocaleString()}</Typography>
                                     </TableCell>
 
-                                    <TableCell sx={{ borderBottom: '1px solid #1D1D20', padding: 1, color: '#fff' }} align="right">
+                                    <TableCell sx={{ borderBottom: '1px solid #2b3139', padding: 1, color: '#fff' }} align="right">
                                         <Action index={index} />
                                     </TableCell>
                                 </TableRow>

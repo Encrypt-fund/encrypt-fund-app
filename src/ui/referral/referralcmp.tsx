@@ -39,8 +39,8 @@ const Raferralcmp = () => {
                     <Grid item lg={9.5} md={9.5} sm={12} xs={12}>
                         <DashboardHeader />
                          
-                        {/* <ReferralTab/> */}
-                        <ComingSoon/>
+                        <ReferralTab/>
+                        {/* <ComingSoon/> */}
                     </Grid>
                 </Grid>
             </Box>

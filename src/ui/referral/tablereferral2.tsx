@@ -26,13 +26,13 @@ const useStyles = makeStyles({
             width: '12px',
         },
         '&::-webkit-scrollbar-track': {
-            background: '#101012',
+            background: '#27313d',
             borderRadius: '0px',
         },
         '&::-webkit-scrollbar-thumb': {
-            backgroundColor: '#1D1D20',
+            backgroundColor: '#2b3139',
             borderRadius: '10px',
-            border: '3px solid #101012',
+            border: '3px solid #27313d',
         },
         '&::-webkit-scrollbar-thumb:hover': {
             backgroundColor: '#555',
@@ -44,7 +44,7 @@ const useStyles = makeStyles({
         width: '100%',
         justifyContent: 'center',
         justifyItems: "center",
-        backgroundColor: '#080808'
+        backgroundColor: '#1e2329'
     }
 })
 
@@ -151,15 +151,15 @@ const Tablereferral2 = () => {
         <>
             <Box>
                 <TableContainer component={Paper} className={classes.tableContainer}>
-                    <Table sx={{ minWidth: 650, backgroundColor: '#080808', border: '1px solid #1D1D20', borderRadius: '4px' }} aria-label="simple table">
-                        <TableHead sx={{ backgroundColor: '#101012' }}>
+                    <Table sx={{ minWidth: 650, backgroundColor: '#1e2329', border: '1px solid #2b3139', borderRadius: '4px' }} aria-label="simple table">
+                        <TableHead sx={{ backgroundColor: '#27313d' }}>
                             <TableRow>
-                                <TableCell sx={{ borderBottom: '1px solid #1D1D20', fontSize: 18, color: '#fff', padding: 1 }} >User</TableCell>
-                                <TableCell sx={{ borderBottom: '1px solid #1D1D20', fontSize: 18, color: '#fff', padding: 1 }} align="left">SA <HoverTool Title={"Staking Amount"} /></TableCell>
-                                <TableCell sx={{ borderBottom: '1px solid #1D1D20', fontSize: 18, color: '#fff', padding: 1 }} align="left">RE <HoverTool Title={"Referral Earning"}/></TableCell>
-                                <TableCell sx={{ borderBottom: '1px solid #1D1D20', fontSize: 18, color: '#fff', padding: 1 }} align="left">level</TableCell>
-                                <TableCell sx={{ borderBottom: '1px solid #1D1D20', fontSize: 18, color: '#fff', padding: 1 }} align="left">Bonus</TableCell>
-                                <TableCell sx={{ borderBottom: '1px solid #1D1D20', fontSize: 18, color: '#fff', padding: 1 }} align="right">EFY <HoverTool Title={"Earning From You"} /></TableCell>
+                                <TableCell sx={{ borderBottom: '1px solid #2b3139', fontSize: 18, color: '#fff', padding: 1 }} >User</TableCell>
+                                <TableCell sx={{ borderBottom: '1px solid #2b3139', fontSize: 18, color: '#fff', padding: 1 }} align="left">SA <HoverTool Title={"Staking Amount"} /></TableCell>
+                                <TableCell sx={{ borderBottom: '1px solid #2b3139', fontSize: 18, color: '#fff', padding: 1 }} align="left">RE <HoverTool Title={"Referral Earning"}/></TableCell>
+                                <TableCell sx={{ borderBottom: '1px solid #2b3139', fontSize: 18, color: '#fff', padding: 1 }} align="left">level</TableCell>
+                                <TableCell sx={{ borderBottom: '1px solid #2b3139', fontSize: 18, color: '#fff', padding: 1 }} align="left">Bonus</TableCell>
+                                <TableCell sx={{ borderBottom: '1px solid #2b3139', fontSize: 18, color: '#fff', padding: 1 }} align="right">EFY <HoverTool Title={"Earning From You"} /></TableCell>
 
                             </TableRow>
                         </TableHead>
@@ -174,7 +174,7 @@ const Tablereferral2 = () => {
                                         key={index}
                                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                     >
-                                        <TableCell sx={{ borderBottom: '1px solid #1D1D20', padding: 1, color: '#fff' }} component="th" scope="row">
+                                        <TableCell sx={{ borderBottom: '1px solid #2b3139', padding: 1, color: '#fff' }} component="th" scope="row">
                                             <Box sx={{
                                                 display: 'flex',
                                                 gap: '10px',
@@ -191,11 +191,11 @@ const Tablereferral2 = () => {
                                              addresstext={shortenString(resultOfUplineReferrals.data[0][index] as Address)}/>
                                             </Box>
                                         </TableCell>
-                                        <TableCell sx={{ borderBottom: '1px solid #1D1D20', padding: 1, color: '#fff' }} align="left">
+                                        <TableCell sx={{ borderBottom: '1px solid #2b3139', padding: 1, color: '#fff' }} align="left">
                                         <Typography color={'#fff'}>{resultOfUplineReferrals.data[1][index] ?
                                                 (
                                                     <>
-                                                        {convertToAbbreviated(Number(formatEther?.(BigInt?.(resultOfUplineReferrals.data[1][index].toString()))))} MMCT
+                                                        {convertToAbbreviated(Number(formatEther?.(BigInt?.(resultOfUplineReferrals.data[1][index].toString()))))} EF
                                                     </>
                                                 )
                                                 : '-'}
@@ -210,11 +210,11 @@ const Tablereferral2 = () => {
                                                 : '-'}
                                                 </Typography>
                                         </TableCell>
-                                        <TableCell sx={{ borderBottom: '1px solid #1D1D20', padding: 1, color: '#fff' }} align="left">
+                                        <TableCell sx={{ borderBottom: '1px solid #2b3139', padding: 1, color: '#fff' }} align="left">
                                         <Typography color={'#fff'}>{resultOfUplineReferrals.data[2][index] ?
                                                 (
                                                     <>
-                                                        {convertToAbbreviated(Number(formatEther?.(BigInt?.(resultOfUplineReferrals.data[2][index].toString()))),5)} MMCT
+                                                        {convertToAbbreviated(Number(formatEther?.(BigInt?.(resultOfUplineReferrals.data[2][index].toString()))),5)} EF
                                                     </>
                                                 )
                                                 : '-'}
@@ -229,15 +229,15 @@ const Tablereferral2 = () => {
                                                 : '-'}
                                                 </Typography>
                                         </TableCell>
-                                        <TableCell sx={{ borderBottom: '1px solid #1D1D20', padding: 1, color: '#fff' }} align="left">{index+1}</TableCell>
-                                        <TableCell sx={{ borderBottom: '1px solid #1D1D20', padding: 1, color: '#fff' }} align="left">
+                                        <TableCell sx={{ borderBottom: '1px solid #2b3139', padding: 1, color: '#fff' }} align="left">{index+1}</TableCell>
+                                        <TableCell sx={{ borderBottom: '1px solid #2b3139', padding: 1, color: '#fff' }} align="left">
                                             <Typography color={'#fff'}>{rewardPercentages[index]*100}% </Typography>
                                         </TableCell>
-                                        <TableCell sx={{ borderBottom: '1px solid #1D1D20', padding: 1, color: '#fff' }} align="right">
+                                        <TableCell sx={{ borderBottom: '1px solid #2b3139', padding: 1, color: '#fff' }} align="right">
                                         <Typography color={'#fff'}>{resultOfUplineReferrals.data[2][index] ?
                                                 (
                                                     <>
-                                                        {convertToAbbreviated(Number(formatEther?.(BigInt?.(resultOfUplineReferrals.data[2][index].toString())))*rewardPercentages[index],5)} MMCT
+                                                        {convertToAbbreviated(Number(formatEther?.(BigInt?.(resultOfUplineReferrals.data[2][index].toString())))*rewardPercentages[index],5)} EF
                                                     </>
                                                 )
                                                 : '-'}

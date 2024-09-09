@@ -20,8 +20,8 @@ const useStyles = makeStyles({
     },
     box_hding: {
 
-        backgroundColor: '#101012',
-        border: '1px solid #1D1D20',
+        backgroundColor: '#27313d',
+        border: '1px solid #2b3139',
         display: 'flex',
         justifyContent: 'center',
         height: '480px',
@@ -29,8 +29,8 @@ const useStyles = makeStyles({
         borderRadius: '12px'
     },
     Card: {
-        backgroundColor: '#101012',
-        border: '1px solid #1D1D20',
+        backgroundColor: '#27313d',
+        border: '1px solid #2b3139',
         padding: '1rem',
         borderRadius: '8px',
         textAlign: 'center'
@@ -39,7 +39,7 @@ const useStyles = makeStyles({
         padding: '10px',
     },
     boxCr: {
-        border: '1px solid #1D1D20',
+        border: '1px solid #2b3139',
         borderRadius: '4px',
         marginTop: '1.5rem'
     }
@@ -87,8 +87,8 @@ const Community = () => {
 
                 <Typography
                     sx={{
-                        fontFamily: 'Bruce Forever !important',
-                        color: '#00FFFF',
+                        fontFamily: 'Coolvetica Rg!important',
+                        color: '#00d632',
                         '@media(max-width : 1200px)': {
                             fontSize: '22px',
                             '@media(max-width : 900px)': {
@@ -106,7 +106,7 @@ const Community = () => {
                                 <Grid key={index} item lg={6} md={6} sm={6} xs={12}>
                                     <Box className={classes.Card}>
                                         <Typography color={'#fff'}>{item.Title}</Typography>
-                                        <Typography color={'#fff'} variant="h6">{item.Amount} MMCT</Typography>
+                                        <Typography color={'#fff'} variant="h6">{item.Amount} EF</Typography>
                                         <Typography color={'#999'}>{item.data}</Typography>
                                     </Box>
                                 </Grid>

@@ -65,7 +65,7 @@ const useStyles = makeStyles({
     box_hding: {
 
         backgroundColor: '#101012',
-        border: '1px solid #1D1D20',
+        border: '1px solid #2b3139',
         display: 'flex',
         justifyContent: 'center',
         height: '480px',
@@ -119,19 +119,19 @@ export default function ReferralTab() {
 
             <Refer resultOfReferralDetail={resultOfReferralDetail} />
 
-            <Box sx={{ width: '100%', border: '1px solid #1D1D20', borderRadius: '8px', marginTop: '1.5rem' }}>
+            <Box sx={{ width: '100%', border: '1px solid #2b3139', borderRadius: '8px', marginTop: '1.5rem' }}>
 
                 <Box sx={{ textTransform: 'capitalize', }}>
                     <Tabs
                         variant="fullWidth" // Ensure the tabs take up the full width
                         sx={{
-                            backgroundColor: '#101012',
+                            backgroundColor: '#27313d',
                             borderRadius: '8px',
                             padding: '4px 6px 6px 6px',
                             '.MuiTabs-indicator': {
                                 height: 47,
                                 color: '#000',
-                                background: 'linear-gradient(0deg, #00FFFF, #00FFFF)',
+                                background: 'linear-gradient(0deg, #00d632, #00d632)',
                                 borderRadius: '8px',
                                 backgroundColor: 'transparent',
                             },
@@ -141,8 +141,8 @@ export default function ReferralTab() {
                                 zIndex: '1',
                             }
                         }} value={value} onChange={handleChange} aria-label="basic tabs example">
-                        <Tab sx={{ textTransform: 'capitalize', color: "#999",border:'1px solid #02b5b56b',borderRadius:'8px',margin:'0px 10px', flex: 1 }} label="Direct Referral" {...a11yProps(0)} />
-                        <Tab sx={{ textTransform: 'capitalize', color: "#999",border:'1px solid #02b5b56b',borderRadius:'8px',margin:'0px 10px', flex: 1 }} label="Upline Referral" {...a11yProps(1)} />
+                        <Tab sx={{ textTransform: 'capitalize', color: "#999",border:'1px solid #00d63247',borderRadius:'8px',margin:'0px 10px 0px 0px', flex: 1 }} label="Direct Referral" {...a11yProps(0)} />
+                        <Tab sx={{ textTransform: 'capitalize', color: "#999",border:'1px solid #00d63247',borderRadius:'8px',margin:'0px 0px 0px 10px', flex: 1 }} label="Upline Referral" {...a11yProps(1)} />
                     </Tabs>
                 </Box>
                 <CustomTabPanel value={value} index={0}>

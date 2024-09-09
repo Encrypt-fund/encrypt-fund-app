@@ -23,8 +23,8 @@ const useStyles = makeStyles({
     },
     box_hding: {
 
-        backgroundColor: '#101012',
-        border: '1px solid #1D1D20',
+        backgroundColor: '#27313d',
+        border: '1px solid #2b3139',
         display: 'flex',
         justifyContent: 'center',
         height: '480px',
@@ -32,8 +32,8 @@ const useStyles = makeStyles({
         borderRadius: '12px'
     },
     Card: {
-        backgroundColor: '#101012',
-        border: '1px solid #02b5b56b',
+        backgroundColor: '#27313d',
+        border: '1px solid #00d63247',
         padding: '1rem',
         borderRadius: '8px',
         textAlign: 'center'
@@ -42,7 +42,7 @@ const useStyles = makeStyles({
         padding: '10px',
     },
     boxCr: {
-        border: '1px solid #1D1D20',
+        border: '1px solid #2b3139',
         borderRadius: '4px',
         marginTop: '1.5rem'
     }
@@ -146,25 +146,25 @@ const Earning = ({ Earning }: props) => {
         {
             id: 1,
             Title: 'Ramestta Wallet Balance',
-            Amount: `${convertToAbbreviated(formatEther?.(BigInt?.(resultOfBalance?.data ? resultOfBalance.data.toString() : 0)), 3)} MMCT`,
+            Amount: `${convertToAbbreviated(formatEther?.(BigInt?.(resultOfBalance?.data ? resultOfBalance.data.toString() : 0)), 3)} EF`,
             data: `${formatNumberToCurrencyString(Number(formatEther?.(BigInt?.(resultOfBalance?.data ? resultOfBalance.data.toString() : 0))) * 0.05, 3)}`
         },
         {
             id: 2,
             Title: 'Your Stake',
-            Amount: `${convertToAbbreviated(formatEther?.(BigInt?.(resultOfUserStaked?.data ? resultOfUserStaked.data.amount.toString() : 0)), 3)} MMCT`,
+            Amount: `${convertToAbbreviated(formatEther?.(BigInt?.(resultOfUserStaked?.data ? resultOfUserStaked.data.amount.toString() : 0)), 3)} EF`,
             data: `${formatNumberToCurrencyString(Number(formatEther?.(BigInt?.(resultOfUserStaked?.data ? resultOfUserStaked.data.amount.toString() : 0))) * 0.05, 3)}`
         },
         {
             id: 3,
             Title: 'Claimed Rewards',
-            Amount: `${convertToAbbreviated(formatEther?.(BigInt?.(resultOfUserStaked?.data ? resultOfUserStaked.data.claimedMintRewards.toString() : 0)), 5)} MMCT`,
+            Amount: `${convertToAbbreviated(formatEther?.(BigInt?.(resultOfUserStaked?.data ? resultOfUserStaked.data.claimedMintRewards.toString() : 0)), 5)} EF`,
             data: `${formatNumberToCurrencyString(Number(formatEther?.(BigInt?.(resultOfUserStaked?.data ? resultOfUserStaked.data.claimedMintRewards.toString() : 0))) * 0.05, 5)}`
         },
         {
             id: 4,
             Title: 'Unclaimed Rewards',
-            Amount: `${" 0.00000 MMCT"
+            Amount: `${" 0.00000 EF"
                 }`,
             data: '$0.00000'
         },
@@ -205,8 +205,8 @@ useEffect(() => {
 
                 <Typography
                     sx={{
-                        fontFamily: 'Bruce Forever !important',
-                        color: '#00FFFF',
+                        fontFamily: 'Coolvetica Rg!important',
+                        color: '#00d632',
                         '@media(max-width : 1200px)': {
                             fontSize: '22px',
                             '@media(max-width : 900px)': {

@@ -13,7 +13,7 @@ import { useAccount } from "wagmi";
 const useStyles = makeStyles({
 
     ref__link: {
-        backgroundColor: '#00FFFF !important',
+        backgroundColor: '#00d632!important',
         padding: '0.5rem 1rem',
         borderRadius: '0px 0px 8px 8px',
         display: 'flex',
@@ -36,7 +36,7 @@ const RefBottom = () => {
     return (
         <>
             <Box className={classes.ref__link}>
-                 <AddressCopy hrefLink={`https://ico.mumblechat.com/dashboard/?ref=${address}`}  text={`https://ico.mumblechat.com/dashboard/?ref=${address}`} addresstext={`https://ico.mumblechat.com/dashboard/?ref=${shortenString(address as Address)}`} /> 
+                 <AddressCopy hrefLink={`https://ico.encryptfund.com/dashboard/?ref=${address}`}  text={`https://ico.encryptfund.com/dashboard/?ref=${address}`} addresstext={`https://ico.encryptfund.com/dashboard/?ref=${shortenString(address as Address)}`} /> 
                 <Modal />
             </Box>
         </>

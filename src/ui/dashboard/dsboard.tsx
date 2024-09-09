@@ -6,7 +6,7 @@ import Image from "next/image";
 import dleft from '../../icons/dleft.svg'
 import dright from '../../icons/dright.svg'
 import Heading from "@/theme/components/heading";
-import rmesta from '../../icons/rmesta.svg'
+import rmesta from '../../icons/Sheild.svg'
 import shield from '../../icons/Sheild.svg'
 import slider1 from '../../icons/slider1.svg'
 import slider2 from '../../icons/slider2.svg'
@@ -52,18 +52,20 @@ const useStyles = makeStyles({
     },
 
     step__one: {
-        border: '1px solid #1D1D20',
+        border: '1px solid #2b3139',
         borderRadius: '12px'
     },
     step__one_box: {
-        backgroundColor: '#101012',
+        backgroundColor: '#27313d',
         borderRadius: '12px',
+        padding:'1rem',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
         '@media(max-width : 600px)': {
             flexWrap: 'wrap',
-            justifyContent: 'center'
+            justifyContent: 'center',
+            gap:'1rem'
         }
     },
     Top_hding: {
@@ -106,22 +108,22 @@ const useStyles = makeStyles({
         marginTop: '1rem',
     },
     list___bx: {
-        backgroundColor: '#101012',
-        border: '1px solid #02b5b56b',
+        backgroundColor: '#27313d',
+        border: '1px solid #00d63247',
         padding: '1rem',
         borderRadius: '12px',
         textAlign: 'center',
         height: '100%'
     },
     step__three: {
-        border: '1px solid #1D1D20',
+        border: '1px solid #2b3139',
         borderRadius: '12px',
         padding: 4,
         marginTop: '1rem',
         height: '100%'
     },
     coin_hding: {
-        backgroundColor: '#101012',
+        backgroundColor: '#27313d',
         padding: '1.5rem',
         borderRadius: '10px 10px 0px 0px',
         textAlign: 'center',
@@ -147,8 +149,8 @@ const useStyles = makeStyles({
 marginTop:'10px'
     },
     rama__log: {
-        backgroundColor: '#101012',
-        border: '1px solid #1D1D20',
+        backgroundColor: '#27313d',
+        border: '1px solid #2b3139',
         borderRadius: '12px',
         display: 'flex',
         justifyContent: 'center',
@@ -158,29 +160,29 @@ marginTop:'10px'
         marginTop: '1.5rem'
     },
     max_btn: {
-        backgroundColor: '#00FFFF !important',
+        backgroundColor: '#00d632!important',
         padding: '10px 20px',
         borderRadius: '8px !important',
         color: '#000 !important',
         textDecoration: 'none',
         fontWeight: 500,
         '&:hover': {
-            backgroundColor: '#00ffff !important',
+            backgroundColor: '#00d632!important',
             color: '#000 !important'
         }
 
     },
     max_btn__wrap: {
-        backgroundColor: '#101012',
-        border: '1px solid #1D1D20',
+        backgroundColor: '#27313d',
+        border: '1px solid #2b3139',
         borderRadius: '12px',
         display: 'flex',
         padding: '2px',
         marginTop: '0.5rem'
     },
     apply_btn__wrap: {
-        backgroundColor: '#101012',
-        border: '1px solid #1D1D20',
+        backgroundColor: '#27313d',
+        border: '1px solid #2b3139',
         borderRadius: '12px',
         display: 'flex',
         padding: '2px',
@@ -212,7 +214,7 @@ marginTop:'10px'
 
     },
     buy__btn: {
-        backgroundColor: '#00FFFF !important',
+        backgroundColor: '#00d632!important',
         padding: '10px 20px !important',
         borderRadius: '30px !important',
         color: '#000 !important',
@@ -223,7 +225,7 @@ marginTop:'10px'
         textAlign: 'center',
         fontSize: '20px',
         '&:hover': {
-            backgroundColor: '#00ffff',
+            backgroundColor: '#00d632',
             color: '#000'
         }
     },
@@ -234,13 +236,13 @@ marginTop:'10px'
         }
     },
     step__four: {
-        border: '1px solid #1D1D20',
+        border: '1px solid #2b3139',
         borderRadius: '12px',
         padding: '1rem',
         height: '100%'
     },
     step__four2: {
-        border: '1px solid #1D1D20',
+        border: '1px solid #2b3139',
         borderRadius: '12px',
 
 
@@ -252,7 +254,7 @@ marginTop:'10px'
         padding: '1rem'
     },
     ref__link: {
-        backgroundColor: '#00FFFF',
+        backgroundColor: '#00d632',
         padding: '0.5rem 1rem',
         borderRadius: '0px 0px 8px 8px',
         display: 'flex',
@@ -281,7 +283,7 @@ marginTop:'10px'
             background: 'linear-gradient(0deg, #fff, #fff)',
         },
         '& .MuiSlider-thumb': {
-            background: 'linear-gradient(0deg, #00FFFF, #00FFFF)',
+            background: 'linear-gradient(0deg, #00d632, #00d632)',
             padding: '16px',
         },
 
@@ -299,14 +301,14 @@ marginTop:'10px'
             background: 'linear-gradient(0deg, #fff, #fff)',
         },
         '& .MuiSlider-thumb': {
-            background: 'linear-gradient(270deg, #000000, #00FFFF)',
+            background: 'linear-gradient(270deg, #000000, #00d632)',
             padding: '16px',
         },
 
 
     },
     validate__box: {
-        backgroundColor: '#101012',
+        backgroundColor: '#1e2329',
         margin: '1rem auto auto auto',
         width: '250px',
         textAlign: 'center',
@@ -328,12 +330,12 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
     height: 30,
     borderRadius: 30,
     [`&.${linearProgressClasses.colorPrimary}`]: {
-        backgroundColor: '#101012',
-        border: '1px solid #1D1D20'
+        backgroundColor: '#27313d',
+        border: '1px solid #2b3139'
     },
     [`& .${linearProgressClasses.bar}`]: {
         borderRadius: 30,
-        background: 'linear-gradient(90deg, #080808, #00ffff78)',
+        background: 'linear-gradient(90deg, #080808, #00d63278)',
     },
 }));
 
@@ -478,7 +480,7 @@ const Dsboard = (props: CircularProgressProps) => {
         {
             image: l1,
             title: 'Your Wallet Balance',
-            data: `${convertToAbbreviated(formatEther?.(BigInt?.(resultOfBalance?.data ? resultOfBalance.data.toString() : 0)), 3)} MMCT`,
+            data: `${convertToAbbreviated(formatEther?.(BigInt?.(resultOfBalance?.data ? resultOfBalance.data.toString() : 0)), 3)} EF`,
             valueInUsd: `${formatNumberToCurrencyString(Number(formatEther?.(BigInt?.(resultOfBalance?.data ? resultOfBalance.data.toString() : 0))) * 0.05, 3)}`
         },
         {
@@ -490,13 +492,13 @@ const Dsboard = (props: CircularProgressProps) => {
         {
             image: l3,
             title: 'Your Spot Earnings',
-            data: `${convertToAbbreviated(formatEther?.(BigInt?.(resultOfReferralDetail?.data?.[0].result ? resultOfReferralDetail?.data?.[0].result.toString() : 0)), 3)} MMCT`,
+            data: `${convertToAbbreviated(formatEther?.(BigInt?.(resultOfReferralDetail?.data?.[0].result ? resultOfReferralDetail?.data?.[0].result.toString() : 0)), 3)} EF`,
             valueInUsd: `${formatNumberToCurrencyString(Number(formatEther?.(BigInt?.(resultOfReferralDetail?.data?.[0].result ? resultOfReferralDetail?.data?.[0].result.toString() : 0))) * 0.05, 3)}`
         },
         {
             image: l1,
             title: 'Your Community Earnings',
-            data: `${convertToAbbreviated(formatEther?.(BigInt(Number(resultOfUserCommunityReward?.data) > 0 ? resultOfUserCommunityReward?.data?.claimedReward as bigint : 0)), 5)} MMCT`,
+            data: `${convertToAbbreviated(formatEther?.(BigInt(Number(resultOfUserCommunityReward?.data) > 0 ? resultOfUserCommunityReward?.data?.claimedReward as bigint : 0)), 5)} EF`,
             valueInUsd: `${formatNumberToCurrencyString(Number(formatEther?.(BigInt(Number(resultOfUserCommunityReward?.data) > 0 ? resultOfUserCommunityReward?.data?.claimedReward as bigint : 0))) * 0.05, 5)}`
         },
     ]
@@ -527,26 +529,21 @@ const Dsboard = (props: CircularProgressProps) => {
                         <Box><Image src={dleft} alt={""} /></Box>
                         <Box className={classes.Top_hding}>
                             <Heading heading={"Welcome to"} />
-                            <Heading heading={"Mumblechat Dashboard"} />
+                            <Heading heading={"Encryptfund Dashboard"} />
                         </Box>
                         <Box><Image src={dright} alt={""} /></Box>
                     </Box>
 
                     <Box sx={{ padding: '0rem 0.5rem', marginTop: '1rem' }}>
                         <Grid container spacing={2} sx={{ flexWrap: 'inherit',  }}>
-                            <Grid item lg={2.5} md={2.7} sm={2} xs={2.5} alignSelf={'center'}>
-                                <Box className={classes.box__logo}>
-                                    <Image src={rmesta} alt={""} />
-                                    <Typography sx={{'@media(max-width : 900px)':{display:'none'}}} color={'#fff'}>Ramestta</Typography>
-                                </Box>
-                            </Grid>
-                            <Grid item lg={7} md={6} sm={8} xs={7} >
+                        
+                            <Grid item lg={9} md={8.7} sm={10} xs={9.5} >
                                 <Box sx={{
 
 
                                     marginBottom: '1rem'
                                 }}>
-                                    <Box sx={{ textAlign: 'center', marginBottom: 1 }}><Typography fontFamily={'Bruce Forever!important'} color={'#00ffff'}>{valueTop}%</Typography></Box>
+                                    <Box sx={{ textAlign: 'center', marginBottom: 1 }}><Typography fontFamily={'Bruce Forever!important'} color={'#00d632'}>{valueTop}%</Typography></Box>
                                     <BorderLinearProgress variant="determinate" value={valueTop as any} />
                                     {/* <Slider
                                         value={value}
@@ -556,8 +553,8 @@ const Dsboard = (props: CircularProgressProps) => {
                                         max={100}
                                         className={classes.sliderBox}
                                         sx={{
-                                            background: 'linear-gradient(90deg, #080808, #00FFFF)',
-                                            border: '1px solid #1D1D20',
+                                            background: 'linear-gradient(90deg, #080808, #00d632)',
+                                            border: '1px solid #2b3139',
                                             borderRadius: '30px',
                                             padding: '10px 10px 10px 0px',
                                             '&.Mui-active': {
@@ -571,7 +568,7 @@ const Dsboard = (props: CircularProgressProps) => {
                             </Grid>
                             <Grid item lg={3} md={3.3} sm={2} xs={2.5} alignSelf={'center'}>
                                 <Box className={classes.box__logo2}>
-                                    <Typography sx={{'@media(max-width : 900px)':{display:'none'}}} color={'#fff'}>Mumblechat</Typography>
+                                    <Typography sx={{'@media(max-width : 900px)':{display:'none'}}} color={'#fff'}>Encryptfund</Typography>
                                     <Image src={shield} alt={""} width={60} />
                                 </Box>
                             </Grid>
@@ -662,8 +659,8 @@ const Dsboard = (props: CircularProgressProps) => {
                                     max={100}
                                     className={classes.sliderBoxTwo}
                                     sx={{
-                                        background: 'linear-gradient(90deg, #080808, #00FFFF)',
-                                        border: '1px solid #1D1D20',
+                                        background: 'linear-gradient(90deg, #080808, #00d632)',
+                                        border: '1px solid #2b3139',
                                         borderRadius: '30px',
                                         padding: '10px 10px 10px 0px',
                                         '&.Mui-active': {
@@ -676,13 +673,13 @@ const Dsboard = (props: CircularProgressProps) => {
 
                                 </Box>
                                 <Box className={classes.currentsale2}>
-                                    <Typography fontWeight={500} color={'#fff'}>$0.05 = 1 MMCT</Typography>
+                                    <Typography fontWeight={500} color={'#fff'}>$0.05 = 1 EF</Typography>
                                     {/* <Typography fontWeight={500} color={'#fff'}>Pre-Sale: $0.1</Typography> */}
                                 </Box>
 
                                 <Box className={classes.rama__log}>
                                     <Image src={rmesta} alt={""} />
-                                    <Typography variant="h5" fontWeight={500} color={'#fff'}>RAMA</Typography>
+                                    <Typography variant="h5" fontWeight={500} color={'#fff'}>RUSD</Typography>
                                 </Box>
                                 <Box className={classes.max_btn__wrap}>
                                     <InputBase
@@ -705,7 +702,7 @@ const Dsboard = (props: CircularProgressProps) => {
                                             },
                                         }}
                                         fullWidth
-                                        placeholder={'Enter Amount in RAMA'}
+                                        placeholder={'Enter Amount in RUSD'}
                                         type={'number'}
                                     />
                                     <Button className={classes.max_btn} onClick={handleMax} href={""} >Max</Button>
@@ -730,7 +727,7 @@ const Dsboard = (props: CircularProgressProps) => {
 
                                             <Box className={classes.box_List}>
                                             <Image src={rmesta} alt={""} width={40} />
-                                            <Typography color={'#999'}>RAMA PRICE:
+                                            <Typography color={'#999'}>RUSD PRICE:
                                                 <Typography component={'span'} color={'#fff'}> ${
                                                     Number(
                                                         formatEther?.(BigInt?.(resultOfRamaPriceInUSD?.data ? resultOfRamaPriceInUSD.data.toString() : 0)))
@@ -742,7 +739,7 @@ const Dsboard = (props: CircularProgressProps) => {
                                     }
                                     <Box className={classes.box_List}>
                                     <Image src={shield} alt={""} width={50} />
-                                    <Typography color={'#999'}>MMCT WORTH : <Typography component={'span'} color={'#fff'}>{
+                                    <Typography color={'#999'}>EF WORTH : <Typography component={'span'} color={'#fff'}>{
                                         buyInput && resultOfRamaPriceInUSD?.data && resultOfSaleDetails?.data ? ((Number(Number(buyInput) > 0 ? buyInput : 0) *
                                             Number(
                                                 formatEther?.(BigInt?.(resultOfRamaPriceInUSD?.data ? resultOfRamaPriceInUSD.data.toString() : 0)))
@@ -820,7 +817,7 @@ const Dsboard = (props: CircularProgressProps) => {
                                 {
                                     Number(formatEther?.(BigInt?.(balanceOfRama?.data?.value ? balanceOfRama?.data?.value.toString() : 0))) < Number(Number(buyInput) > 0 ? buyInput : 0) &&
                                     <Box className={classes.validate__box} >
-                                        <Typography component={'span'} fontWeight={200} color={'red'}>Insufficient RAMA Balance</Typography>
+                                        <Typography component={'span'} fontWeight={200} color={'red'}>Insufficient RUSD Balance</Typography>
                                     </Box>
                                 }
 
@@ -872,10 +869,10 @@ const Dsboard = (props: CircularProgressProps) => {
                                                     </Box>
                                                 )}
                                             {/* <Box className={classes.validate__box} > */}
-                                            <Typography fontWeight={200} color={'#00FFFF'} textAlign={'center'} mt={1}>Note: If you have no any  valid referrer address then you can use this community referrer.</Typography>
-                                            <Box sx={{ background: 'linear-gradient(90deg, #0808088a, #00FFFF, #0808088a)', gap: 1, justifyContent: 'center', padding: 1, display: 'flex', marginTop: '1rem', borderRadius: '8px', alignItems: 'center', }}>
+                                            <Typography fontWeight={200} color={'#00d632'} textAlign={'center'} mt={1}>Note: If you have no any  valid referrer address then you can use this community referrer.</Typography>
+                                            <Box sx={{ background: 'linear-gradient(90deg, #08080800, #00d632, #08080800)', gap: 1, justifyContent: 'center', padding: 1, display: 'flex', marginTop: '1rem', borderRadius: '8px', alignItems: 'center', }}>
                                                 <Typography component={'h6'} fontWeight={700} color={'#000'}>Referrer:  </Typography>
-                                                <AddressCopy hrefLink={`https://ico.mumblechat.com/dashboard/?ref=0x3B1E0F41ea1a6b1426b9C57262C73e7cD3FDa9af`} text={"0x3B1E0F41ea1a6b1426b9C57262C73e7cD3FDa9af"} addresstext={"0x3B1...3FDa9af"} />
+                                                <AddressCopy hrefLink={`https://ico.encryptfund.com/dashboard/?ref=0x3B1E0F41ea1a6b1426b9C57262C73e7cD3FDa9af`} text={"0x3B1E0F41ea1a6b1426b9C57262C73e7cD3FDa9af"} addresstext={"0x3B1...3FDa9af"} />
                                             </Box>
                                             {/* </Box> */}
 

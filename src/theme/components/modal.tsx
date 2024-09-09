@@ -79,7 +79,7 @@ export default function Modal() {
                     backgroundColor: '#0000008f',
                     '& .MuiDialog-paperScrollBody': {
                         backgroundColor: '#101012',
-                        border: '1px solid #00FFFF',
+                        border: '1px solid #00d632',
                         padding: '2rem 0rem',
                         borderRadius: '12px'
                     }
@@ -97,8 +97,8 @@ export default function Modal() {
                     <Box textAlign={'center'}>
                         <Typography sx={{
                             '@media(max-width : 900px)': { fontSize: '16px' }
-                        }} variant='h5' color={'#00FFFF'} fontFamily={'Bruce Forever!important'}>Earn more MMCT by referring your friends and community!</Typography>
-                        <Typography mt={2} color={'#fff'}>Share your unique link below and receive <Typography component={'span'}><Link style={{ textDecoration: 'none', color: '#00FFFF' }} href={''}>5%</Link>  of all transactions realized with your link <Typography component={'span'}><Link style={{ textDecoration: 'none', color: '#00FFFF' }} href={''}>instantly </Link>!</Typography></Typography></Typography>
+                        }} variant='h5' color={'#00d632'} fontFamily={'Bruce Forever!important'}>Earn more EF by referring your friends and community!</Typography>
+                        <Typography mt={2} color={'#fff'}>Share your unique link below and receive <Typography component={'span'}><Link style={{ textDecoration: 'none', color: '#00d632' }} href={''}>5%</Link>  of all transactions realized with your link <Typography component={'span'}><Link style={{ textDecoration: 'none', color: '#00d632' }} href={''}>instantly </Link>!</Typography></Typography></Typography>
                     </Box>
                 </DialogContent>
                 <AddressReward textColor={'#000 !important'} text={referLink} address={`https://ico.mumblechat.com/dashboard/?ref=${shortenString(address as Address)}`} />

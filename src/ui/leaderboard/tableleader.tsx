@@ -18,7 +18,7 @@ const useStyles = makeStyles({
             borderRadius: '0px',
         },
         '&::-webkit-scrollbar-thumb': {
-            backgroundColor: '#1D1D20',
+            backgroundColor: '#2b3139',
             borderRadius: '10px',
             border: '3px solid #101012',
         },
@@ -94,7 +94,7 @@ const Tableleader = () => {
     return (
         <Box>
             <TableContainer component={Paper} className={classes.tableContainer}>
-                <Table sx={{ minWidth: 650, backgroundColor: '#080808', border: '1px solid #1D1D20', borderRadius: '4px' }} aria-label="simple table">
+                <Table sx={{ minWidth: 650, backgroundColor: '#1e2329', border: '1px solid #2b3139', borderRadius: '4px' }} aria-label="simple table">
                     <TableHead sx={{ backgroundColor: '#101012' }}>
                         <TableRow>
 
@@ -103,19 +103,19 @@ const Tableleader = () => {
                     <TableBody>
                         {TableList.map((item, index) => (
                             <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                                <TableCell sx={{ borderBottom: '1px solid #1D1D20', padding: 1, color: '#fff' }} component="th" scope="row">
+                                <TableCell sx={{ borderBottom: '1px solid #2b3139', padding: 1, color: '#fff' }} component="th" scope="row">
                                     <Box sx={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
                                         <Image src={item.Userprofile} alt={""} width={50} />
                                         <Box>
                                             <Typography>{item.ProfileAddress}</Typography>
-                                            <Typography color={'#fff'}>MMCT</Typography>
+                                            <Typography color={'#fff'}>EF</Typography>
                                         </Box>
                                     </Box>
                                 </TableCell>
 
 
 
-                                <TableCell sx={{ borderBottom: '1px solid #1D1D20', padding: 1, color: '#fff' }} align="right">
+                                <TableCell sx={{ borderBottom: '1px solid #2b3139', padding: 1, color: '#fff' }} align="right">
                                     <Typography color={'#999'}>Total Transactions</Typography>
                                     <Typography color={'#fff'}>$ {item.totaltransaction}</Typography>
                                 </TableCell>

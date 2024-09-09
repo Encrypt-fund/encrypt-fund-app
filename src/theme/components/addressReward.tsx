@@ -20,7 +20,7 @@ const StyledBox = styled(Box)(({ theme }) => ({
 
 const StyledLink = styled(Link)(({ theme }) => ({
     textDecoration: 'none',
-    color: '#00FFFF',
+    color: '#00d632',
     backgroundColor:'#000',
     padding:'10px',
     display:'block',
@@ -54,7 +54,7 @@ const AddressReward = ({ text, address,textColor  }: props) => {
                 <Box sx={{justifyContent:'center', display:'flex', marginTop:'1.5rem'}}>
                 <Box
                 sx={{
-                    backgroundColor:'#00FFFF',
+                    backgroundColor:'#00d632',
                     padding:'1rem',
                     borderRadius:'30px',
                     display:'flex',

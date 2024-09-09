@@ -30,8 +30,8 @@ const Earningcmp = () => {
                     </Grid>
                     <Grid item lg={9.5} md={9.5} sm={12} xs={12}>
                         <DashboardHeader />
-                        {/* <EarningTab/> */}
-                        <ComingSoon/>
+                        <EarningTab/>
+                        {/* <ComingSoon/> */}
                     </Grid>
                 </Grid>
             </Box>

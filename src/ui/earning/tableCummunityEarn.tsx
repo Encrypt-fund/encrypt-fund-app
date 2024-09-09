@@ -26,13 +26,13 @@ const useStyles = makeStyles({
             width: '12px',
         },
         '&::-webkit-scrollbar-track': {
-            background: '#101012',
+            background: '#27313d',
             borderRadius: '0px',
         },
         '&::-webkit-scrollbar-thumb': {
             backgroundColor: '#1D1D20',
             borderRadius: '10px',
-            border: '3px solid #101012',
+            border: '3px solid #27313d',
         },
         '&::-webkit-scrollbar-thumb:hover': {
             backgroundColor: '#555',
@@ -42,12 +42,12 @@ const useStyles = makeStyles({
         backgroundColor: 'transparent',
         padding: '10px',
         borderRadius: '6px',
-        border: '1px solid #00ffff !important',
-        color: '#00ffff !important',
+        border: '1px solid #00d632!important',
+        color: '#00d632!important',
         textDecoration: 'none',
         transition: '0.5s',
         '&:hover': {
-            backgroundColor: '#00ffff !important',
+            backgroundColor: '#00d632!important',
             color: '#000 !important'
         }
     },
@@ -62,7 +62,7 @@ const useStyles = makeStyles({
         display: 'flex',
         width: '100%',
         justifyContent: 'center',
-        backgroundColor: '#080808'
+        backgroundColor: '#1e2329'
     }
 });
 const mapLevel2RewardPercent={
@@ -249,8 +249,8 @@ const TableCummunityEarn = ({resultOfUserCommunityReward}:{resultOfUserCommunity
                 }}
             >Claim All Rewards</Button>
         </Box>
-                <Table sx={{ minWidth: 650, backgroundColor: '#080808', border: '1px solid #1D1D20', borderRadius: '8px' }} aria-label="simple table">
-                    <TableHead sx={{ backgroundColor: '#101012' }}>
+                <Table sx={{ minWidth: 650, backgroundColor: '#1e2329', border: '1px solid #1D1D20', borderRadius: '8px' }} aria-label="simple table">
+                    <TableHead sx={{ backgroundColor: '#27313d' }}>
                         <TableRow>
                             <TableCell sx={{ borderBottom: '1px solid #1D1D20', fontSize: 16, color: '#fff' }}>From</TableCell>
                             <TableCell sx={{ borderBottom: '1px solid #1D1D20', fontSize: 16, color: '#fff' }} align="left">Level</TableCell>
@@ -270,7 +270,7 @@ const TableCummunityEarn = ({resultOfUserCommunityReward}:{resultOfUserCommunity
                                     <Box sx={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
                                     <Image src={r2} alt={"lol"} width={50} />
                                         <AddressCopy 
-                                             textColor="#00ffff !important" 
+                                             textColor="#00d632!important" 
                                              hrefLink={
                                                 chainId===1370?`https://ramascan.com/address/${item.from}`:
                                                 `https://pingaksha.ramascan.com/address/${item.from}`
@@ -288,7 +288,7 @@ const TableCummunityEarn = ({resultOfUserCommunityReward}:{resultOfUserCommunity
 
                                 </TableCell>
                                 <TableCell sx={{ borderBottom: '1px solid #1D1D20', padding: 1, color: '#fff' }} align="left">
-                                <Typography color={'#fff'}>{convertToAbbreviated(formatEther?.(BigInt?.(item?.fromClaimedReward ? item.fromClaimedReward.toString() : 0)),4)} MMCT</Typography>
+                                <Typography color={'#fff'}>{convertToAbbreviated(formatEther?.(BigInt?.(item?.fromClaimedReward ? item.fromClaimedReward.toString() : 0)),4)} EF</Typography>
                                 <Typography color={'#999'}>{formatNumberToCurrencyString(Number(formatEther?.(BigInt?.(item?.fromClaimedReward ? item.fromClaimedReward.toString() : 0))) * 0.05)}</Typography>
                                 </TableCell>
                              
@@ -297,7 +297,7 @@ const TableCummunityEarn = ({resultOfUserCommunityReward}:{resultOfUserCommunity
                                 <Typography color={'#fff'}>{new Date(Number(item?.fromClaimedTime) * 1000).toLocaleString()}</Typography>
                                 </TableCell>
                                 <TableCell sx={{ borderBottom: '1px solid #1D1D20', padding: 1, color: '#fff' }} align="right">
-                                <Typography color={'#fff'}>{convertToAbbreviated(formatEther?.(BigInt?.(item?.amount ? item.amount.toString() : 0)),4)} MMCT</Typography>
+                                <Typography color={'#fff'}>{convertToAbbreviated(formatEther?.(BigInt?.(item?.amount ? item.amount.toString() : 0)),4)} EF</Typography>
                                 <Typography color={'#999'}>{formatNumberToCurrencyString(Number(formatEther?.(BigInt?.(item?.amount ? item.amount.toString() : 0))) * 0.05)}</Typography>
                                 </TableCell>
                                 

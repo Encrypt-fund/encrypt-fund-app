@@ -42,11 +42,11 @@ const StyledSlider = styled(Slider)(
 );
 
 const Earningcalculate = () => {
-    const [ramaValue, setRamaValue] = useState<string>('10,000 RAMA');
+    const [ramaValue, setRamaValue] = useState<string>('10,000 RUSD');
     const [isActive, setIsActive] = useState(false);
 
     const Ramahandle = () => {
-        setRamaValue('10,000 RAMA');
+        setRamaValue('10,000 RUSD');
         setIsActive(!isActive)
     };
 
@@ -107,7 +107,7 @@ const Earningcalculate = () => {
                                             borderRadius: '4px',
                                             cursor: 'pointer'
                                         }}
-                                        onClick={Ramahandle} >RAMA</Box>
+                                        onClick={Ramahandle} >RUSD</Box>
                                     <Box sx={{
                                         background: !isActive ? theme.palette.secondary.contrastText : 'linear-gradient(0deg, #932AC3, #7B35D8)',
                                         padding: '6px 10px',

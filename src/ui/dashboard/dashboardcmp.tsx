@@ -19,8 +19,8 @@ const Dashboardcmp = () => (
                 </Grid>
                 <Grid item lg={9.5} md={9.5} sm={12} xs={12}>
                     <DashboardHeader />
-                    {/* <Dsboard /> */}
-                    <ComingSoon/>
+                    <Dsboard />
+                    {/* <ComingSoon/> */}
                 </Grid>
             </Grid>
         </Box>
