@@ -38,7 +38,7 @@ const TableTransaction = () => {
             ProfileAddress: "0xcc5...be31",
             Bonus: '1 min ago',
             Profit: '1,021',
-            MMCT: '12'
+            EF: '12'
 
         },
         {
@@ -47,7 +47,7 @@ const TableTransaction = () => {
             ProfileAddress: "0x2eb...7176",
             Bonus: '4 min ago',
             Profit: '1,210',
-            MMCT: '42'
+            EF: '42'
 
         },
         {
@@ -56,7 +56,7 @@ const TableTransaction = () => {
             ProfileAddress: "0x614...7419",
             Bonus: '3 min ago',
             Profit: '1,252',
-            MMCT: '18'
+            EF: '18'
 
         },
         {
@@ -65,7 +65,7 @@ const TableTransaction = () => {
             ProfileAddress: "0x247...12a3",
             Bonus: '2 min ago',
             Profit: '1,345',
-            MMCT: '63'
+            EF: '63'
         },
         {
             id: 5,
@@ -73,7 +73,7 @@ const TableTransaction = () => {
             ProfileAddress: "0xe7d...31e2",
             Bonus: '1 min ago',
             Profit: '1,879',
-            MMCT: '100'
+            EF: '100'
         },
         {
             id: 6,
@@ -81,7 +81,7 @@ const TableTransaction = () => {
             ProfileAddress: "0x6ac...0be7",
             Bonus: '3 hours ago',
             Profit: '18,521',
-            MMCT: '36'
+            EF: '36'
         },
 
     ]
@@ -115,7 +115,7 @@ const TableTransaction = () => {
                                                 <Image src={item.Userprofile} alt={""} />
                                             </Box>
                                             <Box>
-                                                <Typography color={'#fff'}>{item.MMCT} MMCT</Typography>
+                                                <Typography color={'#fff'}>{item.EF} EF</Typography>
                                                 <Typography color={'#999'}>{item.ProfileAddress}</Typography>
                                             </Box>
                                         </Box>

@@ -117,8 +117,10 @@ export default function EarningTab() {
                             }
                         }} value={value} onChange={handleChange} aria-label="basic tabs example">
                         <Tab sx={{ textTransform: 'capitalize', color: "#999", border: '1px solid #00d63247', borderRadius: '8px', flex: 1, '@media(max-width : 600px)': { padding: '12px 10px' } }} label="Self Mining" {...a11yProps(0)} />
-                        <Tab sx={{ textTransform: 'capitalize', color: "#999", border: '1px solid #00d63247', borderRadius: '8px', margin: '0px 10px', flex: 1, '@media(max-width : 600px)': { padding: '12px 10px' } }} label="Community" {...a11yProps(1)} />
-                        <Tab sx={{ textTransform: 'capitalize', color: "#999", border: '1px solid #00d63247', borderRadius: '8px', flex: 1, '@media(max-width : 600px)': { padding: '12px 10px' } }} label="History" {...a11yProps(2)} />
+                        <Tab sx={{ textTransform: 'capitalize', color: "#999", border: '1px solid #00d63247', borderRadius: '8px', margin: '0px 10px', flex: 1, '@media(max-width : 600px)': { padding: '12px 10px' } }} label="Team" {...a11yProps(1)} />
+                        <Tab sx={{ textTransform: 'capitalize', color: "#999", border: '1px solid #00d63247', borderRadius: '8px', margin: '0px 10px', flex: 1, '@media(max-width : 600px)': { padding: '12px 10px' } }} label="Bounty" {...a11yProps(2)} />
+                        <Tab sx={{ textTransform: 'capitalize', color: "#999", border: '1px solid #00d63247', borderRadius: '8px', margin: '0px 10px', flex: 1, '@media(max-width : 600px)': { padding: '12px 10px' } }} label="Fix Time" {...a11yProps(3)} />
+                        <Tab sx={{ textTransform: 'capitalize', color: "#999", border: '1px solid #00d63247', borderRadius: '8px', flex: 1, '@media(max-width : 600px)': { padding: '12px 10px' } }} label="History" {...a11yProps(4)} />
                     </Tabs>
                 </Box>
                 <CustomTabPanel value={value} index={0}>
@@ -146,7 +148,47 @@ export default function EarningTab() {
                                 }
 
                             }}
-                            variant="h4">History Reward</Typography>
+                            variant="h4">Bounty Income</Typography>
+                        <Box className={classes.comingsoon}>
+                            <Typography variant='h6' color={'#00d632'}>Coming Soon</Typography>
+                        </Box>
+                    </Box>
+                </CustomTabPanel>
+                <CustomTabPanel value={value} index={3}>
+                    <Box className={classes.MainHis}>
+                        <Typography
+                            sx={{
+                                fontFamily: 'Coolvetica Rg!important',
+                                color: '#00d632',
+                                '@media(max-width : 1200px)': {
+                                    fontSize: '22px',
+                                    '@media(max-width : 900px)': {
+                                        fontSize: '20px'
+                                    }
+                                }
+
+                            }}
+                            variant="h4">Fix Time Income</Typography>
+                        <Box className={classes.comingsoon}>
+                            <Typography variant='h6' color={'#00d632'}>Coming Soon</Typography>
+                        </Box>
+                    </Box>
+                </CustomTabPanel>
+                <CustomTabPanel value={value} index={4}>
+                    <Box className={classes.MainHis}>
+                        <Typography
+                            sx={{
+                                fontFamily: 'Coolvetica Rg!important',
+                                color: '#00d632',
+                                '@media(max-width : 1200px)': {
+                                    fontSize: '22px',
+                                    '@media(max-width : 900px)': {
+                                        fontSize: '20px'
+                                    }
+                                }
+
+                            }}
+                            variant="h4">History</Typography>
                         <Box className={classes.comingsoon}>
                             <Typography variant='h6' color={'#00d632'}>Coming Soon</Typography>
                         </Box>

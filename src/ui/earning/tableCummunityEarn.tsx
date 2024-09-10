@@ -8,8 +8,8 @@ import { convertToAbbreviated } from "@/lib/convertToAbbreviated";
 import shortenString from "@/lib/shortenString";
 import { useAccount, useChainId,useBlockNumber, useReadContract, useWaitForTransactionReceipt, useWriteContract } from "wagmi";
 import { Address, formatEther, zeroAddress } from "viem";
-import { mmctStakingAbi } from "@/configs/abi/mmctStaking";
-import { formatTier, mmctContractAddresses } from "@/configs";
+import { efInvestAbi } from "@/configs/abi/efInvest";
+import { formatTier, efContractAddresses } from "@/configs";
 import { formatNumberToCurrencyString } from "@/lib/formatNumberToCurrencyString";
 import HoverTool from "@/theme/components/hoverTool";
 import AddressCopy from "@/theme/components/addressCopy";
@@ -95,7 +95,7 @@ const TableCummunityEarn = ({resultOfUserCommunityReward}:{resultOfUserCommunity
     // const TableList = [
     //     {
     //         id: 1,
-    //         Userprofile: mmct,
+    //         Userprofile: ef,
     //         ProfileAddress: "0xcc5...be31",
     //         stakeAmount: 8000,
     //         stakeDate: '0.00',
@@ -110,7 +110,7 @@ const TableCummunityEarn = ({resultOfUserCommunityReward}:{resultOfUserCommunity
     //     },
     //     {
     //         id: 2,
-    //         Userprofile: mmct,
+    //         Userprofile: ef,
     //         ProfileAddress: "0xcc5...be31",
     //         stakeAmount: 8000,
     //         stakeDate: '0.00',
@@ -125,7 +125,7 @@ const TableCummunityEarn = ({resultOfUserCommunityReward}:{resultOfUserCommunity
     //     },
     //     {
     //         id: 3,
-    //         Userprofile: mmct,
+    //         Userprofile: ef,
     //         ProfileAddress: "0xcc5...be31",
     //         stakeAmount: 8000,
     //         stakeDate: '0.00',
@@ -140,7 +140,7 @@ const TableCummunityEarn = ({resultOfUserCommunityReward}:{resultOfUserCommunity
     //     },
     //     {
     //         id: 4,
-    //         Userprofile: mmct,
+    //         Userprofile: ef,
     //         ProfileAddress: "0xcc5...be31",
     //         stakeAmount: 8000,
     //         stakeDate: '0.00',
@@ -155,7 +155,7 @@ const TableCummunityEarn = ({resultOfUserCommunityReward}:{resultOfUserCommunity
     //     },
     //     {
     //         id: 5,
-    //         Userprofile: mmct,
+    //         Userprofile: ef,
     //         ProfileAddress: "0xcc5...be31",
     //         stakeAmount: 8000,
     //         stakeDate: '0.00',
@@ -170,7 +170,7 @@ const TableCummunityEarn = ({resultOfUserCommunityReward}:{resultOfUserCommunity
     //     },
     //     {
     //         id: 6,
-    //         Userprofile: mmct,
+    //         Userprofile: ef,
     //         ProfileAddress: "0xcc5...be31",
     //         stakeAmount: 8000,
     //         stakeDate: '0.00',
@@ -187,18 +187,18 @@ const TableCummunityEarn = ({resultOfUserCommunityReward}:{resultOfUserCommunity
     // ];
 
     const resultOfUserCommunityRewardLength = useReadContract({
-        abi: mmctStakingAbi,
-        address: chainId === 1370 ? mmctContractAddresses.ramestta.mmct_staking : mmctContractAddresses.pingaksha.mmct_staking,
-        functionName: 'totalCommunityRewardLengthForUser',
+        abi: efInvestAbi,
+        address: chainId === 1370 ? efContractAddresses.ramestta.ef_invest : efContractAddresses.pingaksha.ef_invest,
+        functionName: 'totalTeamRewardLengthForUser',
         args: [address as Address],
         account: zeroAddress
     })
 
 
     const resultOfUserCommunityRewardList = useReadContract({
-        abi: mmctStakingAbi,
-        address: chainId === 1370 ? mmctContractAddresses.ramestta.mmct_staking : mmctContractAddresses.pingaksha.mmct_staking,
-        functionName: 'user2CommunityRewardInfoList',
+        abi: efInvestAbi,
+        address: chainId === 1370 ? efContractAddresses.ramestta.ef_invest : efContractAddresses.pingaksha.ef_invest,
+        functionName: 'user2TeamRewardInfoList',
         args: [address as Address, BigInt(0), Number(resultOfUserCommunityRewardLength?.data) > 0 ? resultOfUserCommunityRewardLength.data as bigint : BigInt(0)],
         account: zeroAddress
     })
@@ -241,9 +241,9 @@ const TableCummunityEarn = ({resultOfUserCommunityReward}:{resultOfUserCommunity
                 }}
                 onClick={async () => {
                     await writeContractAsync({
-                        abi: mmctStakingAbi,
-                        address: chainId === 1370 ? mmctContractAddresses.ramestta.mmct_staking : mmctContractAddresses.pingaksha.mmct_staking,
-                        functionName: 'claimCommunityRewards',
+                        abi: efInvestAbi,
+                        address: chainId === 1370 ? efContractAddresses.ramestta.ef_invest : efContractAddresses.pingaksha.ef_invest,
+                        functionName: 'claimTeamRewards',
                         account: address
                     })
                 }}

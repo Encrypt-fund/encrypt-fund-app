@@ -39,7 +39,7 @@ const CoinCalculate = () => {
                 </Box>
 
                 <Box className={classes.top__input}>
-                    <Typography color={'#fff'}>Enter how much MMCT coins you have in the input below.</Typography>
+                    <Typography color={'#fff'}>Enter how much EF coins you have in the input below.</Typography>
                     <Box className={classes.max_btn__wrap}>
                         <InputBase
                         value={value}
@@ -61,7 +61,7 @@ const CoinCalculate = () => {
                                   },
                             }}
                             fullWidth
-                            placeholder={'0.00 MMCT'}
+                            placeholder={'0.00 EF'}
                             type={'number'}
                         />
                     </Box>

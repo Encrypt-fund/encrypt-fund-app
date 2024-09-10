@@ -6,9 +6,9 @@ import TableEarn from "./tableEarn";
 import { useAccount, useChainId, useReadContract } from "wagmi";
 import { Address, formatEther, zeroAddress } from "viem";
 import { convertToAbbreviated } from "@/lib/convertToAbbreviated";
-import { mmctTokenAbi } from "@/configs/abi/mmctTokenAbi";
-import { mmctContractAddresses } from "@/configs";
-import { mmctStakingAbi } from "@/configs/abi/mmctStaking";
+import { efTokenAbi } from "@/configs/abi/efTokenAbi";
+import { efContractAddresses } from "@/configs";
+import { efInvestAbi } from "@/configs/abi/efInvest";
 import { formatNumberToCurrencyString } from "@/lib/formatNumberToCurrencyString";
 import TableCummunityEarn from "./tableCummunityEarn";
 
@@ -58,9 +58,9 @@ const Community = () => {
     const chainId = useChainId()
 
     const resultOfUserCommunityReward = useReadContract({
-        abi: mmctStakingAbi,
-        address: chainId === 1370 ? mmctContractAddresses.ramestta.mmct_staking : mmctContractAddresses.pingaksha.mmct_staking,
-        functionName: 'user2CommunityRewardInfo',
+        abi: efInvestAbi,
+        address: chainId === 1370 ? efContractAddresses.ramestta.ef_invest : efContractAddresses.pingaksha.ef_invest,
+        functionName: 'user2TeamRewardInfo',
         args: [address as Address],
         account: zeroAddress
     })
@@ -97,7 +97,7 @@ const Community = () => {
                         }
 
                     }}
-                    variant="h4">Community Reward</Typography>
+                    variant="h4">Team Income</Typography>
 
                 <Box className={classes.boxCr}>
                     <Box className={classes.cardlist}>

@@ -48,10 +48,10 @@ const Platform = () => {
                     }
                 }} />
                 <Grid container spacing={2} color={'#fff'}>
-                    <Rewards reward_hding={'Utility token'} reward_text={'MMCT serves as a medium of exchange within the MumbleChat ecosystem, enabling users to access premium features, purchase virtual goods, and participate in community activities.'} Image_r={features_img01} />
-                    <Rewards reward_hding={'Incentivizing User Engagement'} reward_text={'MMCT tokens are used to incentivize user engagement within the platform. Users earn MMCT tokens for various activities, such as chatting, participating in group discussions, responding to daily prompts, and inviting new members.'} Image_r={features_img02} />
-                    <Rewards reward_hding={'Rewards and Benefits'} reward_text={'MMCT token holders are entitled to rewards and benefits within the MumbleChat ecosystem. These rewards may include access to exclusive content, discounts on platform services, and voting rights in governance decisions.'} Image_r={features_img03} />
-                    <Rewards reward_hding={'Staking Program'} reward_text={'MMCT token holders have the opportunity to stake their tokens in the MumbleChat platform to earn additional rewards. By staking their tokens, users contribute to the security and stability of the network while earning staking rewards proportional to the amount and duration of their staked tokens.'} Image_r={features_img04} />
+                    <Rewards reward_hding={'Utility token'} reward_text={'EF serves as a medium of exchange within the MumbleChat ecosystem, enabling users to access premium features, purchase virtual goods, and participate in community activities.'} Image_r={features_img01} />
+                    <Rewards reward_hding={'Incentivizing User Engagement'} reward_text={'EF tokens are used to incentivize user engagement within the platform. Users earn EF tokens for various activities, such as chatting, participating in group discussions, responding to daily prompts, and inviting new members.'} Image_r={features_img02} />
+                    <Rewards reward_hding={'Rewards and Benefits'} reward_text={'EF token holders are entitled to rewards and benefits within the MumbleChat ecosystem. These rewards may include access to exclusive content, discounts on platform services, and voting rights in governance decisions.'} Image_r={features_img03} />
+                    <Rewards reward_hding={'Staking Program'} reward_text={'EF token holders have the opportunity to stake their tokens in the MumbleChat platform to earn additional rewards. By staking their tokens, users contribute to the security and stability of the network while earning staking rewards proportional to the amount and duration of their staked tokens.'} Image_r={features_img04} />
                 </Grid>
 
             </Box>

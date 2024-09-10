@@ -37,7 +37,7 @@ const useStyles = makeStyles({
         alignItems: 'center',
         justifyContent: 'center'
     },
-    mmcttool: {
+    eftool: {
         display: 'flex',
         alignItems: 'center',
         gap: '10px'
@@ -61,33 +61,33 @@ const useStyles = makeStyles({
 
 });
 
-const MMCTBOX = [
+const EFBOX = [
     {
         id: 1,
         Title: '1',
         date: '200.00',
-        mmct: '20',
+        ef: '20',
         icon: m1,
     },
     {
         id: 2,
         Title: '10',
         date: '2k',
-        mmct: '200',
+        ef: '200',
         icon: m2,
     },
     {
         id: 3,
         Title: '30',
         date: '6k',
-        mmct: '600',
+        ef: '600',
         icon: m3,
     },
     {
         id: 4,
         Title: '100',
         date: '20k',
-        mmct: '2000',
+        ef: '2000',
         icon: m4,
     },
 ]

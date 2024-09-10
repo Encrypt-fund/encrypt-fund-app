@@ -88,7 +88,7 @@ const Distribute = ({ramaPriceInUSD,ramaBalanceOfIco}:{ramaPriceInUSD:number|und
                             </Box>
                             <Box className={classes.listItem} component={'li'}>
                                 <Typography className={classes.round} color={'#fff'}>1</Typography>
-                                <Typography color={'#fff'}>Initial Value : 1 RAMA = ${ramaPriceInUSD?ramaPriceInUSD.toFixed(4):'0.1450'} = {ramaPriceInUSD?(ramaPriceInUSD/0.05).toFixed(4):(0.145/0.05).toFixed(4)} MMCT</Typography>
+                                <Typography color={'#fff'}>Initial Value : 1 RAMA = ${ramaPriceInUSD?ramaPriceInUSD.toFixed(4):'0.1450'} = {ramaPriceInUSD?(ramaPriceInUSD/0.05).toFixed(4):(0.145/0.05).toFixed(4)} EF</Typography>
                             </Box>
                             <Box className={classes.listItem} component={'li'}>
                                 <Typography className={classes.round} color={'#fff'}>1</Typography>

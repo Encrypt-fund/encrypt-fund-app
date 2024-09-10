@@ -2,8 +2,8 @@ import { Box, Paper, Table, TableBody, TableCell, TableContainer, TableHead, Tab
 import t1 from '../../icons/r2.svg'
 import { makeStyles } from '@mui/styles';
 import Image from "next/image";
-import { mmctIcoAbi } from "@/configs/abi/mmctIco";
-import { mmctContractAddresses } from "@/configs";
+import { efIcoAbi } from "@/configs/abi/efIco";
+import { efContractAddresses } from "@/configs";
 import { Address, formatEther, zeroAddress } from "viem";
 import { useAccount, useBlockNumber, useChainId, useReadContract } from "wagmi";
 import shortenString from "@/lib/shortenString";
@@ -50,63 +50,63 @@ const useStyles = makeStyles({
 //         id: 1,
 //         ProfileAddress: "0xcc5...be31",
 //         RAMA: '5',
-//         MMCT: '15.2'
+//         EF: '15.2'
 //     },
 //     {
 //         id: 2,
 //         ProfileAddress: "0xcc5...be31",
 //         RAMA: '3',
-//         MMCT: '9.12'
+//         EF: '9.12'
 //     },
 //     {
 //         id: 3,
 //         ProfileAddress: "0xcc5...be31",
 //         RAMA: '2',
-//         MMCT: '6.08'
+//         EF: '6.08'
 //     },
 //     {
 //         id: 4,
 //         ProfileAddress: "0xcc5...be31",
 //         RAMA: '6',
-//         MMCT: '18.24'
+//         EF: '18.24'
 //     },
 //     {
 //         id: 5,
 //         ProfileAddress: "0xcc5...be31",
 //         RAMA: '8',
-//         MMCT: '24.32'
+//         EF: '24.32'
 //     },
 
 //     {
 //         id: 6,
 //         ProfileAddress: "0xcc5...be31",
 //         RAMA: '7',
-//         MMCT: '21.28'
+//         EF: '21.28'
 //     },
 
 //     {
 //         id: 7,
 //         ProfileAddress: "0xcc5...be31",
 //         RAMA: '2',
-//         MMCT: '6.08'
+//         EF: '6.08'
 //     },
 //     {
 //         id: 8,
 //         ProfileAddress: "0xcc5...be31",
 //         RAMA: '5',
-//         MMCT: '15.2'
+//         EF: '15.2'
 //     },
 //     {
 //         id: 9,
 //         ProfileAddress: "0xcc5...be31",
 //         RAMA: '3',
-//         MMCT: '9.12'
+//         EF: '9.12'
 //     },
 //     {
 //         id: 10,
 //         ProfileAddress: "0xcc5...be31",
 //         RAMA: '5',
-//         MMCT: '15.2'
+//         EF: '15.2'
 //     },
 
 
@@ -124,8 +124,8 @@ const ContributorsTable = ({ resultOfRamaPriceInUSD }: { resultOfRamaPriceInUSD:
     const { data: blockNumber } = useBlockNumber({ watch: true, })
 
     const resultOfUserContributorLength = useReadContract({
-        abi: mmctIcoAbi,
-        address: chainId === 1370 ? mmctContractAddresses.ramestta.mmct_ico : mmctContractAddresses.pingaksha.mmct_ico,
+        abi: efIcoAbi,
+        address: chainId === 1370 ? efContractAddresses.ramestta.ef_ico : efContractAddresses.pingaksha.ef_ico,
         functionName: 'totalContributorLengthForUser',
         args: [address as Address, 0],
         account: zeroAddress
@@ -133,8 +133,8 @@ const ContributorsTable = ({ resultOfRamaPriceInUSD }: { resultOfRamaPriceInUSD:
 
 
     const resultOfUserContributorList = useReadContract({
-        abi: mmctIcoAbi,
-        address: chainId === 1370 ? mmctContractAddresses.ramestta.mmct_ico : mmctContractAddresses.pingaksha.mmct_ico,
+        abi: efIcoAbi,
+        address: chainId === 1370 ? efContractAddresses.ramestta.ef_ico : efContractAddresses.pingaksha.ef_ico,
         functionName: 'user2SaleType2ContributorList',
         args: [address as Address, 0, BigInt(0), Number(resultOfUserContributorLength?.data) > 0 ? resultOfUserContributorLength.data as bigint : BigInt(0)],
         account: zeroAddress

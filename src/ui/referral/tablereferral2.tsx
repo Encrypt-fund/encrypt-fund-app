@@ -10,9 +10,9 @@ import HoverTool from "@/theme/components/hoverTool";
 import r2 from '../../icons/r2.svg'
 import { makeStyles } from '@mui/styles';
 import { useAccount, useChainId, useReadContract } from "wagmi";
-import { mmctReferralAbi } from "@/configs/abi/mmctReferral";
+import { efReferralAbi } from "@/configs/abi/efReferral";
 import { Address, formatEther, zeroAddress } from "viem";
-import { mmctContractAddresses } from "@/configs";
+import { efContractAddresses } from "@/configs";
 import shortenString from "@/lib/shortenString";
 import { convertToAbbreviated } from "@/lib/convertToAbbreviated";
 import { formatNumberToCurrencyString } from "@/lib/formatNumberToCurrencyString";
@@ -121,8 +121,8 @@ const Tablereferral2 = () => {
 
 
     const resultOfUplineReferrals = useReadContract({
-        abi: mmctReferralAbi,
-        address: chainId === 1370 ? mmctContractAddresses.ramestta.mmct_referral : mmctContractAddresses.pingaksha.mmct_referral,
+        abi: efReferralAbi,
+        address: chainId === 1370 ? efContractAddresses.ramestta.ef_referral : efContractAddresses.pingaksha.ef_referral,
         functionName: 'getReferralUplineTree',
         args: [address as Address],
         account: zeroAddress

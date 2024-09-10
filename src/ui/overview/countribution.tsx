@@ -146,7 +146,7 @@ const Countribution = ({ramaPriceInUSD,ramaBalanceOfIco}:{ramaPriceInUSD:number|
 
                     <Box className={classes.datacount}>
                         <Typography sx={{ '@media(max-width : 600px)': { fontSize: '15px' } }} fontWeight={600} variant="h5" color={'#fff'}>{ramaBalanceOfIco?ramaBalanceOfIco.toFixed(2):0} RAMA raised</Typography>
-                        <Typography sx={{ '@media(max-width : 600px)': { fontSize: '15px' } }} fontWeight={600} variant="h5" color={'#fff'}>1 RAMA = ${ramaPriceInUSD?ramaPriceInUSD.toFixed(4):'0.1450'} = {ramaPriceInUSD?(ramaPriceInUSD/0.05).toFixed(4):(0.145/0.05).toFixed(4)} MMCT</Typography>
+                        <Typography sx={{ '@media(max-width : 600px)': { fontSize: '15px' } }} fontWeight={600} variant="h5" color={'#fff'}>1 RAMA = ${ramaPriceInUSD?ramaPriceInUSD.toFixed(4):'0.1450'} = {ramaPriceInUSD?(ramaPriceInUSD/0.05).toFixed(4):(0.145/0.05).toFixed(4)} EF</Typography>
                     </Box>
                 </Container>
 
@@ -164,7 +164,7 @@ const Countribution = ({ramaPriceInUSD,ramaBalanceOfIco}:{ramaPriceInUSD:number|
                                     <Link className={classes.btn} href={"/dashboard"}>
                                         <Typography>Purchase a Token</Typography>
                                     </Link>
-                                    <Link className={classes.btn2} href={"ICO MMCT Whitepaper.pdf"} target="_blank">
+                                    <Link className={classes.btn2} href={"ICO EF Whitepaper.pdf"} target="_blank">
                                         <Typography>Read White Paper</Typography>
                                     </Link>
                                 </Box>

@@ -3,9 +3,9 @@ import t1 from '../../icons/t1.svg'
 import { makeStyles } from '@mui/styles';
 import Image from "next/image";
 import { useChainId, useReadContract } from "wagmi";
-import { mmctContractAddresses } from "@/configs";
+import { efContractAddresses } from "@/configs";
 import { parseEther, zeroAddress } from "viem";
-import { mmctStakingAbi } from "@/configs/abi/mmctStaking";
+import { efStakingAbi } from "@/configs/abi/efStaking";
 
 
 const useStyles = makeStyles({
@@ -37,8 +37,8 @@ const MiningCalculatorTable = ({inputInUsd,member}:{inputInUsd:string,member:str
     const classes = useStyles();
     const chainId = useChainId()
     const {data:mintRatePerHour} = useReadContract({
-        abi: mmctStakingAbi,
-        address: chainId === 1370 ? mmctContractAddresses.ramestta.mmct_staking : mmctContractAddresses.pingaksha.mmct_staking,
+        abi: efStakingAbi,
+        address: chainId === 1370 ? efContractAddresses.ramestta.ef_staking : efContractAddresses.pingaksha.ef_staking,
         functionName: 'calculateMintRate',
         args: [parseEther(inputInUsd),BigInt(member)],
         account: zeroAddress,
@@ -88,7 +88,7 @@ const MiningCalculatorTable = ({inputInUsd,member}:{inputInUsd:string,member:str
                                         <Box>
 
                                             <Typography color={'#fff'}>{mintRatePerHour}%</Typography>
-                                            <Typography fontSize={13} color={'#999'}>{((Number(mintRatePerHour)/100)*Number(inputInUsd)).toFixed(5)} MMCT</Typography>
+                                            <Typography fontSize={13} color={'#999'}>{((Number(mintRatePerHour)/100)*Number(inputInUsd)).toFixed(5)} EF</Typography>
                                             <Typography fontSize={13} color={'#999'}>${(((Number(mintRatePerHour)/100)*Number(inputInUsd))*0.05).toFixed(5)}</Typography>
                                         </Box>
                                     </Box>
@@ -96,20 +96,20 @@ const MiningCalculatorTable = ({inputInUsd,member}:{inputInUsd:string,member:str
                                 <TableCell sx={{ borderBottom: '1px solid #1D1D20', padding: 1 }} align="left">
 
                                     <Typography color={'#fff'}>{mintRatePerHour*24}% </Typography>
-                                    <Typography fontSize={13} color={'#999'}>{(((Number(mintRatePerHour)*24)/100)*Number(inputInUsd)).toFixed(5)} MMCT</Typography>
+                                    <Typography fontSize={13} color={'#999'}>{(((Number(mintRatePerHour)*24)/100)*Number(inputInUsd)).toFixed(5)} EF</Typography>
                                             <Typography fontSize={13} color={'#999'}>${((((Number(mintRatePerHour)*24)/100)*Number(inputInUsd))*0.05).toFixed(5)}</Typography>
                                 </TableCell>
 
                                 <TableCell sx={{ borderBottom: '1px solid #1D1D20', padding: 1 }} align="left">
 
                                     <Typography color={'#fff'}>{mintRatePerHour*24*30}% </Typography>
-                                    <Typography fontSize={13} color={'#999'}>{(((Number(mintRatePerHour)*24*30)/100)*Number(inputInUsd)).toFixed(5)} MMCT</Typography>
+                                    <Typography fontSize={13} color={'#999'}>{(((Number(mintRatePerHour)*24*30)/100)*Number(inputInUsd)).toFixed(5)} EF</Typography>
                                             <Typography fontSize={13} color={'#999'}>${((((Number(mintRatePerHour)*24*30)/100)*Number(inputInUsd))*0.05).toFixed(5)}</Typography>
                                 </TableCell>
                                 <TableCell sx={{ borderBottom: '1px solid #1D1D20', padding: 1 }} align="right">
 
                                     <Typography color={'#fff'}>{mintRatePerHour*24*365}% </Typography>
-                                    <Typography fontSize={13} color={'#999'}>{(((Number(mintRatePerHour)*24*365)/100)*Number(inputInUsd)).toFixed(5)} MMCT</Typography>
+                                    <Typography fontSize={13} color={'#999'}>{(((Number(mintRatePerHour)*24*365)/100)*Number(inputInUsd)).toFixed(5)} EF</Typography>
                                             <Typography fontSize={13} color={'#999'}>${((((Number(mintRatePerHour)*24*365)/100)*Number(inputInUsd))*0.05).toFixed(5)}</Typography>
                                 </TableCell>
 

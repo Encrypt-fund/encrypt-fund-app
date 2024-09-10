@@ -7,8 +7,8 @@ import r2 from '../../icons/r2.svg'
 import { useAccount, useChainId, useReadContract } from "wagmi";
 import AddressCopy from "@/theme/components/addressCopy";
 import { Address, zeroAddress } from "viem";
-import { mmctReferralAbi } from "@/configs/abi/mmctReferral";
-import { mmctContractAddresses } from "@/configs";
+import { efReferralAbi } from "@/configs/abi/efReferral";
+import { efContractAddresses } from "@/configs";
 import shortenString from "@/lib/shortenString";
 
 
@@ -56,8 +56,8 @@ const Profile = () => {
     const { address } = useAccount()
     const chainId = useChainId()
     const resultOfReferrer = useReadContract({
-        abi: mmctReferralAbi,
-        address: chainId === 1370 ? mmctContractAddresses.ramestta.mmct_referral : mmctContractAddresses.pingaksha.mmct_referral,
+        abi: efReferralAbi,
+        address: chainId === 1370 ? efContractAddresses.ramestta.ef_referral : efContractAddresses.pingaksha.ef_referral,
         functionName: 'getReferrer',
         args: [address as Address]
     })

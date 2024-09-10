@@ -17,8 +17,8 @@ import GetInTouch from "./getInTouch";
 import Footer from "../shared/footer";
 import { useBalance, useChainId, useReadContract } from "wagmi";
 import { formatEther, zeroAddress } from "viem";
-import { mmctContractAddresses } from "@/configs";
-import { mmctIcoAbi } from "@/configs/abi/mmctIco";
+import { efContractAddresses } from "@/configs";
+import { efIcoAbi } from "@/configs/abi/efIco";
 
 
 
@@ -34,7 +34,7 @@ const Homecmp = () => {
 
     const chainId = useChainId()
     const {data:ramaBalanceOfIco}=useBalance({
-        address: chainId===1370?mmctContractAddresses.ramestta.mmct_ico:mmctContractAddresses.pingaksha.mmct_ico,
+        address: chainId===1370?efContractAddresses.ramestta.ef_ico:efContractAddresses.pingaksha.ef_ico,
         query:{
             select(data) {
                 return Number(formatEther(data.value))
@@ -42,8 +42,8 @@ const Homecmp = () => {
         }
       })
     const {data:ramaPriceInUSD} = useReadContract({
-        abi: mmctIcoAbi ,
-        address: chainId===1370?mmctContractAddresses.ramestta.mmct_ico:mmctContractAddresses.pingaksha.mmct_ico,
+        abi: efIcoAbi ,
+        address: chainId===1370?efContractAddresses.ramestta.ef_ico:efContractAddresses.pingaksha.ef_ico,
         functionName: 'ramaPriceInUSD',
         account: zeroAddress,
         query:{
@@ -53,8 +53,8 @@ const Homecmp = () => {
         }
       }) 
       const resultOfIcoDetail = useReadContract({
-        abi: mmctIcoAbi ,
-        address: chainId===1370?mmctContractAddresses.ramestta.mmct_ico:mmctContractAddresses.pingaksha.mmct_ico,
+        abi: efIcoAbi ,
+        address: chainId===1370?efContractAddresses.ramestta.ef_ico:efContractAddresses.pingaksha.ef_ico,
         functionName: 'saleType2IcoDetail',
         args: [0],
         account: zeroAddress

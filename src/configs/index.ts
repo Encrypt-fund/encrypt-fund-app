@@ -70,33 +70,46 @@ export const config = createConfig({
   },
 })
 
-type MmctContractAddressesType= {
+type EfContractAddressesType= {
   ramestta: { 
-    mmct_token: Address,
-    mmct_ico: Address,
-    mmct_referral: Address,
-    mmct_staking: Address,
+    rusd_Token: Address,
+    ef_token: Address,
+    ef_ico: Address,
+    ef_ico_referral: Address,
+    ef_ico_staking: Address,
+    ef_invest: Address
+    ef_referral: Address
   },
   pingaksha: {
-    mmct_token: Address,
-    mmct_ico: Address,
-    mmct_referral: Address,
-    mmct_staking: Address,
+    rusd_Token: Address,
+    ef_token: Address,
+    ef_ico: Address,
+    ef_ico_referral: Address,
+    ef_ico_staking: Address,
+    ef_invest: Address
+    ef_referral: Address
   }
 }
 
-export const mmctContractAddresses: MmctContractAddressesType = {
+export const efContractAddresses: EfContractAddressesType = {
   ramestta: { 
-    mmct_token: "0x4b1853C1882ee5c50e5Cb3d7ff05334047AC66Bd",
-    mmct_ico: "0xF14CFCA3D7f35815024197a117eA82d2816Fbc23",
-    mmct_referral: "0xe7A53699DE32B1e33492cbf5398744498B3D2ddc",
-    mmct_staking: "0xE91A1C7B5689d918D40aAA848CDA96dbAa2aba67",
+    rusd_Token: "0x2A32e2102467135E22Ca015277E397E9f3B85AF2",
+    ef_token: "0x8828F8F7e11abE2183597cC6029754C25A9BCd57",
+    ef_ico: "0xF14CFCA3D7f35815024197a117eA82d2816Fbc23",
+    ef_ico_referral: "0xe7A53699DE32B1e33492cbf5398744498B3D2ddc",
+    ef_ico_staking: "0xE91A1C7B5689d918D40aAA848CDA96dbAa2aba67",
+    ef_invest: "0x",
+    ef_referral: "0x"
+
   },
   pingaksha: {
-    mmct_token: "0x0537786A0C92439E0F70A92EC0477A8465B7Dade",
-    mmct_ico: "0xdf9E166Ca9d0a4857EEB535D359013469E56e53F",
-    mmct_referral: "0x15Cc8A56770D4B3a5dfCFA42cd036fb8897989b6",
-    mmct_staking: "0xb3339c3252b11F4Aa7534f00F8675f150c81e09c",
+    rusd_Token: "0x36b594607A788d096ff1091bDAEEE4514dE9BbE6",
+    ef_token: "0x8828F8F7e11abE2183597cC6029754C25A9BCd57",
+    ef_ico: "0xdf9E166Ca9d0a4857EEB535D359013469E56e53F",
+    ef_ico_referral: "0x15Cc8A56770D4B3a5dfCFA42cd036fb8897989b6",
+    ef_ico_staking: "0xb3339c3252b11F4Aa7534f00F8675f150c81e09c",
+    ef_invest: "0xFE684506309fc55524FeDc68679A6c3CF858ee49",
+    ef_referral: "0x6e34282c5ccea7Da90af8d5666d21C4C7DcaBa80"
   }
 }
 

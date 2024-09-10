@@ -84,8 +84,8 @@ const DashboardHeader = () => {
                 <Box sx={{ display: 'none', '@media(max-width : 900px)': { display: 'block' } }}>
                     <DashboardSidebar />
                 </Box>
-                <Box sx={{'@media(max-width : 1200px)':{display:'none'}}}><Link className={classes.bthome} href={"/"}><Image src={backbtn} alt={""} /><Typography color={'#fff'} sx={{'@media(max-width : 600px)':{display:'none'}}}>Back to home</Typography></Link></Box>
-                <Box className={classes.texthdr}><Typography fontSize={20} fontWeight={300} color={'#fff'}>Welcome to Encryptfund Dashboard!</Typography></Box>
+                {/* <Box sx={{'@media(max-width : 1200px)':{display:'none'}}}><Link className={classes.bthome} href={"/"}><Image src={backbtn} alt={""} /><Typography color={'#fff'} sx={{'@media(max-width : 600px)':{display:'none'}}}>Back to home</Typography></Link></Box> */}
+                <Box className={classes.texthdr}><Typography fontSize={20} fontWeight={300} color={'#fff'}>Welcome to Encryptfund</Typography></Box>
              
                     
 

@@ -7,11 +7,11 @@ import TableEarn from "./tableEarn";
 import { useAccount, useBalance, useBlockNumber, useChainId, useReadContract } from "wagmi";
 import { Address, formatEther, zeroAddress } from "viem";
 import { convertToAbbreviated } from "@/lib/convertToAbbreviated";
-import { mmctTokenAbi } from "@/configs/abi/mmctTokenAbi";
-import { formatTier, mmctContractAddresses } from "@/configs";
-import { mmctStakingAbi } from "@/configs/abi/mmctStaking";
+import { efTokenAbi } from "@/configs/abi/efTokenAbi";
+import { formatTier, efContractAddresses } from "@/configs";
+import { efInvestAbi } from "@/configs/abi/efInvest";
 import { formatNumberToCurrencyString } from "@/lib/formatNumberToCurrencyString";
-import { mmctReferralAbi } from "@/configs/abi/mmctReferral";
+import { efReferralAbi } from "@/configs/abi/efReferral";
 import { useQueryClient } from "@tanstack/react-query";
 import { useEffect } from "react";
 
@@ -65,49 +65,49 @@ const Earning = ({ Earning }: props) => {
     const { data: blockNumber } = useBlockNumber({ watch: true })
 
     const resultOfBalance = useReadContract({
-        abi: mmctTokenAbi,
-        address: chainId === 1370 ? mmctContractAddresses.ramestta.mmct_token : mmctContractAddresses.pingaksha.mmct_token,
+        abi: efTokenAbi,
+        address: chainId === 1370 ? efContractAddresses.ramestta.ef_token : efContractAddresses.pingaksha.ef_token,
         functionName: 'balanceOf',
         args: [address as Address],
         account: address
     })
 
-    const resultOfUserStaked = useReadContract({
-        abi: mmctStakingAbi,
-        address: chainId === 1370 ? mmctContractAddresses.ramestta.mmct_staking : mmctContractAddresses.pingaksha.mmct_staking,
-        functionName: 'user2Staked',
+    const resultOfUserInvest = useReadContract({
+        abi: efInvestAbi,
+        address: chainId === 1370 ? efContractAddresses.ramestta.ef_invest : efContractAddresses.pingaksha.ef_invest,
+        functionName: 'user2Invest',
         args: [address as Address],
         account: zeroAddress
     })
 
-    const resultOfUserStakedLength = useReadContract({
-        abi: mmctStakingAbi,
-        address: chainId === 1370 ? mmctContractAddresses.ramestta.mmct_staking : mmctContractAddresses.pingaksha.mmct_staking,
-        functionName: 'totalStakedLengthForUser',
+    const resultOfUserInvestLength = useReadContract({
+        abi: efInvestAbi,
+        address: chainId === 1370 ? efContractAddresses.ramestta.ef_invest : efContractAddresses.pingaksha.ef_invest,
+        functionName: 'totalInvestedLengthForUser',
         args: [address as Address],
         account: zeroAddress
     })
 
 
-    const resultOfUserStakedList = useReadContract({
-        abi: mmctStakingAbi,
-        address: chainId === 1370 ? mmctContractAddresses.ramestta.mmct_staking : mmctContractAddresses.pingaksha.mmct_staking,
-        functionName: 'user2StakedList',
-        args: [address as Address, BigInt(0), Number(resultOfUserStakedLength?.data) > 0 ? resultOfUserStakedLength.data as bigint : BigInt(0)],
+    const resultOfUserInvestList = useReadContract({
+        abi: efInvestAbi,
+        address: chainId === 1370 ? efContractAddresses.ramestta.ef_invest : efContractAddresses.pingaksha.ef_invest,
+        functionName: 'user2InvestList',
+        args: [address as Address, BigInt(0), Number(resultOfUserInvestLength?.data) > 0 ? resultOfUserInvestLength.data as bigint : BigInt(0)],
         account: zeroAddress
     })
 
     const resultOfUserTierAndBoostRateInPercent = useReadContract({
-        abi: mmctStakingAbi,
-        address: chainId === 1370 ? mmctContractAddresses.ramestta.mmct_staking : mmctContractAddresses.pingaksha.mmct_staking,
+        abi: efInvestAbi,
+        address: chainId === 1370 ? efContractAddresses.ramestta.ef_invest : efContractAddresses.pingaksha.ef_invest,
         functionName: 'getTierAndBoostRateInPercent',
-        args: [Number(resultOfUserStaked?.data?.volumeInUSD) > 0 ? resultOfUserStaked?.data?.volumeInUSD as bigint : BigInt(0)],
+        args: [Number(resultOfUserInvest?.data?.amount) > 0 ? resultOfUserInvest?.data?.amount as bigint : BigInt(0)],
         account: zeroAddress
     })
 
     const resultOfUsergReferralsCount= useReadContract({
-        abi: mmctReferralAbi,
-        address: chainId === 1370 ? mmctContractAddresses.ramestta.mmct_referral : mmctContractAddresses.pingaksha.mmct_referral,
+        abi: efReferralAbi,
+        address: chainId === 1370 ? efContractAddresses.ramestta.ef_referral : efContractAddresses.pingaksha.ef_referral,
         functionName: 'getReferralsCount',
         args: [address as Address],
         account: zeroAddress
@@ -115,32 +115,25 @@ const Earning = ({ Earning }: props) => {
 
 
 
-    const resultOfUserPositionAndBoostRateInPercent = useReadContract({
-        abi: mmctStakingAbi,
-        address: chainId === 1370 ? mmctContractAddresses.ramestta.mmct_staking : mmctContractAddresses.pingaksha.mmct_staking,
-        functionName: 'getPositionAndBoostRateInPercent',
-        args: [Number(resultOfUsergReferralsCount?.data) > 0 ? resultOfUsergReferralsCount?.data  as bigint : BigInt(0)],
-        account: zeroAddress
-    })
 
-    const {data:mintRatePerHour} = useReadContract({
-        abi: mmctStakingAbi,
-        address: chainId === 1370 ? mmctContractAddresses.ramestta.mmct_staking : mmctContractAddresses.pingaksha.mmct_staking,
-        functionName: 'calculateMintRate',
-        args: [Number(resultOfUserStaked?.data?.volumeInUSD) > 0 ? resultOfUserStaked?.data?.volumeInUSD as bigint : BigInt(0),Number(resultOfUsergReferralsCount?.data) > 0 ? resultOfUsergReferralsCount?.data  as bigint : BigInt(0)],
-        account: zeroAddress,
-        query:{
-            select(data) {
-                return Number(data[1])/1e15
-            },
-        }
-    })
+    // const {data:mintRatePerHour} = useReadContract({
+    //     abi: efInvestAbi,
+    //     address: chainId === 1370 ? efContractAddresses.ramestta.ef_invest : efContractAddresses.pingaksha.ef_invest,
+    //     functionName: 'calculateMintRewards',
+    //     args: [Number(resultOfUserInvest?.data?.amount) > 0 ? resultOfUserInvest?.data?.amount as bigint : BigInt(0),Number(resultOfUsergReferralsCount?.data) > 0 ? resultOfUsergReferralsCount?.data  as bigint : BigInt(0)],
+    //     account: zeroAddress,
+    //     query:{
+    //         select(data) {
+    //             return Number(data[1])/1e15
+    //         },
+    //     }
+    // })
 
 
 
 
 
-    // const totalUnclaimedRewards= resultOfUserStakedList?.data?.reduce((previousValue,currentValue)=> previousValue+  )
+    // const totalUnclaimedRewards= resultOfUserInvestList?.data?.reduce((previousValue,currentValue)=> previousValue+  )
 
     const Card = [
         {
@@ -152,18 +145,18 @@ const Earning = ({ Earning }: props) => {
         {
             id: 2,
             Title: 'Your Stake',
-            Amount: `${convertToAbbreviated(formatEther?.(BigInt?.(resultOfUserStaked?.data ? resultOfUserStaked.data.amount.toString() : 0)), 3)} EF`,
-            data: `${formatNumberToCurrencyString(Number(formatEther?.(BigInt?.(resultOfUserStaked?.data ? resultOfUserStaked.data.amount.toString() : 0))) * 0.05, 3)}`
+            Amount: `${convertToAbbreviated(formatEther?.(BigInt?.(resultOfUserInvest?.data ? resultOfUserInvest.data.amount.toString() : 0)), 3)} EF`,
+            data: `${formatNumberToCurrencyString(Number(formatEther?.(BigInt?.(resultOfUserInvest?.data ? resultOfUserInvest.data.amount.toString() : 0))) * 0.05, 3)}`
         },
         {
             id: 3,
-            Title: 'Claimed Rewards',
-            Amount: `${convertToAbbreviated(formatEther?.(BigInt?.(resultOfUserStaked?.data ? resultOfUserStaked.data.claimedMintRewards.toString() : 0)), 5)} EF`,
-            data: `${formatNumberToCurrencyString(Number(formatEther?.(BigInt?.(resultOfUserStaked?.data ? resultOfUserStaked.data.claimedMintRewards.toString() : 0))) * 0.05, 5)}`
+            Title: 'Claimed Income',
+            Amount: `${convertToAbbreviated(formatEther?.(BigInt?.(resultOfUserInvest?.data ? resultOfUserInvest.data.claimedMintRewards.toString() : 0)), 5)} EF`,
+            data: `${formatNumberToCurrencyString(Number(formatEther?.(BigInt?.(resultOfUserInvest?.data ? resultOfUserInvest.data.claimedMintRewards.toString() : 0))) * 0.05, 5)}`
         },
         {
             id: 4,
-            Title: 'Unclaimed Rewards',
+            Title: 'Unclaimed Income',
             Amount: `${" 0.00000 EF"
                 }`,
             data: '$0.00000'
@@ -175,29 +168,23 @@ const Earning = ({ Earning }: props) => {
             data: ``
         },
         {
-            id: 6,
-            Title: 'Your Position',
-            Amount: `${Number(resultOfUserPositionAndBoostRateInPercent?.data?.[0])+1}`,
-            data: ``
-        },
-        {
             id: 7,
             Title: 'Per Hour Base Speed(%)',
-            Amount: `${mintRatePerHour?mintRatePerHour.toFixed(5):'0.00000'}`,
+            Amount: `${(0.25/24).toFixed(2)}`,
             data: ``
         },
         {
             id: 8,
             Title: 'Per Day Base Speed(%)',
-            Amount: `${mintRatePerHour?(mintRatePerHour*24).toFixed(5):'0.00000'}`,
+            Amount: `${0.25}`,
             data: ''
         },
     ]
 
     // use to refetch
 useEffect(() => {
-    queryClient.invalidateQueries({ queryKey:resultOfUserStakedList.queryKey }) 
-}, [blockNumber, queryClient,resultOfUserStakedList])
+    queryClient.invalidateQueries({ queryKey:resultOfUserInvestList.queryKey }) 
+}, [blockNumber, queryClient,resultOfUserInvestList])
     return (
         <>
 
@@ -215,7 +202,7 @@ useEffect(() => {
                         }
 
                     }}
-                    variant="h4">{Earning} Reward</Typography>
+                    variant="h4">{Earning} Income</Typography>
 
                 <Box className={classes.boxCr}>
                     <Box className={classes.cardlist}>
@@ -236,7 +223,7 @@ useEffect(() => {
                 </Box>
                 
                  <Box className={classes.boxCr} sx={{ marginTop: '1rem' }}>
-                    <TableEarn resultOfUserStakedList={resultOfUserStakedList?.data} mintRatePerYear={mintRatePerHour?mintRatePerHour*24*365:0.00000} />
+                    <TableEarn resultOfUserInvestList={resultOfUserInvestList?.data} mintRatePerYear={0.00000} />
                 </Box>
                 
             </Box>

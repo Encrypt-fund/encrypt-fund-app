@@ -12,8 +12,8 @@ import Referral from './referral';
 import Tablereferral from './tablereferral';
 import Refer from '../dashboard/refer';
 import { useAccount, useBlockNumber, useChainId, useReadContracts } from 'wagmi';
-import { mmctReferralAbi } from '@/configs/abi/mmctReferral';
-import { mmctContractAddresses } from '@/configs';
+import { efReferralAbi } from '@/configs/abi/efReferral';
+import { efContractAddresses } from '@/configs';
 import { Address } from 'viem';
 import Tablereferral2 from './tablereferral2';
 import { useQueryClient } from '@tanstack/react-query';
@@ -96,14 +96,14 @@ export default function ReferralTab() {
     const resultOfReferralDetail = useReadContracts({
         contracts: [
             {
-                abi: mmctReferralAbi,
-                address: chainId === 1370 ? mmctContractAddresses.ramestta.mmct_referral : mmctContractAddresses.pingaksha.mmct_referral,
+                abi: efReferralAbi,
+                address: chainId === 1370 ? efContractAddresses.ramestta.ef_referral : efContractAddresses.pingaksha.ef_referral,
                 functionName: 'getReferralRewards',
                 args: [address as Address]
             },
             {
-                abi: mmctReferralAbi,
-                address: chainId === 1370 ? mmctContractAddresses.ramestta.mmct_referral : mmctContractAddresses.pingaksha.mmct_referral,
+                abi: efReferralAbi,
+                address: chainId === 1370 ? efContractAddresses.ramestta.ef_referral : efContractAddresses.pingaksha.ef_referral,
                 functionName: 'getReferralsCount',
                 args: [address as Address]
             },

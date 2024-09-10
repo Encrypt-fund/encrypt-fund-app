@@ -26,16 +26,18 @@ import AlertTitle from '@mui/material/AlertTitle';
 import { useEffect, useState } from "react";
 import { useAccount, useBlockNumber, useBalance, useChainId, useReadContract, useReadContracts, useWaitForTransactionReceipt, useWriteContract } from "wagmi";
 import { Address, formatEther, parseEther, zeroAddress } from "viem";
-import { mmctTokenAbi } from "@/configs/abi/mmctTokenAbi";
-import { mmctContractAddresses } from "@/configs";
+import { efTokenAbi } from "@/configs/abi/efTokenAbi";
+import { efContractAddresses } from "@/configs";
 import { convertToAbbreviated } from "@/lib/convertToAbbreviated";
 
-import { mmctReferralAbi } from "@/configs/abi/mmctReferral";
+import { efIcoReferralAbi } from "@/configs/abi/efIcoReferral";
+import { efReferralAbi } from "@/configs/abi/efReferral";
 import { formatNumberToCurrencyString } from "@/lib/formatNumberToCurrencyString";
 import ContributorsTable from "./contributorsTable";
-import { mmctIcoAbi } from "@/configs/abi/mmctIco";
+import { efIcoAbi } from "@/configs/abi/efIco";
 import ConnectWallet from "../shared/connectWallet";
-import { mmctStakingAbi } from "@/configs/abi/mmctStaking";
+import { efIcoStakingAbi } from "@/configs/abi/efIcoStaking";
+import { efInvestAbi } from "@/configs/abi/efInvest";
 import shortenString from "@/lib/shortenString";
 import { useSearchParams } from "next/navigation";
 import { useQueryClient } from '@tanstack/react-query'
@@ -360,7 +362,7 @@ const Dsboard = (props: CircularProgressProps) => {
                    if(error){
                        toast.error(extractDetailsFromError(error.message as string) as string)
                    }else{
-                       toast.success("Your MMCT Buy successfully")
+                       toast.success("Your EF Buy successfully")
                    }
                },
             }
@@ -383,8 +385,8 @@ const Dsboard = (props: CircularProgressProps) => {
     // }
 
     const resultOfSaleDetails = useReadContract({
-        abi: mmctIcoAbi,
-        address: chainId === 1370 ? mmctContractAddresses.ramestta.mmct_ico : mmctContractAddresses.pingaksha.mmct_ico,
+        abi: efIcoAbi,
+        address: chainId === 1370 ? efContractAddresses.ramestta.ef_ico : efContractAddresses.pingaksha.ef_ico,
         functionName: 'saleType2IcoDetail',
         args: [0],
         account: zeroAddress
@@ -416,33 +418,33 @@ const Dsboard = (props: CircularProgressProps) => {
 
 
     const resultOfUserContribution = useReadContract({
-        abi: mmctIcoAbi,
-        address: chainId === 1370 ? mmctContractAddresses.ramestta.mmct_ico : mmctContractAddresses.pingaksha.mmct_ico,
+        abi: efIcoAbi,
+        address: chainId === 1370 ? efContractAddresses.ramestta.ef_ico : efContractAddresses.pingaksha.ef_ico,
         functionName: 'user2SaleType2Contributor',
         args: [address as Address, 0],
         account: zeroAddress
     })
 
     const resultOfRamaPriceInUSD = useReadContract({
-        abi: mmctIcoAbi,
-        address: chainId === 1370 ? mmctContractAddresses.ramestta.mmct_ico : mmctContractAddresses.pingaksha.mmct_ico,
+        abi: efIcoAbi,
+        address: chainId === 1370 ? efContractAddresses.ramestta.ef_ico : efContractAddresses.pingaksha.ef_ico,
         functionName: 'ramaPriceInUSD',
         args: [],
         account: zeroAddress
     })
 
     const resultOfBalance = useReadContract({
-        abi: mmctTokenAbi,
-        address: chainId === 1370 ? mmctContractAddresses.ramestta.mmct_token : mmctContractAddresses.pingaksha.mmct_token,
+        abi: efTokenAbi,
+        address: chainId === 1370 ? efContractAddresses.ramestta.ef_token : efContractAddresses.pingaksha.ef_token,
         functionName: 'balanceOf',
         args: [address as Address],
         account: address
     })
 
-    const resultOfUserCommunityReward = useReadContract({
-        abi: mmctStakingAbi,
-        address: chainId === 1370 ? mmctContractAddresses.ramestta.mmct_staking : mmctContractAddresses.pingaksha.mmct_staking,
-        functionName: 'user2CommunityRewardInfo',
+    const resultOfUserTeamReward = useReadContract({
+        abi: efInvestAbi,
+        address: chainId === 1370 ? efContractAddresses.ramestta.ef_invest : efContractAddresses.pingaksha.ef_invest,
+        functionName: 'user2TeamRewardInfo',
         args: [address as Address],
         account: zeroAddress
     })
@@ -450,26 +452,26 @@ const Dsboard = (props: CircularProgressProps) => {
     const resultOfReferralDetail = useReadContracts({
         contracts: [
             {
-                abi: mmctReferralAbi,
-                address: chainId === 1370 ? mmctContractAddresses.ramestta.mmct_referral : mmctContractAddresses.pingaksha.mmct_referral,
+                abi: efReferralAbi,
+                address: chainId === 1370 ? efContractAddresses.ramestta.ef_referral : efContractAddresses.pingaksha.ef_referral,
                 functionName: 'getReferralRewards',
                 args: [address as Address]
             },
             {
-                abi: mmctReferralAbi,
-                address: chainId === 1370 ? mmctContractAddresses.ramestta.mmct_referral : mmctContractAddresses.pingaksha.mmct_referral,
+                abi: efReferralAbi,
+                address: chainId === 1370 ? efContractAddresses.ramestta.ef_referral : efContractAddresses.pingaksha.ef_referral,
                 functionName: 'getReferralsCount',
                 args: [address as Address]
             },
             {
-                abi: mmctReferralAbi,
-                address: chainId === 1370 ? mmctContractAddresses.ramestta.mmct_referral : mmctContractAddresses.pingaksha.mmct_referral,
+                abi: efReferralAbi,
+                address: chainId === 1370 ? efContractAddresses.ramestta.ef_referral : efContractAddresses.pingaksha.ef_referral,
                 functionName: 'isValidReferrerOrStaker',
                 args: [address as Address, referrerAddress as Address]
             },
             {
-                abi: mmctReferralAbi,
-                address: chainId === 1370 ? mmctContractAddresses.ramestta.mmct_referral : mmctContractAddresses.pingaksha.mmct_referral,
+                abi: efReferralAbi,
+                address: chainId === 1370 ? efContractAddresses.ramestta.ef_referral : efContractAddresses.pingaksha.ef_referral,
                 functionName: 'getReferrer',
                 args: [address as Address]
             },
@@ -485,21 +487,28 @@ const Dsboard = (props: CircularProgressProps) => {
         },
         {
             image: l2,
-            title: 'Your Coin Worth at Launch',
-            data: `$${resultOfUserContribution?.data ? Number(Number(formatEther?.(BigInt?.(resultOfUserContribution?.data?.volume ? resultOfUserContribution?.data?.volume.toString() : 0))) * Number(formatEther?.(BigInt?.(resultOfSaleDetails?.data?.saleRateInUsd ? resultOfSaleDetails?.data?.saleRateInUsd.toString() : 0)))).toFixed(3) : 0.000}`,
-            valueInUsd: ''
+            title: 'Your Staking Income',
+            data: `$0.00000`,
         },
         {
             image: l3,
-            title: 'Your Spot Earnings',
-            data: `${convertToAbbreviated(formatEther?.(BigInt?.(resultOfReferralDetail?.data?.[0].result ? resultOfReferralDetail?.data?.[0].result.toString() : 0)), 3)} EF`,
-            valueInUsd: `${formatNumberToCurrencyString(Number(formatEther?.(BigInt?.(resultOfReferralDetail?.data?.[0].result ? resultOfReferralDetail?.data?.[0].result.toString() : 0))) * 0.05, 3)}`
+            title: 'Your Spot Income',
+            data: `$${convertToAbbreviated(formatEther?.(BigInt?.(resultOfReferralDetail?.data?.[0].result ? resultOfReferralDetail?.data?.[0].result.toString() : 0)), 5)}`
         },
         {
             image: l1,
-            title: 'Your Community Earnings',
-            data: `${convertToAbbreviated(formatEther?.(BigInt(Number(resultOfUserCommunityReward?.data) > 0 ? resultOfUserCommunityReward?.data?.claimedReward as bigint : 0)), 5)} EF`,
-            valueInUsd: `${formatNumberToCurrencyString(Number(formatEther?.(BigInt(Number(resultOfUserCommunityReward?.data) > 0 ? resultOfUserCommunityReward?.data?.claimedReward as bigint : 0))) * 0.05, 5)}`
+            title: 'Your Team Income',
+            data: `$${convertToAbbreviated(formatEther?.(BigInt(Number(resultOfUserTeamReward?.data) > 0 ? resultOfUserTeamReward?.data?.claimedReward as bigint : 0)), 5)}`,
+        },
+        {
+            image: l2,
+            title: 'Your Bounty Income',
+            data: `$0.00000`,
+        },
+        {
+            image: l2,
+            title: 'Your Fix Time Income',
+            data: `$0.00000`,
         },
     ]
 
@@ -514,9 +523,9 @@ const Dsboard = (props: CircularProgressProps) => {
         queryClient.invalidateQueries({ queryKey: resultOfUserContribution.queryKey })
         queryClient.invalidateQueries({ queryKey: resultOfRamaPriceInUSD.queryKey })
         queryClient.invalidateQueries({ queryKey: resultOfBalance.queryKey })
-        queryClient.invalidateQueries({ queryKey: resultOfUserCommunityReward.queryKey })
+        queryClient.invalidateQueries({ queryKey: resultOfUserTeamReward.queryKey })
         queryClient.invalidateQueries({ queryKey: resultOfReferralDetail.queryKey })
-    }, [blockNumber, queryClient,balanceOfRama,resultOfSaleDetails,resultOfUserContribution,resultOfRamaPriceInUSD,resultOfBalance,resultOfUserCommunityReward,resultOfReferralDetail])
+    }, [blockNumber, queryClient,balanceOfRama,resultOfSaleDetails,resultOfUserContribution,resultOfRamaPriceInUSD,resultOfBalance,resultOfUserTeamReward,resultOfReferralDetail])
 
     
 
@@ -528,13 +537,13 @@ const Dsboard = (props: CircularProgressProps) => {
                     <Box className={classes.step__one_box}>
                         <Box><Image src={dleft} alt={""} /></Box>
                         <Box className={classes.Top_hding}>
-                            <Heading heading={"Welcome to"} />
-                            <Heading heading={"Encryptfund Dashboard"} />
+                            <Heading heading={"Welcome to Encryptfund"} />
+                            {/* <Heading heading={"Encryptfund Dashboard"} /> */}
                         </Box>
                         <Box><Image src={dright} alt={""} /></Box>
                     </Box>
 
-                    <Box sx={{ padding: '0rem 0.5rem', marginTop: '1rem' }}>
+                    {/* <Box sx={{ padding: '0rem 0.5rem', marginTop: '1rem' }}>
                         <Grid container spacing={2} sx={{ flexWrap: 'inherit',  }}>
                         
                             <Grid item lg={9} md={8.7} sm={10} xs={9.5} >
@@ -545,23 +554,6 @@ const Dsboard = (props: CircularProgressProps) => {
                                 }}>
                                     <Box sx={{ textAlign: 'center', marginBottom: 1 }}><Typography fontFamily={'Bruce Forever!important'} color={'#00d632'}>{valueTop}%</Typography></Box>
                                     <BorderLinearProgress variant="determinate" value={valueTop as any} />
-                                    {/* <Slider
-                                        value={value}
-                                        onChange={handleChange}
-                                        aria-labelledby="range-slider"
-                                        min={0}
-                                        max={100}
-                                        className={classes.sliderBox}
-                                        sx={{
-                                            background: 'linear-gradient(90deg, #080808, #00d632)',
-                                            border: '1px solid #2b3139',
-                                            borderRadius: '30px',
-                                            padding: '10px 10px 10px 0px',
-                                            '&.Mui-active': {
-                                                boxShadow: '0 0 0 14px rgba(0, 0, 255, 0.16)', // Change this to your desired active color
-                                            },
-                                        }}
-                                    /> */}
 
 
                                 </Box>
@@ -573,10 +565,7 @@ const Dsboard = (props: CircularProgressProps) => {
                                 </Box>
                             </Grid>
                         </Grid>
-                    </Box>
-
-
-
+                    </Box> */}
 
 
 
@@ -586,7 +575,7 @@ const Dsboard = (props: CircularProgressProps) => {
                 <Box className={classes.step__two}>
                     <Grid container spacing={2}>
                         {Box__list.map((item, index) => (
-                            <Grid key={index} item lg={3} md={3} sm={12} xs={12}>
+                            <Grid key={index} item lg={4} md={4} sm={12} xs={12}>
                                 <Box className={classes.list___bx}>
                                     <Image src={item.image} alt={""} width={44} style={{backgroundColor:'transparent !important'}}/>
                                     <Typography color={'#fff'}>{item.title}</Typography>
@@ -607,9 +596,9 @@ const Dsboard = (props: CircularProgressProps) => {
                             </Box>
                             <Box className={classes.middleBox}>
 
-                                <Box textAlign={'center'} mt={3}>
+                                {/* <Box textAlign={'center'} mt={3}>
                                     <Typography>  <Typography component={'span'} color={'#fff'}>Private Sale</Typography></Typography>
-                                </Box>
+                                </Box> */}
 
                                 <Box className={classes.currentsale}>
                                     <Box>
@@ -673,7 +662,7 @@ const Dsboard = (props: CircularProgressProps) => {
 
                                 </Box>
                                 <Box className={classes.currentsale2}>
-                                    <Typography fontWeight={500} color={'#fff'}>$0.05 = 1 EF</Typography>
+                                    <Typography fontWeight={500} color={'#fff'}>$0.5 = 1 EF</Typography>
                                     {/* <Typography fontWeight={500} color={'#fff'}>Pre-Sale: $0.1</Typography> */}
                                 </Box>
 
@@ -787,8 +776,8 @@ const Dsboard = (props: CircularProgressProps) => {
                                         }}
                                         onClick={async () => {
                                             await writeContractAsync({
-                                                abi: mmctIcoAbi,
-                                                address: chainId === 1370 ? mmctContractAddresses.ramestta.mmct_ico : mmctContractAddresses.pingaksha.mmct_ico,
+                                                abi: efIcoAbi,
+                                                address: chainId === 1370 ? efContractAddresses.ramestta.ef_ico : efContractAddresses.pingaksha.ef_ico,
                                                 functionName: 'buy',
                                                 args: [0, (resultOfReferralDetail?.data?.[3]?.result !== zeroAddress ? resultOfReferralDetail?.data?.[3]?.result as Address : referrerAddress as Address)],
                                                 account: address,

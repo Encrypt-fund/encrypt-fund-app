@@ -7,8 +7,8 @@ import { convertToAbbreviated } from "@/lib/convertToAbbreviated";
 import shortenString from "@/lib/shortenString";
 import { useAccount, useBlockNumber, useChainId, useReadContract, useWaitForTransactionReceipt, useWriteContract } from "wagmi";
 import { Address, formatEther, zeroAddress } from "viem";
-import { mmctStakingAbi } from "@/configs/abi/mmctStaking";
-import { formatTier, mmctContractAddresses } from "@/configs";
+import { efInvestAbi } from "@/configs/abi/efInvest";
+import { formatTier, efContractAddresses } from "@/configs";
 import { formatNumberToCurrencyString } from "@/lib/formatNumberToCurrencyString";
 import HoverTool from "@/theme/components/hoverTool";
 import AddressCopy from "@/theme/components/addressCopy";
@@ -65,7 +65,7 @@ const useStyles = makeStyles({
     }
 });
 
-const TableEarn = ({ resultOfUserStakedList, mintRatePerYear }: { resultOfUserStakedList: any, mintRatePerYear: Number }) => {
+const TableEarn = ({ resultOfUserInvestList, mintRatePerYear }: { resultOfUserInvestList: any, mintRatePerYear: Number }) => {
     const classes = useStyles();
 
     const { address } = useAccount()
@@ -76,7 +76,7 @@ const TableEarn = ({ resultOfUserStakedList, mintRatePerYear }: { resultOfUserSt
     // const TableList = [
     //     {
     //         id: 1,
-    //         Userprofile: mmct,
+    //         Userprofile: ef,
     //         ProfileAddress: "0xcc5...be31",
     //         stakeAmount: 8000,
     //         stakeDate: '0.00',
@@ -91,7 +91,7 @@ const TableEarn = ({ resultOfUserStakedList, mintRatePerYear }: { resultOfUserSt
     //     },
     //     {
     //         id: 2,
-    //         Userprofile: mmct,
+    //         Userprofile: ef,
     //         ProfileAddress: "0xcc5...be31",
     //         stakeAmount: 8000,
     //         stakeDate: '0.00',
@@ -106,7 +106,7 @@ const TableEarn = ({ resultOfUserStakedList, mintRatePerYear }: { resultOfUserSt
     //     },
     //     {
     //         id: 3,
-    //         Userprofile: mmct,
+    //         Userprofile: ef,
     //         ProfileAddress: "0xcc5...be31",
     //         stakeAmount: 8000,
     //         stakeDate: '0.00',
@@ -121,7 +121,7 @@ const TableEarn = ({ resultOfUserStakedList, mintRatePerYear }: { resultOfUserSt
     //     },
     //     {
     //         id: 4,
-    //         Userprofile: mmct,
+    //         Userprofile: ef,
     //         ProfileAddress: "0xcc5...be31",
     //         stakeAmount: 8000,
     //         stakeDate: '0.00',
@@ -136,7 +136,7 @@ const TableEarn = ({ resultOfUserStakedList, mintRatePerYear }: { resultOfUserSt
     //     },
     //     {
     //         id: 5,
-    //         Userprofile: mmct,
+    //         Userprofile: ef,
     //         ProfileAddress: "0xcc5...be31",
     //         stakeAmount: 8000,
     //         stakeDate: '0.00',
@@ -151,7 +151,7 @@ const TableEarn = ({ resultOfUserStakedList, mintRatePerYear }: { resultOfUserSt
     //     },
     //     {
     //         id: 6,
-    //         Userprofile: mmct,
+    //         Userprofile: ef,
     //         ProfileAddress: "0xcc5...be31",
     //         stakeAmount: 8000,
     //         stakeDate: '0.00',
@@ -169,8 +169,8 @@ const TableEarn = ({ resultOfUserStakedList, mintRatePerYear }: { resultOfUserSt
 
     const Reward = ({ index }: { index: number }) => {
         const mintReward = useReadContract({
-            abi: mmctStakingAbi,
-            address: chainId === 1370 ? mmctContractAddresses.ramestta.mmct_staking : mmctContractAddresses.pingaksha.mmct_staking,
+            abi: efInvestAbi,
+            address: chainId === 1370 ? efContractAddresses.ramestta.ef_invest : efContractAddresses.pingaksha.ef_invest,
             functionName: 'calculateMintRewards',
             args: [address as Address, BigInt(index)],
             account: zeroAddress
@@ -210,9 +210,9 @@ const TableEarn = ({ resultOfUserStakedList, mintRatePerYear }: { resultOfUserSt
                         }}
                         onClick={async () => {
                             await writeContractAsync({
-                                abi: mmctStakingAbi,
-                                address: chainId === 1370 ? mmctContractAddresses.ramestta.mmct_staking : mmctContractAddresses.pingaksha.mmct_staking,
-                                functionName: 'claimRewards',
+                                abi: efInvestAbi,
+                                address: chainId === 1370 ? efContractAddresses.ramestta.ef_invest : efContractAddresses.pingaksha.ef_invest,
+                                functionName: 'claimMintRewards',
                                 args: [BigInt(index)],
                                 account: address
                             })
@@ -229,52 +229,52 @@ const TableEarn = ({ resultOfUserStakedList, mintRatePerYear }: { resultOfUserSt
     }
 
 
-    const Action = ({ index }: { index: number }) => {
-        const { writeContractAsync, data, isPending: isPendingUnstakeForWrite } = useWriteContract({
-            mutation: {
-                onSettled(data, error, variables, context) {
-                    if (error) {
-                        toast.error(extractDetailsFromError(error.message as string) as string)
-                    } else {
-                        toast.success("Unstake successfully")
-                    }
-                },
-            }
-        })
-        const { isLoading } = useWaitForTransactionReceipt({
-            hash: data,
-        })
-        return (
-            <Box className={classes.stakebtn__wrp}>
-                <Button
-                    disabled={
-                        (isPendingUnstakeForWrite || isLoading)
-                    }
-                    className={classes.stakebtn}
-                    sx={{
-                        opacity: !(
-                            isPendingUnstakeForWrite || isLoading
-                        ) ? "1" : '0.3',
-                        marginLeft: '7px'
-                    }}
-                    onClick={async () => {
-                        await writeContractAsync({
-                            abi: mmctStakingAbi,
-                            address: chainId === 1370 ? mmctContractAddresses.ramestta.mmct_staking : mmctContractAddresses.pingaksha.mmct_staking,
-                            functionName: 'unstake',
-                            args: [BigInt(index)],
-                            account: address
-                        })
-                    }}
+    // const Action = ({ index }: { index: number }) => {
+    //     const { writeContractAsync, data, isPending: isPendingUnstakeForWrite } = useWriteContract({
+    //         mutation: {
+    //             onSettled(data, error, variables, context) {
+    //                 if (error) {
+    //                     toast.error(extractDetailsFromError(error.message as string) as string)
+    //                 } else {
+    //                     toast.success("Unstake successfully")
+    //                 }
+    //             },
+    //         }
+    //     })
+    //     const { isLoading } = useWaitForTransactionReceipt({
+    //         hash: data,
+    //     })
+    //     return (
+    //         <Box className={classes.stakebtn__wrp}>
+    //             <Button
+    //                 disabled={
+    //                     (isPendingUnstakeForWrite || isLoading)
+    //                 }
+    //                 className={classes.stakebtn}
+    //                 sx={{
+    //                     opacity: !(
+    //                         isPendingUnstakeForWrite || isLoading
+    //                     ) ? "1" : '0.3',
+    //                     marginLeft: '7px'
+    //                 }}
+    //                 onClick={async () => {
+    //                     await writeContractAsync({
+    //                         abi: efInvestAbi,
+    //                         address: chainId === 1370 ? efContractAddresses.ramestta.ef_invest : efContractAddresses.pingaksha.ef_invest,
+    //                         functionName: 'unstake',
+    //                         args: [BigInt(index)],
+    //                         account: address
+    //                     })
+    //                 }}
 
-                >Unstake
-                    {
-                        (isPendingUnstakeForWrite || isLoading) && <CircularProgress sx={{ ml: "7px" }} size={18} color="inherit" />
-                    }
-                </Button>
-            </Box>
-        )
-    }
+    //             >Unstake
+    //                 {
+    //                     (isPendingUnstakeForWrite || isLoading) && <CircularProgress sx={{ ml: "7px" }} size={18} color="inherit" />
+    //                 }
+    //             </Button>
+    //         </Box>
+    //     )
+    // }
 
 
 
@@ -294,14 +294,14 @@ const TableEarn = ({ resultOfUserStakedList, mintRatePerYear }: { resultOfUserSt
                             <TableCell sx={{ borderBottom: '1px solid #2b3139', fontSize: 16, color: '#fff' }} align="left">RR <HoverTool Title={"Remaining Rewards"} /></TableCell>
                             <TableCell sx={{ borderBottom: '1px solid #2b3139', fontSize: 16, color: '#fff' }} align="left">ST <HoverTool Title={"Start Time"} /></TableCell>
                             <TableCell sx={{ borderBottom: '1px solid #2b3139', fontSize: 16, color: '#fff' }} align="left">LC <HoverTool Title={"Last Claimed"} /></TableCell>
-                            <TableCell sx={{ borderBottom: '1px solid #2b3139', fontSize: 16, color: '#fff' }} align="right">Action</TableCell>
+                            {/* <TableCell sx={{ borderBottom: '1px solid #2b3139', fontSize: 16, color: '#fff' }} align="right">Action</TableCell> */}
 
                         </TableRow>
                     </TableHead>
                     <TableBody style={{ alignItems: 'center' }}>
 
                         {
-                            resultOfUserStakedList?.length > 0 ? resultOfUserStakedList.map((item: any, index: number) => (
+                            resultOfUserInvestList?.length > 0 ? resultOfUserInvestList.map((item: any, index: number) => (
                                 <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                                     <TableCell sx={{ borderBottom: '1px solid #2b3139', padding: 1, color: '#fff' }} component="th" scope="row">
                                         <Box sx={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
@@ -347,9 +347,9 @@ const TableEarn = ({ resultOfUserStakedList, mintRatePerYear }: { resultOfUserSt
                                         <Typography color={'#fff'}>{new Date(Number(item?.lastClaimTime) * 1000).toLocaleString()}</Typography>
                                     </TableCell>
 
-                                    <TableCell sx={{ borderBottom: '1px solid #2b3139', padding: 1, color: '#fff' }} align="right">
+                                    {/* <TableCell sx={{ borderBottom: '1px solid #2b3139', padding: 1, color: '#fff' }} align="right">
                                         <Action index={index} />
-                                    </TableCell>
+                                    </TableCell> */}
                                 </TableRow>
                             ))
 

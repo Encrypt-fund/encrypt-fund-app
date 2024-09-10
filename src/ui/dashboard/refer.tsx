@@ -9,7 +9,7 @@ import { UseReadContractsReturnType, useAccount } from "wagmi";
 import linkbtnimg from '../../icons/linkbtnimg.svg'
 import RefBottom from "./refBottom";
 import { Abi, formatEther } from "viem";
-import { mmctReferralAbi } from "@/configs/abi/mmctReferral";
+import { efReferralAbi } from "@/configs/abi/efReferral";
 import { convertToAbbreviated } from "@/lib/convertToAbbreviated";
 
 

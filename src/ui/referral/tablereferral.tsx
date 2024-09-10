@@ -10,10 +10,10 @@ import r2 from '../../icons/r2.svg'
 import HoverTool from "@/theme/components/hoverTool";
 import { makeStyles } from '@mui/styles';
 import { useAccount, useChainId, useReadContract } from "wagmi";
-import { mmctStakingAbi } from "@/configs/abi/mmctStaking";
-import { mmctContractAddresses } from "@/configs";
+import { efStakingAbi } from "@/configs/abi/efStaking";
+import { efContractAddresses } from "@/configs";
 import { Address, formatEther, zeroAddress } from "viem";
-import { mmctReferralAbi } from "@/configs/abi/mmctReferral";
+import { efReferralAbi } from "@/configs/abi/efReferral";
 import shortenString from "@/lib/shortenString";
 import { convertToAbbreviated } from "@/lib/convertToAbbreviated";
 import { formatNumberToCurrencyString } from "@/lib/formatNumberToCurrencyString";
@@ -111,8 +111,8 @@ const Tablereferral = ({ referralsCount }: { referralsCount: string }) => {
 
 
     const resultOfDirectReferrals = useReadContract({
-        abi: mmctReferralAbi,
-        address: chainId === 1370 ? mmctContractAddresses.ramestta.mmct_referral : mmctContractAddresses.pingaksha.mmct_referral,
+        abi: efReferralAbi,
+        address: chainId === 1370 ? efContractAddresses.ramestta.ef_referral : efContractAddresses.pingaksha.ef_referral,
         functionName: 'getDirectReferrals',
         args: [address as Address, BigInt(0), Number(referralsCount as string) > 0 ? BigInt(referralsCount as string) : BigInt(0)],
         account: zeroAddress

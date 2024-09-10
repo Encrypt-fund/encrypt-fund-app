@@ -112,7 +112,7 @@ const Slidercoin = ({setValue}:{setValue:any}) => {
                     {/* <Typography color={'#fff'}>{value}%</Typography> */}
 
                 </Box>
-                <Box textAlign={'center'}><Typography color={'#fff'}>Move the slider to see how much your MMCT will be worth at different price targets!</Typography></Box>
+                <Box textAlign={'center'}><Typography color={'#fff'}>Move the slider to see how much your EF will be worth at different price targets!</Typography></Box>
             </Box>
         </>
     )
