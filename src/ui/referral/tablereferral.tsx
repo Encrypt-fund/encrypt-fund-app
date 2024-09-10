@@ -10,7 +10,7 @@ import r2 from '../../icons/r2.svg'
 import HoverTool from "@/theme/components/hoverTool";
 import { makeStyles } from '@mui/styles';
 import { useAccount, useChainId, useReadContract } from "wagmi";
-import { efStakingAbi } from "@/configs/abi/efStaking";
+// import { efStakingAbi } from "@/configs/abi/efStaking";
 import { efContractAddresses } from "@/configs";
 import { Address, formatEther, zeroAddress } from "viem";
 import { efReferralAbi } from "@/configs/abi/efReferral";

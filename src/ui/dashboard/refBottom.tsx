@@ -36,7 +36,7 @@ const RefBottom = () => {
     return (
         <>
             <Box className={classes.ref__link}>
-                 <AddressCopy hrefLink={`https://ico.encryptfund.com/dashboard/?ref=${address}`}  text={`https://ico.encryptfund.com/dashboard/?ref=${address}`} addresstext={`https://ico.encryptfund.com/dashboard/?ref=${shortenString(address as Address)}`} /> 
+                 <AddressCopy hrefLink={`https://encryptfund.com/?ref=${address}`}  text={`https://encryptfund.com/?ref=${address}`} addresstext={`https://encryptfund.com/?ref=${shortenString(address as Address)}`} /> 
                 <Modal />
             </Box>
         </>

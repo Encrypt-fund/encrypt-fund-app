@@ -249,7 +249,7 @@ const TableCummunityEarn = ({resultOfUserCommunityReward}:{resultOfUserCommunity
                 }}
             >Claim All Rewards</Button>
         </Box>
-                <Table sx={{ minWidth: 650, backgroundColor: '#1e2329', border: '1px solid #1D1D20', borderRadius: '8px' }} aria-label="simple table">
+                <Table sx={{ minWidth: 800, backgroundColor: '#1e2329', border: '1px solid #1D1D20', borderRadius: '8px' }} aria-label="simple table">
                     <TableHead sx={{ backgroundColor: '#27313d' }}>
                         <TableRow>
                             <TableCell sx={{ borderBottom: '1px solid #1D1D20', fontSize: 16, color: '#fff' }}>From</TableCell>

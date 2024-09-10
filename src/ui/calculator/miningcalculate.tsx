@@ -11,7 +11,7 @@ import Image from "next/image";
 import InnerTab from "./innerTab";
 import { useState } from "react";
 import HoverTool from "@/theme/components/hoverTool";
-import MiningCalculatorTable from "./miningCalculatorTable";
+// import MiningCalculatorTable from "./miningCalculatorTable";
 
 
 
@@ -199,7 +199,7 @@ const Miningcalculate = () => {
                      
                 </Box>
 
-                { Number(inputInUsd)>0 && <MiningCalculatorTable inputInUsd={inputInUsd} member={valueTop[0].toString()} />}
+                {/* { Number(inputInUsd)>0 && <MiningCalculatorTable inputInUsd={inputInUsd} member={valueTop[0].toString()} />} */}
             </Box>
         </>
     )

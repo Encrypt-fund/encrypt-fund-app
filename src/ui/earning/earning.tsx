@@ -34,9 +34,10 @@ const useStyles = makeStyles({
     Card: {
         backgroundColor: '#27313d',
         border: '1px solid #00d63247',
-        padding: '1rem',
+        padding: '10px',
         borderRadius: '8px',
-        textAlign: 'center'
+        textAlign: 'center',
+        height:'100%'
     },
     cardlist: {
         padding: '10px',
@@ -139,25 +140,25 @@ const Earning = ({ Earning }: props) => {
         {
             id: 1,
             Title: 'Ramestta Wallet Balance',
-            Amount: `${convertToAbbreviated(formatEther?.(BigInt?.(resultOfBalance?.data ? resultOfBalance.data.toString() : 0)), 3)} EF`,
+            Amount: `$${convertToAbbreviated(formatEther?.(BigInt?.(resultOfBalance?.data ? resultOfBalance.data.toString() : 0)), 3)}`,
             data: `${formatNumberToCurrencyString(Number(formatEther?.(BigInt?.(resultOfBalance?.data ? resultOfBalance.data.toString() : 0))) * 0.05, 3)}`
         },
         {
             id: 2,
-            Title: 'Your Stake',
-            Amount: `${convertToAbbreviated(formatEther?.(BigInt?.(resultOfUserInvest?.data ? resultOfUserInvest.data.amount.toString() : 0)), 3)} EF`,
+            Title: 'Your Invest',
+            Amount: `$${convertToAbbreviated(formatEther?.(BigInt?.(resultOfUserInvest?.data ? resultOfUserInvest.data.amount.toString() : 0)), 3)}`,
             data: `${formatNumberToCurrencyString(Number(formatEther?.(BigInt?.(resultOfUserInvest?.data ? resultOfUserInvest.data.amount.toString() : 0))) * 0.05, 3)}`
         },
         {
             id: 3,
             Title: 'Claimed Income',
-            Amount: `${convertToAbbreviated(formatEther?.(BigInt?.(resultOfUserInvest?.data ? resultOfUserInvest.data.claimedMintRewards.toString() : 0)), 5)} EF`,
+            Amount: `$${convertToAbbreviated(formatEther?.(BigInt?.(resultOfUserInvest?.data ? resultOfUserInvest.data.claimedMintRewards.toString() : 0)), 5)}`,
             data: `${formatNumberToCurrencyString(Number(formatEther?.(BigInt?.(resultOfUserInvest?.data ? resultOfUserInvest.data.claimedMintRewards.toString() : 0))) * 0.05, 5)}`
         },
         {
             id: 4,
             Title: 'Unclaimed Income',
-            Amount: `${" 0.00000 EF"
+            Amount: `$${"0.00000"
                 }`,
             data: '$0.00000'
         },
@@ -206,13 +207,13 @@ useEffect(() => {
 
                 <Box className={classes.boxCr}>
                     <Box className={classes.cardlist}>
-                        <Grid container spacing={2}>
+                        <Grid container spacing={2} justifyContent={"center"}>
                             {Card.map((item, index) => (
                                 <Grid key={index} item lg={3} md={3} sm={6} xs={12}>
                                     <Box className={classes.Card}>
                                         <Typography color={'#fff'}>{item.Title}</Typography>
                                         <Typography color={'#fff'} variant="h6">{item.Amount}</Typography>
-                                        <Typography color={'#999'}>{item.data}</Typography>
+                                        {/* <Typography color={'#999'}>{item.data}</Typography> */}
                                     </Box>
                                 </Grid>
                             ))}

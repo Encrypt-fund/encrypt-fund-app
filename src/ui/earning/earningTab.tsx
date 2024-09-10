@@ -10,6 +10,7 @@ import { makeStyles } from '@mui/styles';
 import Heading from '@/theme/components/heading';
 import Earning from './earning';
 import Community from './community';
+import Bounty from './bounty';
 
 
 
@@ -98,7 +99,7 @@ export default function EarningTab() {
 
                 <Box sx={{ textTransform: 'capitalize', }}>
                     <Tabs
-                        variant="fullWidth" // Ensure the tabs take up the full width
+                        variant="scrollable" // Ensure the tabs take up the full width
                         sx={{
                             backgroundColor: '#27313d',
                             borderRadius: '8px',
@@ -116,11 +117,11 @@ export default function EarningTab() {
                                 zIndex: '1',
                             }
                         }} value={value} onChange={handleChange} aria-label="basic tabs example">
-                        <Tab sx={{ textTransform: 'capitalize', color: "#999", border: '1px solid #00d63247', borderRadius: '8px', flex: 1, '@media(max-width : 600px)': { padding: '12px 10px' } }} label="Self Mining" {...a11yProps(0)} />
-                        <Tab sx={{ textTransform: 'capitalize', color: "#999", border: '1px solid #00d63247', borderRadius: '8px', margin: '0px 10px', flex: 1, '@media(max-width : 600px)': { padding: '12px 10px' } }} label="Team" {...a11yProps(1)} />
-                        <Tab sx={{ textTransform: 'capitalize', color: "#999", border: '1px solid #00d63247', borderRadius: '8px', margin: '0px 10px', flex: 1, '@media(max-width : 600px)': { padding: '12px 10px' } }} label="Bounty" {...a11yProps(2)} />
-                        <Tab sx={{ textTransform: 'capitalize', color: "#999", border: '1px solid #00d63247', borderRadius: '8px', margin: '0px 10px', flex: 1, '@media(max-width : 600px)': { padding: '12px 10px' } }} label="Fix Time" {...a11yProps(3)} />
-                        <Tab sx={{ textTransform: 'capitalize', color: "#999", border: '1px solid #00d63247', borderRadius: '8px', flex: 1, '@media(max-width : 600px)': { padding: '12px 10px' } }} label="History" {...a11yProps(4)} />
+                        <Tab sx={{ textTransform: 'capitalize', color: "#999", border: '1px solid #00d63247', borderRadius: '8px', flex: 1, '@media(max-width : 600px)': { padding: '12px 5px',fontSize:12 } }} label="Self Mining" {...a11yProps(0)} />
+                        <Tab sx={{ textTransform: 'capitalize', color: "#999", border: '1px solid #00d63247', borderRadius: '8px', margin: '0px 0px 0px 10px', flex: 1, '@media(max-width : 600px)': { padding: '12px 5px',fontSize:12 } }} label="Team" {...a11yProps(1)} />
+                        <Tab sx={{ textTransform: 'capitalize', color: "#999", border: '1px solid #00d63247', borderRadius: '8px', margin: '0px 0px 0px 10px', flex: 1, '@media(max-width : 600px)': { padding: '12px 5px',fontSize:12 } }} label="Bounty" {...a11yProps(2)} />
+                        <Tab sx={{ textTransform: 'capitalize', color: "#999", border: '1px solid #00d63247', borderRadius: '8px', margin: '0px 10px 0px 10px', flex: 1, '@media(max-width : 600px)': { padding: '12px 5px',fontSize:12 } }} label="Fix Time" {...a11yProps(3)} />
+                        <Tab sx={{ textTransform: 'capitalize', color: "#999", border: '1px solid #00d63247', borderRadius: '8px', flex: 1, '@media(max-width : 600px)': { padding: '12px 5px',fontSize:12 } }} label="History" {...a11yProps(4)} />
                     </Tabs>
                 </Box>
                 <CustomTabPanel value={value} index={0}>
@@ -135,24 +136,12 @@ export default function EarningTab() {
                     </Box>
                 </CustomTabPanel>
                 <CustomTabPanel value={value} index={2}>
-                    <Box className={classes.MainHis}>
-                        <Typography
-                            sx={{
-                                fontFamily: 'Coolvetica Rg!important',
-                                color: '#00d632',
-                                '@media(max-width : 1200px)': {
-                                    fontSize: '22px',
-                                    '@media(max-width : 900px)': {
-                                        fontSize: '20px'
-                                    }
-                                }
-
-                            }}
-                            variant="h4">Bounty Income</Typography>
-                        <Box className={classes.comingsoon}>
-                            <Typography variant='h6' color={'#00d632'}>Coming Soon</Typography>
-                        </Box>
-                    </Box>
+                    
+                        
+                     <Box  mt={3}>
+                     <Bounty/>
+                     </Box>
+                     
                 </CustomTabPanel>
                 <CustomTabPanel value={value} index={3}>
                     <Box className={classes.MainHis}>

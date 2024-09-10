@@ -70,7 +70,7 @@ const Profile = () => {
                     <Box className={classes.js_Reigns}>
                         <Box className={classes.profile}>
                             <Image src={r2} alt={""} />
-                            <Typography color={'#999'}>Rank: <Typography component={'span'} color={'#fff'}>1</Typography></Typography>
+                            <Typography color={'#999'}>Rank: <Typography component={'span'} color={'#fff'}>Advisor</Typography></Typography>
                         </Box>
                         {/* <Typography sx={{
                             '@media(max-width : 600px)': {
