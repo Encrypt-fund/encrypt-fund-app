@@ -4,6 +4,7 @@ import Sidebardb from "../dashboard/sidebardb";
 import DashboardHeader from "../shared/dashboardHeader";
 import dynamic from "next/dynamic"
 import ComingSoon from "../leaderboard/comingSoon";
+import Footer from "../shared/footer";
 
 const EarningTab = dynamic(
   () => import("@/ui/earning/earningTab"),
@@ -31,6 +32,7 @@ const Earningcmp = () => {
                     <Grid item lg={9.5} md={9.5} sm={12} xs={12}>
                         <DashboardHeader />
                         <EarningTab/>
+                        
                         {/* <ComingSoon/> */}
                     </Grid>
                 </Grid>

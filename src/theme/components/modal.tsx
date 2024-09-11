@@ -16,6 +16,7 @@ import { useAccount } from 'wagmi';
 import instagram from '../../icons/instagram.png'
 import discord from '../../icons/discord.png'
 import github from '../../icons/github.png'
+import YouTubeIcon from '@mui/icons-material/YouTube';
 
 import {
     FacebookIcon,
@@ -39,7 +40,7 @@ const BoxSocial = styled(Box)(({ theme }) => ({
     justifyContent: 'center',
     flexWrap: 'wrap',
     marginTop: '2rem',
-    padding:'0rem 2rem'
+    padding: '0rem 2rem'
 }));
 
 export default function Modal() {
@@ -67,13 +68,13 @@ export default function Modal() {
         }
     }, [open]);
 
-    const referLink=`https://encryptfund.com/?ref=${address}`
+    const referLink = `https://encryptfund.com/?ref=${address}`
 
     return (
         <React.Fragment>
 
 
-            <Link onClick={handleClickOpen('body')} href={"#"} style={{backgroundColor:'transparent'}}><Image src={linkbtnimg} alt={""} /></Link>
+            <Link onClick={handleClickOpen('body')} href={"#"} style={{ backgroundColor: 'transparent' }}><Image src={linkbtnimg} alt={""} /></Link>
             <Dialog
                 sx={{
                     backgroundColor: '#0000008f',
@@ -104,43 +105,50 @@ export default function Modal() {
                 <AddressReward textColor={'#000 !important'} text={referLink} address={`https://encryptfund.com/?ref=${shortenString(address as Address)}`} />
                 <BoxSocial>
 
-                    <TwitterShareButton
+                    {/* <TwitterShareButton
                      url={referLink}
                     >
                         <XIcon size={32} round={true} />
-                    </TwitterShareButton>
+                    </TwitterShareButton> */}
 
-                    <WhatsappShareButton
+                    {/* <WhatsappShareButton
                         url={referLink}
                     >
                         <WhatsappIcon size={32} round={true} />
-                    </WhatsappShareButton>
-
-                    <Link href={'https://www.instagram.com/encryptfund/'} target='_blank'><Image src={instagram} alt={''} width={32}/></Link>
-
+                    </WhatsappShareButton> */}
                     <FacebookShareButton
-                        url={referLink}
+                        url={'https://www.facebook.com/profile.php?id=61565893463853'}
                     >
                         <FacebookIcon size={32} round={true} />
                     </FacebookShareButton>
+                    <Link href={'https://www.instagram.com/encryptfund/'} target='_blank'><Image src={instagram} alt={''} width={32} /></Link>
 
-                    <LinkedinShareButton
+                    <Link style={{backgroundColor:'red',
+                        width:'32px',
+                        height:'32px',
+                        borderRadius:'40px',
+                        display:'flex',
+                        alignItems:'center',
+                        justifyContent:'center'
+                    }} href={'https://www.youtube.com/channel/UCAUhJWMLWKtZ1BQbeg1otpg'} target='_blank'><YouTubeIcon  sx={{width:32, color:'#fff'}}/></Link>
+
+                    {/* <LinkedinShareButton
                         url={referLink}
                     >
                         <LinkedinIcon size={32} round={true} />
-                    </LinkedinShareButton>
+                    </LinkedinShareButton> */}
 
 
-                    <TelegramShareButton
+                    {/* <TelegramShareButton
                         url={referLink}
                     >
                         <TelegramIcon size={32} round={true} />
-                    </TelegramShareButton>
+                    </TelegramShareButton> */}
 
 
-                    <Link href={'/'} target='_blank'><Image src={discord} alt={''} width={32}/></Link>
-                    <Link href={'/'} target='_blank'><Image src={github} alt={''} width={32}/></Link>
-                    
+                    {/* <Link href={'/'} target='_blank'><Image src={discord} alt={''} width={32}/></Link>
+                    <Link href={'/'} target='_blank'><Image src={github} alt={''} width={32}/></Link> */}
+
                 </BoxSocial>
             </Dialog>
         </React.Fragment>

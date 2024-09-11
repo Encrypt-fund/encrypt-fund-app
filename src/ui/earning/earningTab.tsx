@@ -11,6 +11,7 @@ import Heading from '@/theme/components/heading';
 import Earning from './earning';
 import Community from './community';
 import Bounty from './bounty';
+import Footer from '../shared/footer';
 
 
 
@@ -127,12 +128,14 @@ export default function EarningTab() {
                 <CustomTabPanel value={value} index={0}>
                     <Box mt={3}>
                         <Earning Earning={'Self Mining'} />
+                        <Footer/>
                     </Box>
                 </CustomTabPanel>
                 <CustomTabPanel value={value} index={1}>
                     <Box mt={3}>
 
                         <Community />
+                        <Footer/>
                     </Box>
                 </CustomTabPanel>
                 <CustomTabPanel value={value} index={2}>
@@ -140,6 +143,7 @@ export default function EarningTab() {
                         
                      <Box  mt={3}>
                      <Bounty/>
+                     <Footer/>
                      </Box>
                      
                 </CustomTabPanel>
@@ -161,6 +165,7 @@ export default function EarningTab() {
                         <Box className={classes.comingsoon}>
                             <Typography variant='h6' color={'#00d632'}>Coming Soon</Typography>
                         </Box>
+                        <Footer/>
                     </Box>
                 </CustomTabPanel>
                 <CustomTabPanel value={value} index={4}>
@@ -181,6 +186,7 @@ export default function EarningTab() {
                         <Box className={classes.comingsoon}>
                             <Typography variant='h6' color={'#00d632'}>Coming Soon</Typography>
                         </Box>
+                        <Footer/>
                     </Box>
                 </CustomTabPanel>
             </Box>

@@ -17,7 +17,7 @@ import TableBounty from "./tableBounty";
 const useStyles = makeStyles({
     mainDiv: {
         margin: '10px',
-        minHeight: '100vh',
+        // minHeight: '100vh',
     },
     box_hding: {
 

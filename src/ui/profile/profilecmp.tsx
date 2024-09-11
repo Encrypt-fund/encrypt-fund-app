@@ -5,6 +5,7 @@ import Dsboard from "../dashboard/dsboard";
 import DashboardHeader from "../shared/dashboardHeader";
 import Profile from "./profile";
 import ComingSoon from "../leaderboard/comingSoon";
+import Footer from "../shared/footer";
  
  
 
@@ -39,6 +40,7 @@ const Profilecmp = () => {
                     <Grid item lg={9.5} md={9.5} sm={12} xs={12}>
                         <DashboardHeader />
                      <Profile/>
+                     <Footer/>
                      {/* <ComingSoon/> */}
                     </Grid>
                 </Grid>

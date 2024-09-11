@@ -7,6 +7,7 @@ import Referral from "./referral";
 import ReferralTab from "./referralTab";
 import Refer from "../dashboard/refer";
 import ComingSoon from "../leaderboard/comingSoon";
+import Footer from "../shared/footer";
 
 
 
@@ -40,6 +41,7 @@ const Raferralcmp = () => {
                         <DashboardHeader />
                          
                         <ReferralTab/>
+                        <Footer/>
                         {/* <ComingSoon/> */}
                     </Grid>
                 </Grid>

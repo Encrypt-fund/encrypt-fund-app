@@ -16,7 +16,7 @@ import TableCummunityEarn from "./tableCummunityEarn";
 const useStyles = makeStyles({
     mainDiv: {
         margin: '10px',
-        minHeight: '100vh',
+        // minHeight: '100vh',
     },
     box_hding: {
 

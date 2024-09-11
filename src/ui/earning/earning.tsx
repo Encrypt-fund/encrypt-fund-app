@@ -19,7 +19,7 @@ import { rusdAbi } from "@/configs/abi/rusd";
 const useStyles = makeStyles({
     mainDiv: {
         margin: '10px',
-        minHeight: '100vh',
+        
 
     },
     box_hding: {
