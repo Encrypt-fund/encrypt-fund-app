@@ -118,18 +118,18 @@ const Earning = ({ Earning }: props) => {
 
 
 
-    // const {data:mintRatePerHour} = useReadContract({
-    //     abi: efInvestAbi,
-    //     address: chainId === 1370 ? efContractAddresses.ramestta.ef_invest : efContractAddresses.pingaksha.ef_invest,
-    //     functionName: 'calculateMintRewards',
-    //     args: [Number(resultOfUserInvest?.data?.amount) > 0 ? resultOfUserInvest?.data?.amount as bigint : BigInt(0),Number(resultOfUsergReferralsCount?.data) > 0 ? resultOfUsergReferralsCount?.data  as bigint : BigInt(0)],
-    //     account: zeroAddress,
-    //     query:{
-    //         select(data) {
-    //             return Number(data[1])/1e15
-    //         },
-    //     }
-    // })
+    const {data:mintRatePerDay} = useReadContract({
+        abi: efInvestAbi,
+        address: chainId === 1370 ? efContractAddresses.ramestta.ef_invest : efContractAddresses.pingaksha.ef_invest,
+        functionName: 'getTierAndBoostRateInPercent',
+        args: [Number(resultOfUserInvest?.data?.amount) > 0 ? resultOfUserInvest?.data?.amount as bigint : BigInt(0)],
+        account: zeroAddress,
+        query:{
+            select(data) {
+                return Number(data[1])/1e2
+            },
+        }
+    })
 
 
 
@@ -174,13 +174,13 @@ const Earning = ({ Earning }: props) => {
         {
             id: 7,
             Title: 'Per Hour Base Speed(%)',
-            Amount: `${(0.25/24).toFixed(2)}`,
+            Amount: `${mintRatePerDay?(mintRatePerDay/24).toFixed(2):0.00}`,
             data: ``
         },
         {
             id: 8,
             Title: 'Per Day Base Speed(%)',
-            Amount: `${0.25}`,
+            Amount: `${mintRatePerDay??0.00}`,
             data: ''
         },
     ]

@@ -149,7 +149,11 @@ export default function HomeTab({resultOfRusdBalance,resultOfEfTokenPrice}:any) 
                 />
                 </CustomTabPanel>
                 <CustomTabPanel value={value} index={1}>
-                <Buy />
+                <Buy 
+                    resultOfRusdBalance={resultOfRusdBalance} 
+                    resultOfEfTokenPrice={resultOfEfTokenPrice}
+                    resultOfCheckAllowance={resultOfCheckAllowance}
+                 />
                 </CustomTabPanel>
                  
             </Box>

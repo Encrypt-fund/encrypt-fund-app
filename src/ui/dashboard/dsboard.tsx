@@ -383,6 +383,14 @@ const Dsboard = (props: CircularProgressProps) => {
         account: zeroAddress
     })
 
+    const resultOfUserBountyReward = useReadContract({
+        abi: efInvestAbi,
+        address: chainId === 1370 ? efContractAddresses.ramestta.ef_invest : efContractAddresses.pingaksha.ef_invest,
+        functionName: 'user2BountyRewardInfo',
+        args: [address as Address],
+        account: zeroAddress
+    })
+
     const resultOfReferralDetail = useReadContracts({
         contracts: [
             {
@@ -446,7 +454,7 @@ const Dsboard = (props: CircularProgressProps) => {
         {
             image: l2,
             title: 'Your Bounty Income',
-            data: `$0.00000`,
+            data: `$${convertToAbbreviated(formatEther?.(BigInt(Number(resultOfUserBountyReward?.data) > 0 ? resultOfUserBountyReward?.data?.claimedReward as bigint : 0)), 5)}`
         },
         {
             image: l2,
@@ -461,8 +469,9 @@ const Dsboard = (props: CircularProgressProps) => {
         // queryClient.invalidateQueries({ queryKey: resultOfCheckAllowance.queryKey })
         queryClient.invalidateQueries({ queryKey: resultOfEfBalance.queryKey })
         queryClient.invalidateQueries({ queryKey: resultOfUserTeamReward.queryKey })
+        queryClient.invalidateQueries({ queryKey: resultOfUserBountyReward.queryKey })
         queryClient.invalidateQueries({ queryKey: resultOfReferralDetail.queryKey })
-    }, [blockNumber, queryClient,resultOfEfBalance,resultOfUserTeamReward,resultOfReferralDetail])
+    }, [blockNumber, queryClient,resultOfEfBalance,resultOfUserTeamReward,resultOfUserBountyReward,resultOfReferralDetail])
 
 
     

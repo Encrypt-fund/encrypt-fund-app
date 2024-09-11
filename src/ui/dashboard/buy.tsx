@@ -342,7 +342,7 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
 }));
 
 
-const Buy = () => {
+const Buy = ({resultOfRusdBalance,resultOfEfTokenPrice,resultOfCheckAllowance}:any) => {
     const classes = useStyles();
     const [valueTop, setValueTop] = useState<number>(1);
     const searchParams = useSearchParams()
@@ -572,8 +572,12 @@ const Buy = () => {
                                     </Box>
 
                                 </Box>
-                                <Box className={classes.currentsale2}>
-                                    <Typography fontWeight={500} color={'#fff'}>$0.5 = 1 EF</Typography>
+                                <Box className={classes.currentsale2} mt={2}>
+                                    <Typography fontWeight={500} color={'#fff'}>EF Price : ${
+                                        Number(
+                                            formatEther?.(BigInt?.(resultOfEfTokenPrice?.data ? resultOfEfTokenPrice?.data?.toString() : 0))
+                                    ).toFixed(2)
+                                    }</Typography>
                                     {/* <Typography fontWeight={500} color={'#fff'}>Pre-Sale: $0.1</Typography> */}
                                 </Box>
 
@@ -625,7 +629,7 @@ const Buy = () => {
                                                 </Typography>
                                             </Box>
 
-                                            <Box className={classes.box_List}>
+                                            {/* <Box className={classes.box_List}>
                                                 <Image src={rmesta} alt={""} width={40} />
                                                 <Typography color={'#999'}>RUSD PRICE:
                                                     <Typography component={'span'} color={'#fff'}> ${
@@ -634,7 +638,7 @@ const Buy = () => {
                                                     }
                                                     </Typography>
                                                 </Typography>
-                                            </Box>
+                                            </Box> */}
                                         </>
                                     }
                                     <Box className={classes.box_List}>
@@ -782,7 +786,7 @@ const Buy = () => {
                                             <Typography fontWeight={200} color={'#00d632'} textAlign={'center'} mt={1}>Note: If you have no any  valid referrer address then you can use this community referrer.</Typography>
                                             <Box sx={{ background: 'linear-gradient(90deg, #08080800, #00d632, #08080800)', gap: 1, justifyContent: 'center', padding: 1, display: 'flex', marginTop: '1rem', borderRadius: '8px', alignItems: 'center', }}>
                                                 <Typography component={'h6'} fontWeight={700} color={'#000'}>Referrer:  </Typography>
-                                                <AddressCopy hrefLink={`https://ico.encryptfund.com/dashboard/?ref=0x3B1E0F41ea1a6b1426b9C57262C73e7cD3FDa9af`} text={"0x3B1E0F41ea1a6b1426b9C57262C73e7cD3FDa9af"} addresstext={"0x3B1...3FDa9af"} />
+                                                <AddressCopy hrefLink={`https://encryptfund.com/?ref=0xBE4A7Ae76F7cceD70e0aec65aBd74DC84BB9D9C9`} text={"0xBE4A7Ae76F7cceD70e0aec65aBd74DC84BB9D9C9"} addresstext={"0xBE4...BB9D9C9"} />
                                             </Box>
                                             {/* </Box> */}
 
