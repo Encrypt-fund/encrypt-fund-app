@@ -10,6 +10,12 @@ import { makeStyles } from '@mui/styles';
 import Heading from '@/theme/components/heading';
 import Buy from './buy';
 import Investing from './investing';
+import { formatEther } from 'viem';
+import { useEffect, useState } from 'react';
+import useCheckAllowance from '@/hooks/useCheckAllowance';
+import { useAccount, useBlockNumber, useChainId } from 'wagmi';
+import { efContractAddresses } from '@/configs';
+import { useQueryClient } from '@tanstack/react-query';
  
 
 
@@ -77,8 +83,12 @@ const useStyles = makeStyles({
     }
 });
 
-export default function HomeTab() {
+export default function HomeTab({resultOfRusdBalance,resultOfEfTokenPrice}:any) {
     const classes = useStyles();
+    const { address } = useAccount()
+    const chainId = useChainId()
+    const queryClient = useQueryClient()
+    const { data: blockNumber } = useBlockNumber({ watch: true })
     const [value, setValue] = React.useState(0);
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -86,6 +96,18 @@ export default function HomeTab() {
     };
     const colorMode = React.useContext(ColorModeContext);
     const theme = useTheme();
+
+    const resultOfCheckAllowance = useCheckAllowance({
+        spenderAddress: chainId === 1370 ? efContractAddresses.ramestta.ef_invest : efContractAddresses.pingaksha.ef_invest
+      })
+
+    // use to refetch
+    useEffect(() => {
+   
+        queryClient.invalidateQueries({ queryKey: resultOfCheckAllowance.queryKey })
+     
+    }, [blockNumber, queryClient,resultOfCheckAllowance])
+    
 
     return (
         <Box  >
@@ -120,10 +142,14 @@ export default function HomeTab() {
                     </Tabs>
                 </Box>
                 <CustomTabPanel value={value} index={0}>
-                         <Investing/>
+                <Investing 
+                resultOfRusdBalance={resultOfRusdBalance} 
+                resultOfEfTokenPrice={resultOfEfTokenPrice}
+                resultOfCheckAllowance={resultOfCheckAllowance}
+                />
                 </CustomTabPanel>
                 <CustomTabPanel value={value} index={1}>
-                <Buy/>
+                <Buy />
                 </CustomTabPanel>
                  
             </Box>

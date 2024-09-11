@@ -41,12 +41,12 @@ const useStyles = makeStyles({
         backgroundColor: 'transparent',
         padding: '10px',
         borderRadius: '6px',
-        border: '1px solid #00ffff !important',
-        color: '#00ffff !important',
+        border: '1px solid #00d632 !important',
+        color: '#00d632 !important',
         textDecoration: 'none',
         transition: '0.5s',
         '&:hover': {
-            backgroundColor: '#00ffff !important',
+            backgroundColor: '#00d632 !important',
             color: '#000 !important'
         }
     },
@@ -196,7 +196,7 @@ const TableEarn = ({ resultOfUserInvestList, mintRatePerYear }: { resultOfUserIn
         return (
 
             <TableCell sx={{ borderBottom: '1px solid #2b3139', padding: 1, color: '#fff' }} align="left">
-                <Typography color={'#fff'}>{Number(mintReward?.data) > 0 ? Number(formatEther?.(BigInt?.(mintReward?.data ? mintReward.data.toString() : 0))).toFixed(5) : '0.00000'} EF
+                <Typography color={'#fff'}>${Number(mintReward?.data) > 0 ? Number(formatEther?.(BigInt?.(mintReward?.data ? mintReward.data.toString() : 0))).toFixed(5) : '0.00000'} 
                     <Button
                         disabled={
                             (isPendingClaimForWrite || isLoading)
@@ -223,7 +223,7 @@ const TableEarn = ({ resultOfUserInvestList, mintRatePerYear }: { resultOfUserIn
                         }
                     </Button>
                 </Typography>
-                <Typography color={'#999'}>${Number(mintReward?.data) > 0 ? (Number(formatEther?.(BigInt?.(mintReward?.data ? mintReward.data.toString() : 0))) * 0.05).toFixed(5) : '0.00000'}</Typography>
+                {/* <Typography color={'#999'}>${Number(mintReward?.data) > 0 ? (Number(formatEther?.(BigInt?.(mintReward?.data ? mintReward.data.toString() : 0))) * 0.05).toFixed(5) : '0.00000'}</Typography> */}
             </TableCell>
         )
     }
@@ -286,7 +286,7 @@ const TableEarn = ({ resultOfUserInvestList, mintRatePerYear }: { resultOfUserIn
                     <TableHead sx={{ backgroundColor: '#27313d' }}>
                         <TableRow>
                             <TableCell sx={{ borderBottom: '1px solid #2b3139', fontSize: 16, color: '#fff' }}>User</TableCell>
-                            <TableCell sx={{ borderBottom: '1px solid #2b3139', fontSize: 16, color: '#fff' }} align="left">SA <HoverTool Title={"Staked Amount"} /></TableCell>
+                            <TableCell sx={{ borderBottom: '1px solid #2b3139', fontSize: 16, color: '#fff' }} align="left">IA <HoverTool Title={"Invested Amount"} /></TableCell>
                             {/* <TableCell sx={{ borderBottom: '1px solid #2b3139', fontSize: 16, color: '#fff' }} align="left">Tier</TableCell> */}
                             <TableCell sx={{ borderBottom: '1px solid #2b3139', fontSize: 16, color: '#fff' }} align="left">Reward</TableCell>
                             <TableCell sx={{ borderBottom: '1px solid #2b3139', fontSize: 16, color: '#fff' }} align="left">TRI365D <HoverTool Title={"Total Reward in 365 Days"} /></TableCell>
@@ -307,7 +307,7 @@ const TableEarn = ({ resultOfUserInvestList, mintRatePerYear }: { resultOfUserIn
                                         <Box sx={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
                                             <Image src={r2} alt={"lol"} width={50} />
                                             <AddressCopy
-                                                textColor="#00ffff !important"
+                                                textColor="#00d632 !important"
                                                 hrefLink={
                                                     chainId === 1370 ? `https://ramascan.com/address/${address}` :
                                                         `https://pingaksha.ramascan.com/address/${address}`
@@ -318,8 +318,8 @@ const TableEarn = ({ resultOfUserInvestList, mintRatePerYear }: { resultOfUserIn
                                         </Box>
                                     </TableCell>
                                     <TableCell sx={{ borderBottom: '1px solid #2b3139', padding: 1, color: '#fff' }} align="left">
-                                        <Typography color={'#fff'}>{convertToAbbreviated(formatEther?.(BigInt?.(item?.amount ? item.amount.toString() : 0)), 3)} EF</Typography>
-                                        <Typography color={'#999'}>{formatNumberToCurrencyString(Number(formatEther?.(BigInt?.(item?.amount ? item.amount.toString() : 0))) * 0.05, 3)}</Typography>
+                                        <Typography color={'#fff'}>${convertToAbbreviated(formatEther?.(BigInt?.(item?.amount ? item.amount.toString() : 0)), 3)} </Typography>
+                                        {/* <Typography color={'#999'}>{formatNumberToCurrencyString(Number(formatEther?.(BigInt?.(item?.amount ? item.amount.toString() : 0))) * 0.05, 3)}</Typography> */}
                                     </TableCell>
                                     {/* <TableCell sx={{ borderBottom: '1px solid #2b3139', padding: 1, color: '#fff' }} align="left">
                                     <Typography color={'#fff'}>{formatTier(Number(item.tier))}</Typography>
@@ -329,16 +329,16 @@ const TableEarn = ({ resultOfUserInvestList, mintRatePerYear }: { resultOfUserIn
                                     <Reward index={index} />
 
                                     <TableCell sx={{ borderBottom: '1px solid #2b3139', padding: 1, color: '#fff' }} align="left">
-                                        <Typography color={'#fff'}>{convertToAbbreviated((Number(mintRatePerYear) * Number(formatEther?.(BigInt?.(item?.amount ? item.amount.toString() : 0))) / 100), 5)} EF</Typography>
-                                        <Typography color={'#999'}>{formatNumberToCurrencyString((Number(mintRatePerYear) * Number(formatEther?.(BigInt?.(item?.amount ? item.amount.toString() : 0))) / 100) * 0.05, 5)}</Typography>
+                                        <Typography color={'#fff'}>${convertToAbbreviated((Number(mintRatePerYear) * Number(formatEther?.(BigInt?.(item?.amount ? item.amount.toString() : 0))) / 100), 5)} </Typography>
+                                        {/* <Typography color={'#999'}>{formatNumberToCurrencyString((Number(mintRatePerYear) * Number(formatEther?.(BigInt?.(item?.amount ? item.amount.toString() : 0))) / 100) * 0.05, 5)}</Typography> */}
                                     </TableCell>
                                     <TableCell sx={{ borderBottom: '1px solid #2b3139', padding: 1, color: '#fff' }} align="left">
-                                        <Typography color={'#fff'}>{convertToAbbreviated(formatEther?.(BigInt?.(item?.claimedMintRewards ? item.claimedMintRewards.toString() : 0)), 5)} EF</Typography>
-                                        <Typography color={'#999'}>{formatNumberToCurrencyString(Number(formatEther?.(BigInt?.(item?.claimedMintRewards ? item.claimedMintRewards.toString() : 0))) * 0.05, 5)}</Typography>
+                                        <Typography color={'#fff'}>${convertToAbbreviated(formatEther?.(BigInt?.(item?.claimedMintRewards ? item.claimedMintRewards.toString() : 0)), 5)} </Typography>
+                                        {/* <Typography color={'#999'}>{formatNumberToCurrencyString(Number(formatEther?.(BigInt?.(item?.claimedMintRewards ? item.claimedMintRewards.toString() : 0))) * 0.5, 5)}</Typography> */}
                                     </TableCell>
                                     <TableCell sx={{ borderBottom: '1px solid #2b3139', padding: 1, color: '#fff' }} align="left">
-                                        <Typography color={'#fff'}>{convertToAbbreviated(((Number(mintRatePerYear) * Number(formatEther?.(BigInt?.(item?.amount ? item.amount.toString() : 0))) / 100) - Number(formatEther?.(BigInt?.(item?.claimedMintRewards ? item.claimedMintRewards.toString() : 0)))), 5)} EF</Typography>
-                                        <Typography color={'#999'}>{formatNumberToCurrencyString(((Number(mintRatePerYear) * Number(formatEther?.(BigInt?.(item?.amount ? item.amount.toString() : 0))) / 100) - Number(formatEther?.(BigInt?.(item?.claimedMintRewards ? item.claimedMintRewards.toString() : 0)))) * 0.05, 5)}</Typography>
+                                        <Typography color={'#fff'}>${convertToAbbreviated(((Number(mintRatePerYear) * Number(formatEther?.(BigInt?.(item?.amount ? item.amount.toString() : 0))) / 100) - Number(formatEther?.(BigInt?.(item?.claimedMintRewards ? item.claimedMintRewards.toString() : 0)))), 5)} </Typography>
+                                        {/* <Typography color={'#999'}>{formatNumberToCurrencyString(((Number(mintRatePerYear) * Number(formatEther?.(BigInt?.(item?.amount ? item.amount.toString() : 0))) / 100) - Number(formatEther?.(BigInt?.(item?.claimedMintRewards ? item.claimedMintRewards.toString() : 0)))) * 0.05, 5)}</Typography> */}
                                     </TableCell>
                                     <TableCell sx={{ borderBottom: '1px solid #2b3139', padding: 1, color: '#fff' }} align="left">
                                         <Typography color={'#fff'}>{new Date(Number(item?.startTime) * 1000).toLocaleString()}</Typography>

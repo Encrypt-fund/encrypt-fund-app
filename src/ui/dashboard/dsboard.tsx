@@ -45,6 +45,7 @@ import { extractDetailsFromError } from "@/lib/extractDetailsFromError";
 import { toast } from "react-toastify";
 import Buy from "./buy";
 import HomeTab from "./homeTab";
+import useCheckAllowance from "@/hooks/useCheckAllowance";
 
 const useStyles = makeStyles({
     mainDiv: {
@@ -357,87 +358,18 @@ const Dsboard = (props: CircularProgressProps) => {
     const queryClient = useQueryClient()
     const { data: blockNumber } = useBlockNumber({ watch: true, })
 
-    const { writeContractAsync, data, isPending: isPendingBuyForWrite} = useWriteContract(
-        {
-            mutation:{
-               onSettled(data, error, variables, context) {
-                   if(error){
-                       toast.error(extractDetailsFromError(error.message as string) as string)
-                   }else{
-                       toast.success("Your EF Buy successfully")
-                   }
-               },
-            }
-           }
-    )
-    const { isLoading } = useWaitForTransactionReceipt({
-        hash: data,
-    })
 
-    const balanceOfRama = useBalance({
-        address: address
-    })
-
-
-    const handleMax = () => {
-        setBuyInput((formatEther?.(BigInt?.(balanceOfRama?.data?.value ? balanceOfRama?.data?.value.toString() : 0))))
-    }
-    // const handleChange = (event: Event, newValue: number) => {
-    //     setValueTop(newValue);
-    // }
-
-    const resultOfSaleDetails = useReadContract({
-        abi: efIcoAbi,
-        address: chainId === 1370 ? efContractAddresses.ramestta.ef_ico : efContractAddresses.pingaksha.ef_ico,
-        functionName: 'saleType2IcoDetail',
-        args: [0],
-        account: zeroAddress
-    })
-
-    const [value2, setValue2] = useState<number>(0);
-    const [initialProgressValue, setInitialProgressValue] = useState<number>(0);
-    useEffect(() => {
-        if (resultOfSaleDetails?.data) {
-            const tokenAmount = BigInt(resultOfSaleDetails.data.tokenAmount?.toString() || '0');
-            const saleQuantity = BigInt(resultOfSaleDetails.data.saleQuantity?.toString() || '0');
-            const tokenAmountInEther = Number(formatEther(tokenAmount));
-            const saleQuantityInEther = Number(formatEther(saleQuantity));
-
-            if (!initialProgressValue) {
-                setInitialProgressValue(tokenAmountInEther);
-            }
-
-            setValue2(((tokenAmountInEther - (tokenAmountInEther - saleQuantityInEther)) > 0 ? (tokenAmountInEther - (tokenAmountInEther - saleQuantityInEther)) : 0));
-        }
-
-
-    }, [resultOfSaleDetails?.data,initialProgressValue]);
-
-
-
-
-    const progressValue = initialProgressValue > 0 ? ((initialProgressValue - value2) / initialProgressValue) * 100 : 0;
-
-
-    const resultOfUserContribution = useReadContract({
-        abi: efIcoAbi,
-        address: chainId === 1370 ? efContractAddresses.ramestta.ef_ico : efContractAddresses.pingaksha.ef_ico,
-        functionName: 'user2SaleType2Contributor',
-        args: [address as Address, 0],
-        account: zeroAddress
-    })
-
-    const resultOfRamaPriceInUSD = useReadContract({
-        abi: efIcoAbi,
-        address: chainId === 1370 ? efContractAddresses.ramestta.ef_ico : efContractAddresses.pingaksha.ef_ico,
-        functionName: 'ramaPriceInUSD',
-        args: [],
-        account: zeroAddress
-    })
-
-    const resultOfBalance = useReadContract({
+    const resultOfEfBalance = useReadContract({
         abi: efTokenAbi,
         address: chainId === 1370 ? efContractAddresses.ramestta.ef_token : efContractAddresses.pingaksha.ef_token,
+        functionName: 'balanceOf',
+        args: [address as Address],
+        account: address
+    })
+
+    const resultOfRusdBalance = useReadContract({
+        abi: efTokenAbi,
+        address: chainId === 1370 ? efContractAddresses.ramestta.rusd_Token : efContractAddresses.pingaksha.rusd_Token,
         functionName: 'balanceOf',
         args: [address as Address],
         account: address
@@ -468,7 +400,7 @@ const Dsboard = (props: CircularProgressProps) => {
             {
                 abi: efReferralAbi,
                 address: chainId === 1370 ? efContractAddresses.ramestta.ef_referral : efContractAddresses.pingaksha.ef_referral,
-                functionName: 'isValidReferrerOrStaker',
+                functionName: 'isValidReferrerOrInvestor',
                 args: [address as Address, referrerAddress as Address]
             },
             {
@@ -480,12 +412,21 @@ const Dsboard = (props: CircularProgressProps) => {
         ]
     })
 
+    const resultOfEfTokenPrice = useReadContract({
+        abi: efInvestAbi,
+        address: chainId === 1370 ? efContractAddresses.ramestta.ef_invest : efContractAddresses.pingaksha.ef_invest,
+        functionName: 'getTokenPrice',
+        args: [],
+        account: zeroAddress
+    })
+
+
     const Box__list = [
         {
             image: l1,
             title: 'Your Wallet Balance',
-            data: `${convertToAbbreviated(formatEther?.(BigInt?.(resultOfBalance?.data ? resultOfBalance.data.toString() : 0)), 3)} EF`,
-            valueInUsd: `${formatNumberToCurrencyString(Number(formatEther?.(BigInt?.(resultOfBalance?.data ? resultOfBalance.data.toString() : 0))) * 0.05, 3)}`
+            data: `${convertToAbbreviated(formatEther?.(BigInt?.(resultOfEfBalance?.data ? resultOfEfBalance.data.toString() : 0)), 3)} EF`,
+            valueInUsd: `${formatNumberToCurrencyString(Number(formatEther?.(BigInt?.(resultOfEfBalance?.data ? resultOfEfBalance.data.toString() : 0))) * 0.5, 3)}`
         },
         {
             image: l2,
@@ -514,20 +455,15 @@ const Dsboard = (props: CircularProgressProps) => {
         },
     ]
 
-    // const handleChange2 = (event: Event, newValue: number) => {
-    //     setValue2(newValue);
-    // };
 
     // use to refetch
     useEffect(() => {
-        queryClient.invalidateQueries({ queryKey: balanceOfRama.queryKey })
-        queryClient.invalidateQueries({ queryKey: resultOfSaleDetails.queryKey })
-        queryClient.invalidateQueries({ queryKey: resultOfUserContribution.queryKey })
-        queryClient.invalidateQueries({ queryKey: resultOfRamaPriceInUSD.queryKey })
-        queryClient.invalidateQueries({ queryKey: resultOfBalance.queryKey })
+        // queryClient.invalidateQueries({ queryKey: resultOfCheckAllowance.queryKey })
+        queryClient.invalidateQueries({ queryKey: resultOfEfBalance.queryKey })
         queryClient.invalidateQueries({ queryKey: resultOfUserTeamReward.queryKey })
         queryClient.invalidateQueries({ queryKey: resultOfReferralDetail.queryKey })
-    }, [blockNumber, queryClient,balanceOfRama,resultOfSaleDetails,resultOfUserContribution,resultOfRamaPriceInUSD,resultOfBalance,resultOfUserTeamReward,resultOfReferralDetail])
+    }, [blockNumber, queryClient,resultOfEfBalance,resultOfUserTeamReward,resultOfReferralDetail])
+
 
     
 
@@ -540,37 +476,9 @@ const Dsboard = (props: CircularProgressProps) => {
                         <Box><Image src={dleft} alt={""} /></Box>
                         <Box className={classes.Top_hding}>
                             <Heading heading={"Welcome to Encryptfund"} />
-                            {/* <Heading heading={"Encryptfund Dashboard"} /> */}
                         </Box>
                         <Box><Image src={dright} alt={""} /></Box>
                     </Box>
-
-                    {/* <Box sx={{ padding: '0rem 0.5rem', marginTop: '1rem' }}>
-                        <Grid container spacing={2} sx={{ flexWrap: 'inherit',  }}>
-                        
-                            <Grid item lg={9} md={8.7} sm={10} xs={9.5} >
-                                <Box sx={{
-
-
-                                    marginBottom: '1rem'
-                                }}>
-                                    <Box sx={{ textAlign: 'center', marginBottom: 1 }}><Typography fontFamily={'Bruce Forever!important'} color={'#00d632'}>{valueTop}%</Typography></Box>
-                                    <BorderLinearProgress variant="determinate" value={valueTop as any} />
-
-
-                                </Box>
-                            </Grid>
-                            <Grid item lg={3} md={3.3} sm={2} xs={2.5} alignSelf={'center'}>
-                                <Box className={classes.box__logo2}>
-                                    <Typography sx={{'@media(max-width : 900px)':{display:'none'}}} color={'#fff'}>Encryptfund</Typography>
-                                    <Image src={shield} alt={""} width={60} />
-                                </Box>
-                            </Grid>
-                        </Grid>
-                    </Box> */}
-
-
-
 
                 </Box>
 
@@ -590,7 +498,12 @@ const Dsboard = (props: CircularProgressProps) => {
                     </Grid>
                 </Box>
 
-                <HomeTab/>
+                <HomeTab 
+                  resultOfReferralDetail={resultOfReferralDetail}
+                  resultOfRusdBalance={resultOfRusdBalance} 
+                  resultOfEfTokenPrice={resultOfEfTokenPrice}
+                //   resultOfCheckAllowance={resultOfCheckAllowance}
+                  />
 
 
                 <Refer resultOfReferralDetail={resultOfReferralDetail} />

@@ -42,12 +42,12 @@ const useStyles = makeStyles({
         backgroundColor: 'transparent',
         padding: '10px',
         borderRadius: '6px',
-        border: '1px solid #00d632!important',
-        color: '#00d632!important',
+        border: '1px solid #00d632 !important',
+        color: '#00d632 !important',
         textDecoration: 'none',
         transition: '0.5s',
         '&:hover': {
-            backgroundColor: '#00d632!important',
+            backgroundColor: '#00d632 !important',
             color: '#000 !important'
         }
     },
@@ -83,7 +83,7 @@ const mapLevel2RewardPercent={
     "15": "5",
 } as any
 
-const TableBounty = ({resultOfUserCommunityReward}:{resultOfUserCommunityReward:any}) => {
+const TableBounty = ({resultOfUserBountyReward}:{resultOfUserBountyReward:any}) => {
     const classes = useStyles();
 
     const { address } = useAccount()
@@ -186,20 +186,20 @@ const TableBounty = ({resultOfUserCommunityReward}:{resultOfUserCommunityReward:
 
     // ];
 
-    const resultOfUserCommunityRewardLength = useReadContract({
+    const resultOfUserBountyRewardLength = useReadContract({
         abi: efInvestAbi,
         address: chainId === 1370 ? efContractAddresses.ramestta.ef_invest : efContractAddresses.pingaksha.ef_invest,
-        functionName: 'totalTeamRewardLengthForUser',
+        functionName: 'totalBountyRewardLengthForUser',
         args: [address as Address],
         account: zeroAddress
     })
 
 
-    const resultOfUserCommunityRewardList = useReadContract({
+    const resultOfUserBountyRewardList = useReadContract({
         abi: efInvestAbi,
         address: chainId === 1370 ? efContractAddresses.ramestta.ef_invest : efContractAddresses.pingaksha.ef_invest,
-        functionName: 'user2TeamRewardInfoList',
-        args: [address as Address, BigInt(0), Number(resultOfUserCommunityRewardLength?.data) > 0 ? resultOfUserCommunityRewardLength.data as bigint : BigInt(0)],
+        functionName: 'user2BountyRewardInfoList',
+        args: [address as Address, BigInt(0), Number(resultOfUserBountyRewardLength?.data) > 0 ? resultOfUserBountyRewardLength.data as bigint : BigInt(0)],
         account: zeroAddress
     })
 
@@ -209,7 +209,7 @@ const TableBounty = ({resultOfUserCommunityReward}:{resultOfUserCommunityReward:
                 if(error){
                     toast.error(extractDetailsFromError(error.message as string) as string)
                 }else{
-                    toast.success("Community Reward claimed successfully")
+                    toast.success("Bounty Reward claimed successfully")
                 }
             },
          }
@@ -220,10 +220,10 @@ const TableBounty = ({resultOfUserCommunityReward}:{resultOfUserCommunityReward:
     
     // use to refetch
     useEffect(() => {
-            queryClient.invalidateQueries({ queryKey:resultOfUserCommunityReward.queryKey }) 
-            queryClient.invalidateQueries({ queryKey:resultOfUserCommunityRewardLength.queryKey }) 
-            queryClient.invalidateQueries({ queryKey:resultOfUserCommunityRewardList.queryKey }) 
-        }, [blockNumber, queryClient,resultOfUserCommunityReward,resultOfUserCommunityRewardLength,resultOfUserCommunityRewardList])
+            queryClient.invalidateQueries({ queryKey:resultOfUserBountyReward.queryKey }) 
+            queryClient.invalidateQueries({ queryKey:resultOfUserBountyRewardLength.queryKey }) 
+            queryClient.invalidateQueries({ queryKey:resultOfUserBountyRewardList.queryKey }) 
+        }, [blockNumber, queryClient,resultOfUserBountyReward,resultOfUserBountyRewardLength,resultOfUserBountyRewardList])
 
     return (
         <Box>
@@ -231,19 +231,19 @@ const TableBounty = ({resultOfUserCommunityReward}:{resultOfUserCommunityReward:
             <Box className={classes.claimbtn__wrp}>
             <Button
                 disabled={
-                    (Number(resultOfUserCommunityReward?.data?.amount)===0 || isPendingClaimForWrite || isLoading) ? true : false
+                    (Number(resultOfUserBountyReward?.data?.amount)===0 || isPendingClaimForWrite || isLoading) ? true : false
                 }
                 className={classes.claimbtn}
                 sx={{
                     opacity: !(
-                        Number(resultOfUserCommunityReward?.data?.amount)===0 || isPendingClaimForWrite || isLoading
+                        Number(resultOfUserBountyReward?.data?.amount)===0 || isPendingClaimForWrite || isLoading
                     ) ? "1" : '0.3'
                 }}
                 onClick={async () => {
                     await writeContractAsync({
                         abi: efInvestAbi,
                         address: chainId === 1370 ? efContractAddresses.ramestta.ef_invest : efContractAddresses.pingaksha.ef_invest,
-                        functionName: 'claimTeamRewards',
+                        functionName: 'claimBountyRewards',
                         account: address
                     })
                 }}
@@ -255,7 +255,7 @@ const TableBounty = ({resultOfUserCommunityReward}:{resultOfUserCommunityReward:
                             <TableCell sx={{ borderBottom: '1px solid #1D1D20', fontSize: 16, color: '#fff' }}>From</TableCell>
                             <TableCell sx={{ borderBottom: '1px solid #1D1D20', fontSize: 16, color: '#fff' }} align="left">Level</TableCell>
                             {/* <TableCell sx={{ borderBottom: '1px solid #1D1D20', fontSize: 16, color: '#fff' }} align="left">Bonus</TableCell> */}
-                            <TableCell sx={{ borderBottom: '1px solid #1D1D20', fontSize: 16, color: '#fff' }} align="left">FCR <HoverTool Title={"From Claimed Reward"}/></TableCell>
+                            <TableCell sx={{ borderBottom: '1px solid #1D1D20', fontSize: 16, color: '#fff' }} align="left">FLS <HoverTool Title={"From Level Side"}/></TableCell>
                             <TableCell sx={{ borderBottom: '1px solid #1D1D20', fontSize: 16, color: '#fff' }} align="left">FCT <HoverTool Title={"From Claimed Time"}/></TableCell>
                             <TableCell sx={{ borderBottom: '1px solid #1D1D20', fontSize: 16, color: '#fff' }} align="right">Reward</TableCell>
  
@@ -264,13 +264,13 @@ const TableBounty = ({resultOfUserCommunityReward}:{resultOfUserCommunityReward:
                     <TableBody>
                         
                         {
-                        (resultOfUserCommunityRewardList?.data && resultOfUserCommunityRewardList?.data.length>0) ? (resultOfUserCommunityRewardList.data.map((item:any,index:number)=>(
+                        (resultOfUserBountyRewardList?.data && resultOfUserBountyRewardList?.data.length>0) ? (resultOfUserBountyRewardList.data.map((item:any,index:number)=>(
                             <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                                 <TableCell sx={{ borderBottom: '1px solid #1D1D20', padding: 1, color: '#fff' }} component="th" scope="row">
                                     <Box sx={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
                                     <Image src={r2} alt={"lol"} width={50} />
                                         <AddressCopy 
-                                             textColor="#00d632!important" 
+                                             textColor="#00d632 !important" 
                                              hrefLink={
                                                 chainId===1370?`https://ramascan.com/address/${item.from}`:
                                                 `https://pingaksha.ramascan.com/address/${item.from}`
@@ -288,8 +288,8 @@ const TableBounty = ({resultOfUserCommunityReward}:{resultOfUserCommunityReward:
 
                                 </TableCell> */}
                                 <TableCell sx={{ borderBottom: '1px solid #1D1D20', padding: 1, color: '#fff' }} align="left">
-                                <Typography color={'#fff'}>{convertToAbbreviated(formatEther?.(BigInt?.(item?.fromClaimedReward ? item.fromClaimedReward.toString() : 0)),4)} EF</Typography>
-                                <Typography color={'#999'}>{formatNumberToCurrencyString(Number(formatEther?.(BigInt?.(item?.fromClaimedReward ? item.fromClaimedReward.toString() : 0))) * 0.05)}</Typography>
+                                <Typography color={'#fff'}>{item.isFromUpLevel===true?"Upline":"Downline"}</Typography>
+                                {/* <Typography color={'#999'}>{formatNumberToCurrencyString(Number(formatEther?.(BigInt?.(item?.fromClaimedReward ? item.fromClaimedReward.toString() : 0))) * 0.05)}</Typography> */}
                                 </TableCell>
                              
                                  
@@ -297,8 +297,8 @@ const TableBounty = ({resultOfUserCommunityReward}:{resultOfUserCommunityReward:
                                 <Typography color={'#fff'}>{new Date(Number(item?.fromClaimedTime) * 1000).toLocaleString()}</Typography>
                                 </TableCell>
                                 <TableCell sx={{ borderBottom: '1px solid #1D1D20', padding: 1, color: '#fff' }} align="right">
-                                <Typography color={'#fff'}>{convertToAbbreviated(formatEther?.(BigInt?.(item?.amount ? item.amount.toString() : 0)),4)} EF</Typography>
-                                <Typography color={'#999'}>{formatNumberToCurrencyString(Number(formatEther?.(BigInt?.(item?.amount ? item.amount.toString() : 0))) * 0.05)}</Typography>
+                                <Typography color={'#fff'}>${convertToAbbreviated(formatEther?.(BigInt?.(item?.amount ? item.amount.toString() : 0)),4)} </Typography>
+                                {/* <Typography color={'#999'}>{formatNumberToCurrencyString(Number(formatEther?.(BigInt?.(item?.amount ? item.amount.toString() : 0))) * 0.05)}</Typography> */}
                                 </TableCell>
                                 
                                

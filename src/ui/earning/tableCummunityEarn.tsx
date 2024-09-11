@@ -42,12 +42,12 @@ const useStyles = makeStyles({
         backgroundColor: 'transparent',
         padding: '10px',
         borderRadius: '6px',
-        border: '1px solid #00d632!important',
-        color: '#00d632!important',
+        border: '1px solid #00d632 !important',
+        color: '#00d632 !important',
         textDecoration: 'none',
         transition: '0.5s',
         '&:hover': {
-            backgroundColor: '#00d632!important',
+            backgroundColor: '#00d632 !important',
             color: '#000 !important'
         }
     },
@@ -209,7 +209,7 @@ const TableCummunityEarn = ({resultOfUserCommunityReward}:{resultOfUserCommunity
                 if(error){
                     toast.error(extractDetailsFromError(error.message as string) as string)
                 }else{
-                    toast.success("Community Reward claimed successfully")
+                    toast.success("Team Reward claimed successfully")
                 }
             },
          }
@@ -270,7 +270,7 @@ const TableCummunityEarn = ({resultOfUserCommunityReward}:{resultOfUserCommunity
                                     <Box sx={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
                                     <Image src={r2} alt={"lol"} width={50} />
                                         <AddressCopy 
-                                             textColor="#00d632!important" 
+                                             textColor="#00d632 !important" 
                                              hrefLink={
                                                 chainId===1370?`https://ramascan.com/address/${item.from}`:
                                                 `https://pingaksha.ramascan.com/address/${item.from}`

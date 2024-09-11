@@ -342,7 +342,7 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
 }));
 
 
-const Buy = (props: CircularProgressProps) => {
+const Buy = () => {
     const classes = useStyles();
     const [valueTop, setValueTop] = useState<number>(1);
     const searchParams = useSearchParams()
@@ -441,13 +441,6 @@ const Buy = (props: CircularProgressProps) => {
         account: address
     })
 
-    const resultOfUserTeamReward = useReadContract({
-        abi: efInvestAbi,
-        address: chainId === 1370 ? efContractAddresses.ramestta.ef_invest : efContractAddresses.pingaksha.ef_invest,
-        functionName: 'user2TeamRewardInfo',
-        args: [address as Address],
-        account: zeroAddress
-    })
 
     const resultOfReferralDetail = useReadContracts({
         contracts: [
@@ -466,7 +459,7 @@ const Buy = (props: CircularProgressProps) => {
             {
                 abi: efReferralAbi,
                 address: chainId === 1370 ? efContractAddresses.ramestta.ef_referral : efContractAddresses.pingaksha.ef_referral,
-                functionName: 'isValidReferrerOrStaker',
+                functionName: 'isValidReferrerOrInvestor',
                 args: [address as Address, referrerAddress as Address]
             },
             {
@@ -478,54 +471,20 @@ const Buy = (props: CircularProgressProps) => {
         ]
     })
 
-    const Box__list = [
-        {
-            image: l1,
-            title: 'Your Wallet Balance',
-            data: `${convertToAbbreviated(formatEther?.(BigInt?.(resultOfBalance?.data ? resultOfBalance.data.toString() : 0)), 3)} EF`,
-            valueInUsd: `${formatNumberToCurrencyString(Number(formatEther?.(BigInt?.(resultOfBalance?.data ? resultOfBalance.data.toString() : 0))) * 0.05, 3)}`
-        },
-        {
-            image: l2,
-            title: 'Your Staking Income',
-            data: `$0.00000`,
-        },
-        {
-            image: l3,
-            title: 'Your Spot Income',
-            data: `$${convertToAbbreviated(formatEther?.(BigInt?.(resultOfReferralDetail?.data?.[0].result ? resultOfReferralDetail?.data?.[0].result.toString() : 0)), 5)}`
-        },
-        {
-            image: l1,
-            title: 'Your Team Income',
-            data: `$${convertToAbbreviated(formatEther?.(BigInt(Number(resultOfUserTeamReward?.data) > 0 ? resultOfUserTeamReward?.data?.claimedReward as bigint : 0)), 5)}`,
-        },
-        {
-            image: l2,
-            title: 'Your Bounty Income',
-            data: `$0.00000`,
-        },
-        {
-            image: l2,
-            title: 'Your Fix Time Income',
-            data: `$0.00000`,
-        },
-    ]
-
     // const handleChange2 = (event: Event, newValue: number) => {
     //     setValue2(newValue);
     // };
 
     // use to refetch
-    useEffect(() => {
-        queryClient.invalidateQueries({ queryKey: balanceOfRama.queryKey })
-        queryClient.invalidateQueries({ queryKey: resultOfSaleDetails.queryKey })
-        queryClient.invalidateQueries({ queryKey: resultOfUserContribution.queryKey })
-        queryClient.invalidateQueries({ queryKey: resultOfRamaPriceInUSD.queryKey })
-        queryClient.invalidateQueries({ queryKey: resultOfBalance.queryKey })
-        queryClient.invalidateQueries({ queryKey: resultOfUserTeamReward.queryKey })
-        queryClient.invalidateQueries({ queryKey: resultOfReferralDetail.queryKey })
-    }, [blockNumber, queryClient, balanceOfRama, resultOfSaleDetails, resultOfUserContribution, resultOfRamaPriceInUSD, resultOfBalance, resultOfUserTeamReward, resultOfReferralDetail])
+    // useEffect(() => {
+    //     queryClient.invalidateQueries({ queryKey: balanceOfRama.queryKey })
+    //     queryClient.invalidateQueries({ queryKey: resultOfSaleDetails.queryKey })
+    //     queryClient.invalidateQueries({ queryKey: resultOfUserContribution.queryKey })
+    //     queryClient.invalidateQueries({ queryKey: resultOfRamaPriceInUSD.queryKey })
+    //     queryClient.invalidateQueries({ queryKey: resultOfBalance.queryKey })
+    //     queryClient.invalidateQueries({ queryKey: resultOfUserTeamReward.queryKey })
+    //     queryClient.invalidateQueries({ queryKey: resultOfReferralDetail.queryKey })
+    // }, [blockNumber, queryClient, balanceOfRama, resultOfSaleDetails, resultOfUserContribution, resultOfRamaPriceInUSD, resultOfBalance, resultOfUserTeamReward, resultOfReferralDetail])
 
 
 

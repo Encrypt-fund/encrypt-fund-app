@@ -425,7 +425,7 @@ export const efReferralAbi= [
 				"type": "address"
 			}
 		],
-		"name": "isValidReferrerOrStaker",
+		"name": "isValidReferrerOrInvestor",
 		"outputs": [
 			{
 				"internalType": "bool",

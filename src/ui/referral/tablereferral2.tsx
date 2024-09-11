@@ -130,20 +130,10 @@ const Tablereferral2 = () => {
 
     const rewardPercentages=[
         0.05,  // L1: 5%
-        0.005,   // L2: 0.5%
-        0.005,   // L3: 0.5%
-        0.005,   // L4: 0.5%
-        0.003,   // L5: 0.3%
-        0.003,   // L6: 0.3%
-        0.003,   // L7: 0.3%
-        0.002,   // L8: 0.2%
-        0.002,   // L9: 0.2%
-        0.002,   // L10: 0.2%
-        0.002,   // L11: 0.2%
-        0.002,   // L12: 0.2%
-        0.005,   // L13: 0.5%
-        0.005,   // L14: 0.5%
-        0.006    // L15: 0.6%
+        0.04,   // L2: 4%
+        0.03,   // L3: 3%
+        0.02,   // L4: 2%
+        0.01,   // L5: 1%
     ];
 
     return (
@@ -155,7 +145,7 @@ const Tablereferral2 = () => {
                         <TableHead sx={{ backgroundColor: '#27313d' }}>
                             <TableRow>
                                 <TableCell sx={{ borderBottom: '1px solid #2b3139', fontSize: 18, color: '#fff', padding: 1 }} >User</TableCell>
-                                <TableCell sx={{ borderBottom: '1px solid #2b3139', fontSize: 18, color: '#fff', padding: 1 }} align="left">SA <HoverTool Title={"Staking Amount"} /></TableCell>
+                                <TableCell sx={{ borderBottom: '1px solid #2b3139', fontSize: 18, color: '#fff', padding: 1 }} align="left">IA <HoverTool Title={"Invest Amount"} /></TableCell>
                                 <TableCell sx={{ borderBottom: '1px solid #2b3139', fontSize: 18, color: '#fff', padding: 1 }} align="left">RE <HoverTool Title={"Referral Earning"}/></TableCell>
                                 <TableCell sx={{ borderBottom: '1px solid #2b3139', fontSize: 18, color: '#fff', padding: 1 }} align="left">level</TableCell>
                                 <TableCell sx={{ borderBottom: '1px solid #2b3139', fontSize: 18, color: '#fff', padding: 1 }} align="left">Bonus</TableCell>
@@ -195,12 +185,12 @@ const Tablereferral2 = () => {
                                         <Typography color={'#fff'}>{resultOfUplineReferrals.data[1][index] ?
                                                 (
                                                     <>
-                                                        {convertToAbbreviated(Number(formatEther?.(BigInt?.(resultOfUplineReferrals.data[1][index].toString()))))} EF
+                                                        ${convertToAbbreviated(Number(formatEther?.(BigInt?.(resultOfUplineReferrals.data[1][index].toString()))))}
                                                     </>
                                                 )
                                                 : '-'}
                                             </Typography>
-                                            <Typography color={'#999'}>
+                                            {/* <Typography color={'#999'}>
                                             {resultOfUplineReferrals.data[1][index] ?
                                                 (
                                                     <>
@@ -208,18 +198,18 @@ const Tablereferral2 = () => {
                                                     </>
                                                 )
                                                 : '-'}
-                                                </Typography>
+                                            </Typography> */}
                                         </TableCell>
                                         <TableCell sx={{ borderBottom: '1px solid #2b3139', padding: 1, color: '#fff' }} align="left">
                                         <Typography color={'#fff'}>{resultOfUplineReferrals.data[2][index] ?
                                                 (
                                                     <>
-                                                        {convertToAbbreviated(Number(formatEther?.(BigInt?.(resultOfUplineReferrals.data[2][index].toString()))),5)} EF
+                                                        ${convertToAbbreviated(Number(formatEther?.(BigInt?.(resultOfUplineReferrals.data[2][index].toString()))),5)}
                                                     </>
                                                 )
                                                 : '-'}
                                             </Typography>
-                                            <Typography color={'#999'}>
+                                            {/* <Typography color={'#999'}>
                                             {resultOfUplineReferrals.data[2][index] ?
                                                 (
                                                     <>
@@ -227,22 +217,30 @@ const Tablereferral2 = () => {
                                                     </>
                                                 )
                                                 : '-'}
-                                                </Typography>
+                                            </Typography> */}
                                         </TableCell>
                                         <TableCell sx={{ borderBottom: '1px solid #2b3139', padding: 1, color: '#fff' }} align="left">{index+1}</TableCell>
                                         <TableCell sx={{ borderBottom: '1px solid #2b3139', padding: 1, color: '#fff' }} align="left">
-                                            <Typography color={'#fff'}>{rewardPercentages[index]*100}% </Typography>
+                                            <Typography color={'#fff'}>
+                                            {rewardPercentages[index] ?
+                                                (
+                                                    <>
+                                                        {rewardPercentages[index]*100}%
+                                                    </>
+                                                )
+                                                : '-'}
+                                            </Typography>
                                         </TableCell>
                                         <TableCell sx={{ borderBottom: '1px solid #2b3139', padding: 1, color: '#fff' }} align="right">
                                         <Typography color={'#fff'}>{resultOfUplineReferrals.data[2][index] ?
                                                 (
                                                     <>
-                                                        {convertToAbbreviated(Number(formatEther?.(BigInt?.(resultOfUplineReferrals.data[2][index].toString())))*rewardPercentages[index],5)} EF
+                                                        ${convertToAbbreviated(Number(formatEther?.(BigInt?.(resultOfUplineReferrals.data[2][index].toString())))*rewardPercentages[index],5)}
                                                     </>
                                                 )
                                                 : '-'}
                                             </Typography>
-                                            <Typography color={'#999'}>
+                                            {/* <Typography color={'#999'}>
                                             {resultOfUplineReferrals.data[2][index] ?
                                                 (
                                                     <>
@@ -250,7 +248,7 @@ const Tablereferral2 = () => {
                                                     </>
                                                 )
                                                 : '-'}
-                                                </Typography>
+                                             </Typography> */}
                                         </TableCell>
     
                                     </TableRow>

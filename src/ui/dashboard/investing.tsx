@@ -26,7 +26,7 @@ import AlertTitle from '@mui/material/AlertTitle';
 import { useEffect, useState } from "react";
 import { useAccount, useBlockNumber, useBalance, useChainId, useReadContract, useReadContracts, useWaitForTransactionReceipt, useWriteContract } from "wagmi";
 import { Address, formatEther, parseEther, zeroAddress } from "viem";
-import { efTokenAbi } from "@/configs/abi/efTokenAbi";
+import { rusdAbi } from "@/configs/abi/rusd";
 import { efContractAddresses } from "@/configs";
 import { convertToAbbreviated } from "@/lib/convertToAbbreviated";
 
@@ -34,7 +34,7 @@ import { efIcoReferralAbi } from "@/configs/abi/efIcoReferral";
 import { efReferralAbi } from "@/configs/abi/efReferral";
 import { formatNumberToCurrencyString } from "@/lib/formatNumberToCurrencyString";
 import ContributorsTable from "./contributorsTable";
-import { efIcoAbi } from "@/configs/abi/efIco";
+// import { efIcoAbi } from "@/configs/abi/efIco";
 import ConnectWallet from "../shared/connectWallet";
 import { efIcoStakingAbi } from "@/configs/abi/efIcoStaking";
 import { efInvestAbi } from "@/configs/abi/efInvest";
@@ -43,6 +43,7 @@ import { useSearchParams } from "next/navigation";
 import { useQueryClient } from '@tanstack/react-query'
 import { extractDetailsFromError } from "@/lib/extractDetailsFromError";
 import { toast } from "react-toastify";
+import useCheckAllowance from "@/hooks/useCheckAllowance";
 
 const useStyles = makeStyles({
     mainDiv: {
@@ -343,18 +344,36 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
 }));
 
 
-const Investing = (props: CircularProgressProps) => {
+const Investing = ({resultOfRusdBalance,resultOfEfTokenPrice,resultOfCheckAllowance}:any) => {
     const classes = useStyles();
-    const [valueTop, setValueTop] = useState<number>(1);
     const searchParams = useSearchParams()
     const [buyInput, setBuyInput] = useState("")
-    // const [showInput, setShowInput] = useState<boolean>(false);
+    const [isAproveERC20, setIsApprovedERC20] = useState(true);
     const refParam = searchParams.get('ref')
     const [referrerAddress, setReferrerAddress] = useState<string | null>(refParam)
     const { address } = useAccount()
     const chainId = useChainId()
     const queryClient = useQueryClient()
-    const { data: blockNumber } = useBlockNumber({ watch: true, })
+    const { data: blockNumber } = useBlockNumber({ watch: true })
+
+
+    const { writeContractAsync:approveWriteContractAsync, data:approveData, isPending: isPendingApproveForWrite} = useWriteContract(
+        {
+            mutation:{
+               onSettled(data, error, variables, context) {
+                   if(error){
+                       toast.error(extractDetailsFromError(error.message as string) as string)
+                   }else{
+                      setIsApprovedERC20(true)
+                       toast.success("Your RUSD Approved successfully")
+                   }
+               },
+            }
+           }
+    )
+    const { isLoading:isLoadingApprove } = useWaitForTransactionReceipt({
+        hash: approveData,
+    })
 
     const { writeContractAsync, data, isPending: isPendingBuyForWrite} = useWriteContract(
         {
@@ -363,7 +382,7 @@ const Investing = (props: CircularProgressProps) => {
                    if(error){
                        toast.error(extractDetailsFromError(error.message as string) as string)
                    }else{
-                       toast.success("Your EF Investing successfully")
+                       toast.success("Your RUSD Investing successfully")
                    }
                },
             }
@@ -373,82 +392,26 @@ const Investing = (props: CircularProgressProps) => {
         hash: data,
     })
 
-    const balanceOfRama = useBalance({
-        address: address
-    })
+    // const resultOfRusdBalance = useReadContract({
+    //     abi: efTokenAbi,
+    //     address: chainId === 1370 ? efContractAddresses.ramestta.rusd_Token : efContractAddresses.pingaksha.rusd_Token,
+    //     functionName: 'balanceOf',
+    //     args: [address as Address],
+    //     account: address
+    // })
 
 
     const handleMax = () => {
-        setBuyInput((formatEther?.(BigInt?.(balanceOfRama?.data?.value ? balanceOfRama?.data?.value.toString() : 0))))
+        setBuyInput((formatEther?.(BigInt?.(resultOfRusdBalance?.data?  resultOfRusdBalance?.data?.toString() : 0))))
     }
-    // const handleChange = (event: Event, newValue: number) => {
-    //     setValueTop(newValue);
-    // }
 
-    const resultOfSaleDetails = useReadContract({
-        abi: efIcoAbi,
-        address: chainId === 1370 ? efContractAddresses.ramestta.ef_ico : efContractAddresses.pingaksha.ef_ico,
-        functionName: 'saleType2IcoDetail',
-        args: [0],
-        account: zeroAddress
-    })
-
-    const [value2, setValue2] = useState<number>(0);
-    const [initialProgressValue, setInitialProgressValue] = useState<number>(0);
-    useEffect(() => {
-        if (resultOfSaleDetails?.data) {
-            const tokenAmount = BigInt(resultOfSaleDetails.data.tokenAmount?.toString() || '0');
-            const saleQuantity = BigInt(resultOfSaleDetails.data.saleQuantity?.toString() || '0');
-            const tokenAmountInEther = Number(formatEther(tokenAmount));
-            const saleQuantityInEther = Number(formatEther(saleQuantity));
-
-            if (!initialProgressValue) {
-                setInitialProgressValue(tokenAmountInEther);
-            }
-
-            setValue2(((tokenAmountInEther - (tokenAmountInEther - saleQuantityInEther)) > 0 ? (tokenAmountInEther - (tokenAmountInEther - saleQuantityInEther)) : 0));
-        }
-
-
-    }, [resultOfSaleDetails?.data,initialProgressValue]);
-
-
-
-
-    const progressValue = initialProgressValue > 0 ? ((initialProgressValue - value2) / initialProgressValue) * 100 : 0;
-
-
-    const resultOfUserContribution = useReadContract({
-        abi: efIcoAbi,
-        address: chainId === 1370 ? efContractAddresses.ramestta.ef_ico : efContractAddresses.pingaksha.ef_ico,
-        functionName: 'user2SaleType2Contributor',
-        args: [address as Address, 0],
-        account: zeroAddress
-    })
-
-    const resultOfRamaPriceInUSD = useReadContract({
-        abi: efIcoAbi,
-        address: chainId === 1370 ? efContractAddresses.ramestta.ef_ico : efContractAddresses.pingaksha.ef_ico,
-        functionName: 'ramaPriceInUSD',
-        args: [],
-        account: zeroAddress
-    })
-
-    const resultOfBalance = useReadContract({
-        abi: efTokenAbi,
-        address: chainId === 1370 ? efContractAddresses.ramestta.ef_token : efContractAddresses.pingaksha.ef_token,
-        functionName: 'balanceOf',
-        args: [address as Address],
-        account: address
-    })
-
-    const resultOfUserTeamReward = useReadContract({
-        abi: efInvestAbi,
-        address: chainId === 1370 ? efContractAddresses.ramestta.ef_invest : efContractAddresses.pingaksha.ef_invest,
-        functionName: 'user2TeamRewardInfo',
-        args: [address as Address],
-        account: zeroAddress
-    })
+    // const resultOfEfTokenPrice = useReadContract({
+    //     abi: efInvestAbi,
+    //     address: chainId === 1370 ? efContractAddresses.ramestta.ef_invest : efContractAddresses.pingaksha.ef_invest,
+    //     functionName: 'getTokenPrice',
+    //     args: [],
+    //     account: zeroAddress
+    // })
 
     const resultOfReferralDetail = useReadContracts({
         contracts: [
@@ -467,7 +430,7 @@ const Investing = (props: CircularProgressProps) => {
             {
                 abi: efReferralAbi,
                 address: chainId === 1370 ? efContractAddresses.ramestta.ef_referral : efContractAddresses.pingaksha.ef_referral,
-                functionName: 'isValidReferrerOrStaker',
+                functionName: 'isValidReferrerOrInvestor',
                 args: [address as Address, referrerAddress as Address]
             },
             {
@@ -479,54 +442,35 @@ const Investing = (props: CircularProgressProps) => {
         ]
     })
 
-    const Box__list = [
-        {
-            image: l1,
-            title: 'Your Wallet Balance',
-            data: `${convertToAbbreviated(formatEther?.(BigInt?.(resultOfBalance?.data ? resultOfBalance.data.toString() : 0)), 3)} EF`,
-            valueInUsd: `${formatNumberToCurrencyString(Number(formatEther?.(BigInt?.(resultOfBalance?.data ? resultOfBalance.data.toString() : 0))) * 0.05, 3)}`
-        },
-        {
-            image: l2,
-            title: 'Your Staking Income',
-            data: `$0.00000`,
-        },
-        {
-            image: l3,
-            title: 'Your Spot Income',
-            data: `$${convertToAbbreviated(formatEther?.(BigInt?.(resultOfReferralDetail?.data?.[0].result ? resultOfReferralDetail?.data?.[0].result.toString() : 0)), 5)}`
-        },
-        {
-            image: l1,
-            title: 'Your Team Income',
-            data: `$${convertToAbbreviated(formatEther?.(BigInt(Number(resultOfUserTeamReward?.data) > 0 ? resultOfUserTeamReward?.data?.claimedReward as bigint : 0)), 5)}`,
-        },
-        {
-            image: l2,
-            title: 'Your Bounty Income',
-            data: `$0.00000`,
-        },
-        {
-            image: l2,
-            title: 'Your Fix Time Income',
-            data: `$0.00000`,
-        },
-    ]
 
-    // const handleChange2 = (event: Event, newValue: number) => {
-    //     setValue2(newValue);
-    // };
+
+
+    // const {data:checkAllowance,queryKey:queryKeyAllowance}=useCheckAllowance({
+    //     spenderAddress: chainId === 1370 ? efContractAddresses.ramestta.ef_invest : efContractAddresses.pingaksha.ef_invest
+    //   })
+
+        // console.log({resultOfCheckAllowance});
+        
+    useEffect(() => {
+            if (resultOfCheckAllowance  && address) {
+              const price = parseFloat(buyInput===""?"25": buyInput) 
+              const allowance = parseFloat(formatEther?.(resultOfCheckAllowance.data??0))
+              if (allowance >= price) {
+                setIsApprovedERC20(true)
+              }else{
+                setIsApprovedERC20(false)
+            }
+        }
+          }, [resultOfCheckAllowance,address,buyInput]);
 
     // use to refetch
     useEffect(() => {
-        queryClient.invalidateQueries({ queryKey: balanceOfRama.queryKey })
-        queryClient.invalidateQueries({ queryKey: resultOfSaleDetails.queryKey })
-        queryClient.invalidateQueries({ queryKey: resultOfUserContribution.queryKey })
-        queryClient.invalidateQueries({ queryKey: resultOfRamaPriceInUSD.queryKey })
-        queryClient.invalidateQueries({ queryKey: resultOfBalance.queryKey })
-        queryClient.invalidateQueries({ queryKey: resultOfUserTeamReward.queryKey })
-        queryClient.invalidateQueries({ queryKey: resultOfReferralDetail.queryKey })
-    }, [blockNumber, queryClient,balanceOfRama,resultOfSaleDetails,resultOfUserContribution,resultOfRamaPriceInUSD,resultOfBalance,resultOfUserTeamReward,resultOfReferralDetail])
+
+        queryClient.invalidateQueries({ queryKey: resultOfCheckAllowance.queryKey })
+        // queryClient.invalidateQueries({ queryKey: resultOfRusdBalance.queryKey })
+        // queryClient.invalidateQueries({ queryKey: resultOfEfTokenPrice.queryKey })
+        // queryClient.invalidateQueries({ queryKey: resultOfReferralDetail.queryKey })
+    }, [blockNumber, queryClient,resultOfCheckAllowance])
 
     
 
@@ -545,11 +489,13 @@ const Investing = (props: CircularProgressProps) => {
                                     <Typography>  <Typography component={'span'} color={'#fff'}>Private Sale</Typography></Typography>
                                 </Box> */}
 
-                              
-
                                 
                                 <Box className={classes.currentsale2} mt={2}>
-                                    <Typography fontWeight={500} color={'#fff'}>$0.5 = 1 EF</Typography>
+                                    <Typography fontWeight={500} color={'#fff'}>EF Price : ${
+                                        Number(
+                                            formatEther?.(BigInt?.(resultOfEfTokenPrice?.data ? resultOfEfTokenPrice?.data?.toString() : 0))
+                                    ).toFixed(2)
+                                    }</Typography>
                                     {/* <Typography fontWeight={500} color={'#fff'}>Pre-Sale: $0.1</Typography> */}
                                 </Box>
 
@@ -628,17 +574,51 @@ const Investing = (props: CircularProgressProps) => {
                                 </Box> */}
 
                                 {address ?
-                                    <Button
+                                    (
+                                      !isAproveERC20 ?
+                                     (
+                                      <Button
+
+                                        disabled={
+
+                                            (isPendingApproveForWrite || isLoadingApprove)
+                                            
+                                        }
+                                        fullWidth={true}
+                                        className={classes.buy__btn}
+                                        sx={{
+                                            opacity: !(
+                                                isPendingApproveForWrite || isLoadingApprove
+                                            )
+                                                ? "1" : '0.3'
+                                        }}
+                                        onClick={async () => {
+                                            await approveWriteContractAsync({
+                                                abi: rusdAbi,
+                                                address: chainId === 1370 ? efContractAddresses.ramestta.rusd_Token : efContractAddresses.pingaksha.rusd_Token,
+                                                functionName: 'approve',
+                                                args: [address, 
+                                                    Number?.(buyInput) > 0 ? parseEther?.(buyInput) : parseEther?.( BigInt((Number.MAX_SAFE_INTEGER**1.3)?.toString())?.toString())
+                                                ],
+                                                account: address
+                                            })
+
+
+                                        }} >Approve RUSD
+                                        {
+                                            (isPendingApproveForWrite || isLoadingApprove) && <CircularProgress size={18} color="inherit" />
+                                        }
+                                      </Button>
+                                      )
+                                    : (
+                                      <Button
 
                                         disabled={
 
                                             (!buyInput || isPendingBuyForWrite || isLoading || (
-                                                buyInput && (Number(buyInput) *
-                                                    Number(
-                                                        formatEther?.(BigInt?.(resultOfRamaPriceInUSD?.data ? resultOfRamaPriceInUSD.data.toString() : 0)))
-                                                ) < 10
+                                                buyInput &&  (Number(buyInput) < 25) 
                                             ) || (
-                                                    Number(formatEther?.(BigInt?.(balanceOfRama?.data?.value ? balanceOfRama?.data?.value.toString() : 0))) < Number(Number(buyInput) > 0 ? buyInput : 0)
+                                                    Number(formatEther?.(BigInt?.(resultOfRusdBalance?.data ? resultOfRusdBalance?.data?.toString() : 0))) < Number(Number(buyInput) > 0 ? buyInput : 0)
                                                 ) || (
                                                     !referrerAddress || !resultOfReferralDetail?.data?.[2].result
                                                 ) && resultOfReferralDetail?.data?.[3]?.result === zeroAddress
@@ -649,12 +629,9 @@ const Investing = (props: CircularProgressProps) => {
                                         sx={{
                                             opacity: !((
                                                 !buyInput || isPendingBuyForWrite || isLoading || (
-                                                    buyInput && (Number(buyInput) *
-                                                        Number(
-                                                            formatEther?.(BigInt?.(resultOfRamaPriceInUSD?.data ? resultOfRamaPriceInUSD.data.toString() : 0)))
-                                                    ) < 10
+                                                    buyInput &&  (Number(buyInput) < 25) 
                                                 ) || (
-                                                    Number(formatEther?.(BigInt?.(balanceOfRama?.data?.value ? balanceOfRama?.data?.value.toString() : 0))) < Number(Number(buyInput) > 0 ? buyInput : 0)
+                                                    Number(formatEther?.(BigInt?.(resultOfRusdBalance?.data ? resultOfRusdBalance?.data?.toString() : 0))) < Number(Number(buyInput) > 0 ? buyInput : 0)
                                                 ) || (
                                                     !referrerAddress || !resultOfReferralDetail?.data?.[2].result
                                                 ) && resultOfReferralDetail?.data?.[3]?.result === zeroAddress
@@ -663,12 +640,11 @@ const Investing = (props: CircularProgressProps) => {
                                         }}
                                         onClick={async () => {
                                             await writeContractAsync({
-                                                abi: efIcoAbi,
-                                                address: chainId === 1370 ? efContractAddresses.ramestta.ef_ico : efContractAddresses.pingaksha.ef_ico,
-                                                functionName: 'buy',
-                                                args: [0, (resultOfReferralDetail?.data?.[3]?.result !== zeroAddress ? resultOfReferralDetail?.data?.[3]?.result as Address : referrerAddress as Address)],
-                                                account: address,
-                                                value: parseEther(buyInput),
+                                                abi: efInvestAbi,
+                                                address: chainId === 1370 ? efContractAddresses.ramestta.ef_invest : efContractAddresses.pingaksha.ef_invest,
+                                                functionName: 'invest',
+                                                args: [parseEther(buyInput), (resultOfReferralDetail?.data?.[3]?.result !== zeroAddress ? resultOfReferralDetail?.data?.[3]?.result as Address : referrerAddress as Address)],
+                                                account: address
                                             })
 
 
@@ -676,22 +652,21 @@ const Investing = (props: CircularProgressProps) => {
                                         {
                                             (isPendingBuyForWrite || isLoading) && <CircularProgress size={18} color="inherit" />
                                         }
-                                    </Button>
+                                      </Button>
+                                    )
+                                )
                                     :
                                     <ConnectWallet />
                                 }
 
                                 {
-                                    buyInput && (Number(buyInput) *
-                                        Number(
-                                            formatEther?.(BigInt?.(resultOfRamaPriceInUSD?.data ? resultOfRamaPriceInUSD.data.toString() : 0)))
-                                    ) < 10 &&
+                                    (buyInput && isAproveERC20 && (Number(buyInput) < 25)) &&
                                     <Box className={classes.validate__box} >
-                                        <Typography component={'span'} fontWeight={200} color={'red'}>Minimum Contribution $10</Typography>
+                                        <Typography component={'span'} fontWeight={200} color={'red'}>Minimum Contribution $25</Typography>
                                     </Box>
                                 }
                                 {
-                                    Number(formatEther?.(BigInt?.(balanceOfRama?.data?.value ? balanceOfRama?.data?.value.toString() : 0))) < Number(Number(buyInput) > 0 ? buyInput : 0) &&
+                                    isAproveERC20 && Number(formatEther?.(BigInt?.(resultOfRusdBalance?.data ? resultOfRusdBalance?.data.toString() : 0))) < Number(Number(buyInput) > 0 ? buyInput : 0) &&
                                     <Box className={classes.validate__box} >
                                         <Typography component={'span'} fontWeight={200} color={'red'}>Insufficient RUSD Balance</Typography>
                                     </Box>
@@ -748,7 +723,7 @@ const Investing = (props: CircularProgressProps) => {
                                             <Typography fontWeight={200} color={'#00d632'} textAlign={'center'} mt={1}>Note: If you have no any  valid referrer address then you can use this community referrer.</Typography>
                                             <Box sx={{ background: 'linear-gradient(90deg, #08080800, #00d632, #08080800)', gap: 1, justifyContent: 'center', padding: 1, display: 'flex', marginTop: '1rem', borderRadius: '8px', alignItems: 'center', }}>
                                                 <Typography component={'h6'} fontWeight={700} color={'#000'}>Referrer:  </Typography>
-                                                <AddressCopy hrefLink={`https://ico.encryptfund.com/dashboard/?ref=0x3B1E0F41ea1a6b1426b9C57262C73e7cD3FDa9af`} text={"0x3B1E0F41ea1a6b1426b9C57262C73e7cD3FDa9af"} addresstext={"0x3B1...3FDa9af"} />
+                                                <AddressCopy hrefLink={`https://encryptfund.com/?ref=0xBE4A7Ae76F7cceD70e0aec65aBd74DC84BB9D9C9`} text={"0xBE4A7Ae76F7cceD70e0aec65aBd74DC84BB9D9C9"} addresstext={"0xBE4...BB9D9C9"} />
                                             </Box>
                                             {/* </Box> */}
 

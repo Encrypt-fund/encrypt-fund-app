@@ -129,7 +129,7 @@ const Tablereferral = ({ referralsCount }: { referralsCount: string }) => {
                         <TableHead sx={{ backgroundColor: '#27313d' }}>
                             <TableRow>
                                 <TableCell sx={{ borderBottom: '1px solid #2b3139', fontSize: 18, color: '#fff', padding: 1 }} >User</TableCell>
-                                <TableCell sx={{ borderBottom: '1px solid #2b3139', fontSize: 18, color: '#fff', padding: 1 }} align="left">SA <HoverTool Title={"Staking Amount"} /></TableCell>
+                                <TableCell sx={{ borderBottom: '1px solid #2b3139', fontSize: 18, color: '#fff', padding: 1 }} align="left">IA <HoverTool Title={"Invest Amount"} /></TableCell>
                                 <TableCell sx={{ borderBottom: '1px solid #2b3139', fontSize: 18, color: '#fff', padding: 1 }} align="left">Bonus</TableCell>
                                 <TableCell sx={{ borderBottom: '1px solid #2b3139', fontSize: 18, color: '#fff', padding: 1 }} align="right">YE <HoverTool Title={"Your Earning"} /></TableCell>
 
@@ -164,12 +164,12 @@ const Tablereferral = ({ referralsCount }: { referralsCount: string }) => {
                                             <Typography color={'#fff'}>{resultOfDirectReferrals.data[1][index] ?
                                                 (
                                                     <>
-                                                        {convertToAbbreviated(Number(formatEther?.(BigInt?.(resultOfDirectReferrals.data[1][index].toString()))),5)} EF
+                                                        ${convertToAbbreviated(Number(formatEther?.(BigInt?.(resultOfDirectReferrals.data[1][index].toString()))),5)} 
                                                     </>
                                                 )
                                                 : '-'}
                                             </Typography>
-                                            <Typography color={'#999'}>
+                                            {/* <Typography color={'#999'}>
                                             {resultOfDirectReferrals.data[1][index] ?
                                                 (
                                                     <>
@@ -177,19 +177,19 @@ const Tablereferral = ({ referralsCount }: { referralsCount: string }) => {
                                                     </>
                                                 )
                                                 : '-'}
-                                            </Typography>
+                                            </Typography> */}
                                         </TableCell>
                                         <TableCell sx={{ borderBottom: '1px solid #2b3139', padding: 1, color: '#fff' }} align="left">5%</TableCell>
                                         <TableCell sx={{ borderBottom: '1px solid #2b3139', padding: 1, color: '#fff' }} align="right">
                                             <Typography color={'#fff'}>{resultOfDirectReferrals.data[1][index] ?
                                                 (
                                                     <>
-                                                        {convertToAbbreviated(Number(formatEther?.(BigInt?.(resultOfDirectReferrals.data[1][index].toString()))) * 0.05,5)} EF
+                                                        ${convertToAbbreviated(Number(formatEther?.(BigInt?.(resultOfDirectReferrals.data[1][index].toString()))) * 0.05,5)} 
                                                     </>
                                                 )
                                                 : '-'}
                                             </Typography>
-                                            <Typography color={'#999'}>
+                                            {/* <Typography color={'#999'}>
                                             {resultOfDirectReferrals.data[1][index] ?
                                                 (
                                                     <>
@@ -197,7 +197,7 @@ const Tablereferral = ({ referralsCount }: { referralsCount: string }) => {
                                                     </>
                                                 )
                                                 : '-'}
-                                            </Typography>
+                                            </Typography> */}
                                         </TableCell>
 
 

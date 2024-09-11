@@ -69,13 +69,13 @@ const Community = () => {
          
         {
             id: 1,
-            Title: 'Claimed Rewards',
+            Title: 'Claimed Income',
             Amount: `${convertToAbbreviated(formatEther?.(BigInt?.(resultOfUserCommunityReward?.data ? resultOfUserCommunityReward.data.claimedReward.toString() : 0)),5)}`,
             data: `${formatNumberToCurrencyString(Number(formatEther?.(BigInt?.(resultOfUserCommunityReward?.data ? resultOfUserCommunityReward.data.claimedReward.toString() : 0))) * 0.05,5)}`
         },
         {
             id: 2,
-            Title: 'Unclaimed Rewards',
+            Title: 'Unclaimed Income',
             Amount: `${convertToAbbreviated(formatEther?.(BigInt?.(resultOfUserCommunityReward?.data ? resultOfUserCommunityReward.data.amount.toString() : 0)),5)}`,
             data: `${formatNumberToCurrencyString(Number(formatEther?.(BigInt?.(resultOfUserCommunityReward?.data ? resultOfUserCommunityReward.data.amount.toString() : 0))) * 0.05,5)}`
         },
@@ -106,8 +106,8 @@ const Community = () => {
                                 <Grid key={index} item lg={6} md={6} sm={6} xs={12}>
                                     <Box className={classes.Card}>
                                         <Typography color={'#fff'}>{item.Title}</Typography>
-                                        <Typography color={'#fff'} variant="h6">{item.Amount} EF</Typography>
-                                        <Typography color={'#999'}>{item.data}</Typography>
+                                        <Typography color={'#fff'} variant="h6">${item.Amount}</Typography>
+                                        {/* <Typography color={'#999'}>{item.data}</Typography> */}
                                     </Box>
                                 </Grid>
                             ))}

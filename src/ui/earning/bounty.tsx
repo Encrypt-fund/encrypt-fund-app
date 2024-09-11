@@ -58,10 +58,10 @@ const Bounty = () => {
     const { address } = useAccount()
     const chainId = useChainId()
 
-    const resultOfUserCommunityReward = useReadContract({
+    const resultOfUserBountyReward = useReadContract({
         abi: efInvestAbi,
         address: chainId === 1370 ? efContractAddresses.ramestta.ef_invest : efContractAddresses.pingaksha.ef_invest,
-        functionName: 'user2TeamRewardInfo',
+        functionName: 'user2BountyRewardInfo',
         args: [address as Address],
         account: zeroAddress
     })
@@ -70,15 +70,15 @@ const Bounty = () => {
 
         {
             id: 1,
-            Title: 'Claimed Rewards',
-            Amount: `${convertToAbbreviated(formatEther?.(BigInt?.(resultOfUserCommunityReward?.data ? resultOfUserCommunityReward.data.claimedReward.toString() : 0)), 5)}`,
-            data: `${formatNumberToCurrencyString(Number(formatEther?.(BigInt?.(resultOfUserCommunityReward?.data ? resultOfUserCommunityReward.data.claimedReward.toString() : 0))) * 0.05, 5)}`
+            Title: 'Claimed Income',
+            Amount: `${convertToAbbreviated(formatEther?.(BigInt?.(resultOfUserBountyReward?.data ? resultOfUserBountyReward.data.claimedReward.toString() : 0)), 5)}`,
+            data: `${formatNumberToCurrencyString(Number(formatEther?.(BigInt?.(resultOfUserBountyReward?.data ? resultOfUserBountyReward.data.claimedReward.toString() : 0))) * 0.05, 5)}`
         },
         {
             id: 2,
-            Title: 'Unclaimed Rewards',
-            Amount: `${convertToAbbreviated(formatEther?.(BigInt?.(resultOfUserCommunityReward?.data ? resultOfUserCommunityReward.data.amount.toString() : 0)), 5)}`,
-            data: `${formatNumberToCurrencyString(Number(formatEther?.(BigInt?.(resultOfUserCommunityReward?.data ? resultOfUserCommunityReward.data.amount.toString() : 0))) * 0.05, 5)}`
+            Title: 'Unclaimed Income',
+            Amount: `${convertToAbbreviated(formatEther?.(BigInt?.(resultOfUserBountyReward?.data ? resultOfUserBountyReward.data.amount.toString() : 0)), 5)}`,
+            data: `${formatNumberToCurrencyString(Number(formatEther?.(BigInt?.(resultOfUserBountyReward?.data ? resultOfUserBountyReward.data.amount.toString() : 0))) * 0.05, 5)}`
         },
     ]
     return (
@@ -107,8 +107,8 @@ const Bounty = () => {
                                 <Grid key={index} item lg={6} md={6} sm={6} xs={12}>
                                     <Box className={classes.Card}>
                                         <Typography color={'#fff'}>{item.Title}</Typography>
-                                        <Typography color={'#fff'} variant="h6">{item.Amount} EF</Typography>
-                                        <Typography color={'#999'}>{item.data}</Typography>
+                                        <Typography color={'#fff'} variant="h6">${item.Amount}</Typography>
+                                        {/* <Typography color={'#999'}>{item.data}</Typography> */}
                                     </Box>
                                 </Grid>
                             ))}
@@ -118,7 +118,7 @@ const Bounty = () => {
 
                 </Box>
                 <Box className={classes.boxCr} sx={{ marginTop: '1rem' }}>
-                    <TableBounty resultOfUserCommunityReward={resultOfUserCommunityReward} />
+                    <TableBounty resultOfUserBountyReward={resultOfUserBountyReward} />
                 </Box>
             </Box>
 

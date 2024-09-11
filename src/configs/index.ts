@@ -108,8 +108,8 @@ export const efContractAddresses: EfContractAddressesType = {
     ef_ico: "0xdf9E166Ca9d0a4857EEB535D359013469E56e53F",
     ef_ico_referral: "0x15Cc8A56770D4B3a5dfCFA42cd036fb8897989b6",
     ef_ico_staking: "0xb3339c3252b11F4Aa7534f00F8675f150c81e09c",
-    ef_invest: "0xFE684506309fc55524FeDc68679A6c3CF858ee49",
-    ef_referral: "0x6e34282c5ccea7Da90af8d5666d21C4C7DcaBa80"
+    ef_invest: "0x0BfC884FBa3470E1Ed0A9b93dE4bC611a2D56822",
+    ef_referral: "0xdD9b0A29B07dBA54e9f9Be4fe4D55A72C68d711D"
   }
 }
 

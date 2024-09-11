@@ -67,7 +67,7 @@ export default function Modal() {
         }
     }, [open]);
 
-    const referLink=`https://ico.mumblechat.com/dashboard/?ref=${address}`
+    const referLink=`https://encryptfund.com/?ref=${address}`
 
     return (
         <React.Fragment>
@@ -101,7 +101,7 @@ export default function Modal() {
                         <Typography mt={2} color={'#fff'}>Share your unique link below and receive <Typography component={'span'}><Link style={{ textDecoration: 'none', color: '#00d632' }} href={''}>5%</Link>  of all transactions realized with your link <Typography component={'span'}><Link style={{ textDecoration: 'none', color: '#00d632' }} href={''}>instantly </Link>!</Typography></Typography></Typography>
                     </Box>
                 </DialogContent>
-                <AddressReward textColor={'#000 !important'} text={referLink} address={`https://ico.mumblechat.com/dashboard/?ref=${shortenString(address as Address)}`} />
+                <AddressReward textColor={'#000 !important'} text={referLink} address={`https://encryptfund.com/?ref=${shortenString(address as Address)}`} />
                 <BoxSocial>
 
                     <TwitterShareButton
@@ -116,7 +116,7 @@ export default function Modal() {
                         <WhatsappIcon size={32} round={true} />
                     </WhatsappShareButton>
 
-                    <Link href={'https://www.instagram.com/mumblechat/'} target='_blank'><Image src={instagram} alt={''} width={32}/></Link>
+                    <Link href={'https://www.instagram.com/encryptfund/'} target='_blank'><Image src={instagram} alt={''} width={32}/></Link>
 
                     <FacebookShareButton
                         url={referLink}

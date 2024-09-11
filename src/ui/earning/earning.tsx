@@ -14,6 +14,7 @@ import { formatNumberToCurrencyString } from "@/lib/formatNumberToCurrencyString
 import { efReferralAbi } from "@/configs/abi/efReferral";
 import { useQueryClient } from "@tanstack/react-query";
 import { useEffect } from "react";
+import { rusdAbi } from "@/configs/abi/rusd";
 
 const useStyles = makeStyles({
     mainDiv: {
@@ -66,8 +67,8 @@ const Earning = ({ Earning }: props) => {
     const { data: blockNumber } = useBlockNumber({ watch: true })
 
     const resultOfBalance = useReadContract({
-        abi: efTokenAbi,
-        address: chainId === 1370 ? efContractAddresses.ramestta.ef_token : efContractAddresses.pingaksha.ef_token,
+        abi: rusdAbi,
+        address: chainId === 1370 ? efContractAddresses.ramestta.rusd_Token : efContractAddresses.pingaksha.rusd_Token,
         functionName: 'balanceOf',
         args: [address as Address],
         account: address
