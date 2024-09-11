@@ -118,11 +118,11 @@ export default function EarningTab() {
                                 zIndex: '1',
                             }
                         }} value={value} onChange={handleChange} aria-label="basic tabs example">
-                        <Tab sx={{ textTransform: 'capitalize', color: "#999", border: '1px solid #00d63247', borderRadius: '8px', flex: 1, '@media(max-width : 600px)': { padding: '12px 5px',fontSize:12 } }} label="Self Mining" {...a11yProps(0)} />
-                        <Tab sx={{ textTransform: 'capitalize', color: "#999", border: '1px solid #00d63247', borderRadius: '8px', margin: '0px 0px 0px 10px', flex: 1, '@media(max-width : 600px)': { padding: '12px 5px',fontSize:12 } }} label="Team" {...a11yProps(1)} />
-                        <Tab sx={{ textTransform: 'capitalize', color: "#999", border: '1px solid #00d63247', borderRadius: '8px', margin: '0px 0px 0px 10px', flex: 1, '@media(max-width : 600px)': { padding: '12px 5px',fontSize:12 } }} label="Bounty" {...a11yProps(2)} />
-                        <Tab sx={{ textTransform: 'capitalize', color: "#999", border: '1px solid #00d63247', borderRadius: '8px', margin: '0px 10px 0px 10px', flex: 1, '@media(max-width : 600px)': { padding: '12px 5px',fontSize:12 } }} label="Fix Time" {...a11yProps(3)} />
-                        <Tab sx={{ textTransform: 'capitalize', color: "#999", border: '1px solid #00d63247', borderRadius: '8px', flex: 1, '@media(max-width : 600px)': { padding: '12px 5px',fontSize:12 } }} label="History" {...a11yProps(4)} />
+                        <Tab sx={{ textTransform: 'capitalize', color: "#999", border: '1px solid #00d63247', borderRadius: '8px', flex: 1, '@media(max-width : 600px)': { padding: '12px 5px',flex: 'none', } }} label="Self Mining" {...a11yProps(0)} />
+                        <Tab sx={{ textTransform: 'capitalize', color: "#999", border: '1px solid #00d63247', borderRadius: '8px', margin: '0px 0px 0px 10px', flex: 1, '@media(max-width : 600px)': { padding: '12px 5px',flex: 'none', } }} label="Team" {...a11yProps(1)} />
+                        <Tab sx={{ textTransform: 'capitalize', color: "#999", border: '1px solid #00d63247', borderRadius: '8px', margin: '0px 0px 0px 10px', flex: 1, '@media(max-width : 600px)': { padding: '12px 5px',flex: 'none', } }} label="Bounty" {...a11yProps(2)} />
+                        <Tab sx={{ textTransform: 'capitalize', color: "#999", border: '1px solid #00d63247', borderRadius: '8px', margin: '0px 10px 0px 10px', flex: 1, '@media(max-width : 600px)': { padding: '12px 5px',flex: 'none', } }} label="Fix Time" {...a11yProps(3)} />
+                        <Tab sx={{ textTransform: 'capitalize', color: "#999", border: '1px solid #00d63247', borderRadius: '8px', flex: 1, '@media(max-width : 600px)': { padding: '12px 5px',flex: 'none', } }} label="History" {...a11yProps(4)} />
                     </Tabs>
                 </Box>
                 <CustomTabPanel value={value} index={0}>
