@@ -66,21 +66,26 @@ const useStyles = makeStyles({
     }
 });
 const mapLevel2RewardPercent={
-    "1": "10",
-    "2": "2",
-    "3": "2",
-    "4": "2",
-    "5": "0.5",
-    "6": "0.5",
-    "7": "0.5",
-    "8": "0.3",
-    "9": "0.3",
-    "10": "0.3",
-    "11": "0.2",
-    "12": "0.2",
-    "13": "0.2",
-    "14": "1",
-    "15": "5",
+    "1": "20",
+    "2": "10",
+    "3": "5",
+    "4": "5",
+    "5": "5",
+    "6": "1",
+    "7": "1",
+    "8": "1",
+    "9": "1",
+    "10": "1",
+    "11": "2",
+    "12": "2",
+    "13": "2",
+    "14": "2",
+    "15": "2",
+    "16": "3",
+    "17": "3",
+    "18": "3",
+    "19": "3",
+    "20": "3"
 } as any
 
 const TableCummunityEarn = ({resultOfUserCommunityReward}:{resultOfUserCommunityReward:any}) => {
@@ -288,8 +293,8 @@ const TableCummunityEarn = ({resultOfUserCommunityReward}:{resultOfUserCommunity
 
                                 </TableCell>
                                 <TableCell sx={{ borderBottom: '1px solid #1D1D20', padding: 1, color: '#fff' }} align="left">
-                                <Typography color={'#fff'}>{convertToAbbreviated(formatEther?.(BigInt?.(item?.fromClaimedReward ? item.fromClaimedReward.toString() : 0)),4)} EF</Typography>
-                                <Typography color={'#999'}>{formatNumberToCurrencyString(Number(formatEther?.(BigInt?.(item?.fromClaimedReward ? item.fromClaimedReward.toString() : 0))) * 0.05)}</Typography>
+                                <Typography color={'#fff'}>${convertToAbbreviated(formatEther?.(BigInt?.(item?.fromClaimedReward ? item.fromClaimedReward.toString() : 0)),4)} EF</Typography>
+                                {/* <Typography color={'#999'}>{formatNumberToCurrencyString(Number(formatEther?.(BigInt?.(item?.fromClaimedReward ? item.fromClaimedReward.toString() : 0))) * 0.05)}</Typography> */}
                                 </TableCell>
                              
                                  
@@ -297,8 +302,8 @@ const TableCummunityEarn = ({resultOfUserCommunityReward}:{resultOfUserCommunity
                                 <Typography color={'#fff'}>{new Date(Number(item?.fromClaimedTime) * 1000).toLocaleString()}</Typography>
                                 </TableCell>
                                 <TableCell sx={{ borderBottom: '1px solid #1D1D20', padding: 1, color: '#fff' }} align="right">
-                                <Typography color={'#fff'}>{convertToAbbreviated(formatEther?.(BigInt?.(item?.amount ? item.amount.toString() : 0)),4)} EF</Typography>
-                                <Typography color={'#999'}>{formatNumberToCurrencyString(Number(formatEther?.(BigInt?.(item?.amount ? item.amount.toString() : 0))) * 0.05)}</Typography>
+                                <Typography color={'#fff'}>${convertToAbbreviated(formatEther?.(BigInt?.(item?.amount ? item.amount.toString() : 0)),4)} EF</Typography>
+                                {/* <Typography color={'#999'}>{formatNumberToCurrencyString(Number(formatEther?.(BigInt?.(item?.amount ? item.amount.toString() : 0))) * 0.05)}</Typography> */}
                                 </TableCell>
                                 
                                
