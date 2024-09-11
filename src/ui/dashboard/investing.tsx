@@ -597,7 +597,9 @@ const Investing = ({resultOfRusdBalance,resultOfEfTokenPrice,resultOfCheckAllowa
                                                 abi: rusdAbi,
                                                 address: chainId === 1370 ? efContractAddresses.ramestta.rusd_Token : efContractAddresses.pingaksha.rusd_Token,
                                                 functionName: 'approve',
-                                                args: [address, 
+                                                args: [
+                                                    chainId === 1370 ? efContractAddresses.ramestta.ef_invest : efContractAddresses.pingaksha.ef_invest
+                                                    , 
                                                     Number?.(buyInput) > 0 ? parseEther?.(buyInput) : parseEther?.( BigInt((Number.MAX_SAFE_INTEGER**1.3)?.toString())?.toString())
                                                 ],
                                                 account: address

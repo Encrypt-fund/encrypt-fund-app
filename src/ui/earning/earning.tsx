@@ -159,8 +159,10 @@ const Earning = ({ Earning }: props) => {
         {
             id: 4,
             Title: 'Unclaimed Income',
-            Amount: `$${"0.00000"
-                }`,
+            Amount: `$${
+                "0.00000"
+            
+            }`,
             data: '$0.00000'
         },
         {

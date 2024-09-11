@@ -439,7 +439,7 @@ const Dsboard = (props: CircularProgressProps) => {
             data: `$${convertToAbbreviated(formatEther?.(BigInt?.(resultOfReferralDetail?.data?.[0].result ? resultOfReferralDetail?.data?.[0].result.toString() : 0)), 5)}`
         },
         {
-            image: l1,
+            image: l2,
             title: 'Your Team Income',
             data: `$${convertToAbbreviated(formatEther?.(BigInt(Number(resultOfUserTeamReward?.data) > 0 ? resultOfUserTeamReward?.data?.claimedReward as bigint : 0)), 5)}`,
         },
