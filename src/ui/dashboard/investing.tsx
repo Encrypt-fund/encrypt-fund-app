@@ -725,7 +725,7 @@ const Investing = ({resultOfRusdBalance,resultOfEfTokenPrice,resultOfCheckAllowa
                                             <Typography fontWeight={200} color={'#00d632'} textAlign={'center'} mt={1}>Note: If you have no any  valid referrer address then you can use this community referrer.</Typography>
                                             <Box sx={{ background: 'linear-gradient(90deg, #08080800, #00d632, #08080800)', gap: 1, justifyContent: 'center', padding: 1, display: 'flex', marginTop: '1rem', borderRadius: '8px', alignItems: 'center', }}>
                                                 <Typography component={'h6'} fontWeight={700} color={'#000'}>Referrer:  </Typography>
-                                                <AddressCopy hrefLink={`https://encryptfund.com/?ref=0xBE4A7Ae76F7cceD70e0aec65aBd74DC84BB9D9C9`} text={"0xBE4A7Ae76F7cceD70e0aec65aBd74DC84BB9D9C9"} addresstext={"0xBE4...BB9D9C9"} />
+                                                <AddressCopy hrefLink={`https://encryptfund.com/?ref=0xB664A8D4051d63701A778E18a5aCe0163Ea09477`} text={"0xB664A8D4051d63701A778E18a5aCe0163Ea09477"} addresstext={"0xB66...a09477"} />
                                             </Box>
                                             {/* </Box> */}
 
