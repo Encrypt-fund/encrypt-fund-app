@@ -133,7 +133,7 @@ const Tablereferral2 = () => {
         0.04,   // L2: 4%
         0.03,   // L3: 3%
         0.02,   // L4: 2%
-        0.01,   // L5: 1%
+        0.01   // L5: 1%
     ];
 
     return (
@@ -232,7 +232,7 @@ const Tablereferral2 = () => {
                                             </Typography>
                                         </TableCell>
                                         <TableCell sx={{ borderBottom: '1px solid #2b3139', padding: 1, color: '#fff' }} align="right">
-                                        <Typography color={'#fff'}>{resultOfUplineReferrals.data[2][index] ?
+                                        <Typography color={'#fff'}>{(index<5 && resultOfUplineReferrals.data[2][index]) ?
                                                 (
                                                     <>
                                                         ${convertToAbbreviated(Number(formatEther?.(BigInt?.(resultOfUplineReferrals.data[2][index].toString())))*rewardPercentages[index],5)}

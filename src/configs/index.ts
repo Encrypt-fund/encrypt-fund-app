@@ -98,8 +98,8 @@ export const efContractAddresses: EfContractAddressesType = {
     ef_ico: "0xF14CFCA3D7f35815024197a117eA82d2816Fbc23",
     ef_ico_referral: "0xe7A53699DE32B1e33492cbf5398744498B3D2ddc",
     ef_ico_staking: "0xE91A1C7B5689d918D40aAA848CDA96dbAa2aba67",
-    ef_invest: "0x",
-    ef_referral: "0x"
+    ef_invest: "0xFE684506309fc55524FeDc68679A6c3CF858ee49",
+    ef_referral: "0x6e34282c5ccea7Da90af8d5666d21C4C7DcaBa80"
 
   },
   pingaksha: {
